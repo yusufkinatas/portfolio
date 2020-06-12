@@ -4,6 +4,7 @@
 
 # Build directory
 .next/
+build/
 
 # Static export path
 out/
