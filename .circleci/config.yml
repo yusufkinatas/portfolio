@@ -13,17 +13,17 @@ jobs:
           keys:
             - 'v1-dependencies-{{ checksum "package.json" }}'
             - v1-dependencies-
-      - run: 'yarn install --ignore-engines'
+      - run: 'npm install'
       - save_cache:
           paths:
             - node_modules
           key: 'v1-dependencies-{{ checksum "package.json" }}'
       - run:
           name: 'Build Project'
-          command: 'yarn build'
+          command: 'npm run build'
       - run:
           name: 'Export Project'
-          command: 'yarn export'
+          command: 'npm run export'
       - run:
           name: 'Deploy to Firebase Hosting'
           command: './node_modules/.bin/firebase deploy --token=$FIREBASE_TOKEN'
