@@ -15,7 +15,7 @@ function About() {
             mobile and web
           </div>
           <Button className={styles.button} link="/work">
-            TEST
+            SEE MY WORK
           </Button>
         </div>
         <div className={styles.logo}>
