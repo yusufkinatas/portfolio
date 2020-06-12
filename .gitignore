@@ -129,6 +129,4 @@ yarn.lock
 
 #PROJECT
 src/
-public/
 report.*.json
-.firebase
