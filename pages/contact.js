@@ -7,7 +7,7 @@ function Contact() {
         <div>Wanna get in touch?</div>
         <div>
           Send an email to me at{' '}
-          <a href="mailto:yusufkinatas@gmail.com" target="_blank" rel="noopener noreferrer">
+          <a href="mailto:yusufkinatas@gmail.com" target="_" rel="noopener noreferrer">
             yusufkinatas@gmail.com
           </a>
         </div>
@@ -17,7 +17,7 @@ function Contact() {
           You can also connect with me on{' '}
           <a
             href="https://www.linkedin.com/in/yusuf-kinatas/"
-            target="_blank"
+            target="_"
             rel="noopener noreferrer">
             Linkedin
           </a>{' '}
@@ -26,7 +26,7 @@ function Contact() {
         <br />
         <div>
           Check my{' '}
-          <a href="https://github.com/yusufkinatas" target="_blank" rel="noopener noreferrer">
+          <a href="https://github.com/yusufkinatas" target="_" rel="noopener noreferrer">
             Github
           </a>{' '}
           for the latest projects.
