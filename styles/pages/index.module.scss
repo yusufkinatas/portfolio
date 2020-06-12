@@ -17,8 +17,6 @@
   }
 
   .content {
-    // border: 1px solid grey;
-
     .hi {
       font-size: 2rem;
     }
@@ -40,19 +38,17 @@
   }
 
   .logo {
-    // border: 1px solid grey;
-
     @media screen and (max-width: 768px) {
       width: 100%;
     }
 
     img {
-      width: 10em;
+      width: 10rem;
       height: auto;
       object-fit: contain;
 
       @media screen and (max-width: 768px) {
-        width: 5em;
+        width: 5rem;
       }
     }
   }
