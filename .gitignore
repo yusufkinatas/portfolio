@@ -130,3 +130,4 @@ yarn.lock
 src/
 public/
 report.*.json
+.firebase
