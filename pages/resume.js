@@ -5,7 +5,7 @@ function Contact() {
     <Page>
       <div>
         <div>In a hurry?</div>
-        <button>DOWNLOAD PDF</button>
+        <a href="resume.pdf" target="_" >RESUME PDF</a>
       </div>
     </Page>
   );
