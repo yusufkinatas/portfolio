@@ -1,0 +1,11 @@
+@import '../variables.scss';
+
+.root {
+  display: inline-flex;
+  padding: 0.8rem 0.8rem 0.8rem 1rem;
+  background: $primary;
+  color: $text;
+  letter-spacing: 0.3rem;
+  font-weight: 600;
+  cursor: pointer;
+}

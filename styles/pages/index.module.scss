@@ -1,0 +1,59 @@
+@import '../variables.scss';
+
+.root {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  text-align: center;
+  align-items: center;
+  max-width: 1200px;
+  width: 100%;
+
+  margin: auto;
+  height: 90vh;
+
+  @media screen and (max-width: 768px) {
+    height: 80vh;
+  }
+
+  .content {
+    // border: 1px solid grey;
+
+    .hi {
+      font-size: 2rem;
+    }
+
+    .title {
+      letter-spacing: 0.3rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+    }
+
+    .description {
+      font-size: 1.3rem;
+      margin-top: 3rem;
+    }
+
+    .button {
+      margin-top: 3rem;
+    }
+  }
+
+  .logo {
+    // border: 1px solid grey;
+
+    @media screen and (max-width: 768px) {
+      width: 100%;
+    }
+
+    img {
+      width: 10em;
+      height: auto;
+      object-fit: contain;
+
+      @media screen and (max-width: 768px) {
+        width: 5em;
+      }
+    }
+  }
+}
