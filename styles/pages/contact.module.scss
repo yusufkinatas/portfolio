@@ -1,0 +1,14 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+
+  height: 80vh;
+
+  padding: 0 1em;
+
+  p {
+    line-height: 1.5;
+  }
+}

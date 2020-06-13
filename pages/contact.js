@@ -1,36 +1,27 @@
 import Page from '../components/Page';
+import Link from '../components/Link';
+import styles from '../styles/pages/contact.module.scss';
 
 function Contact() {
   return (
     <Page>
-      <div>
-        <div>Wanna get in touch?</div>
-        <div>
+      <div className={styles.root}>
+        <p>
+          Wanna get in touch?
+          <br />
           Send an email to me at{' '}
-          <a href="mailto:yusufkinatas@gmail.com" target="_" rel="noopener noreferrer">
-            yusufkinatas@gmail.com
-          </a>
-        </div>
-        <div>Don't worry. I check my emails daily.</div>
-        <br />
-        <div>
+          <Link href="mailto:yusufkinatas@gmail.com">yusufkinatas@gmail.com</Link>
+          <br />
+          Don't worry. I check my emails daily.
+        </p>
+        <p>
           You can also connect with me on{' '}
-          <a
-            href="https://www.linkedin.com/in/yusuf-kinatas/"
-            target="_"
-            rel="noopener noreferrer">
-            Linkedin
-          </a>{' '}
-          in seconds
-        </div>
-        <br />
-        <div>
-          Check my{' '}
-          <a href="https://github.com/yusufkinatas" target="_" rel="noopener noreferrer">
-            Github
-          </a>{' '}
-          for the latest projects.
-        </div>
+          <Link href="https://www.linkedin.com/in/yusuf-kinatas/">Linkedin</Link> in seconds
+        </p>
+        <p>
+          Check my <Link href="https://github.com/yusufkinatas">Github</Link> for the latest
+          projects.
+        </p>
       </div>
     </Page>
   );
