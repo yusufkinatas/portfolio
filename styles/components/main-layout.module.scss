@@ -9,41 +9,45 @@
   overflow-y: scroll;
   overflow-x: hidden;
 
-  .navbar {
-    width: 100vw;
-    max-width: 1200px;
-    margin: 0px auto;
+  .navbarWrapper {
+    background: $background;
     height: 60px;
     position: sticky;
     top: 0;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    background: $background;
     z-index: 99;
 
-    a {
-      font-size: 1rem;
-      color: white;
-      text-decoration: none;
+    .navbar {
+      width: 100vw;
+      max-width: 1200px;
+      margin: 0px auto;
       height: 60px;
-      flex: 1;
+
       display: flex;
       align-items: center;
-      justify-content: center;
+      justify-content: space-around;
 
-      > div {
-        position: relative;
-        &.active {
-          &::after {
-            content: '';
-            position: absolute;
-            height: 0.1rem;
-            left: -0.5rem;
-            right: -0.5rem;
-            bottom: -0.5rem;
-            background: $text;
+      a {
+        font-size: 1rem;
+        color: white;
+        text-decoration: none;
+        height: 60px;
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        > div {
+          position: relative;
+          &.active {
+            &::after {
+              content: '';
+              position: absolute;
+              height: 0.1rem;
+              left: -0.5rem;
+              right: -0.5rem;
+              bottom: -0.5rem;
+              background: $text;
+            }
           }
         }
       }
