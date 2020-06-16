@@ -1,11 +1,21 @@
 import Page from '../components/Page';
+import Button from '../components/Button';
+import SkillList from '../components/SkillList';
+import ExperienceList from '../components/ExperienceList';
+import styles from '../styles/pages/resume.module.scss';
 
 function Contact() {
   return (
     <Page>
-      <div>
-        <div>In a hurry?</div>
-        <a href="resume.pdf" target="_" >RESUME PDF</a>
+      <div className={styles.root}>
+        <div>
+          <div className={styles.title}>In a hurry?</div>
+          <Button renderATag link="resume.pdf">
+            RESUME PDF
+          </Button>
+        </div>
+        <ExperienceList />
+        <SkillList />
       </div>
     </Page>
   );
