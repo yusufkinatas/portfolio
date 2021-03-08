@@ -10,7 +10,7 @@ function Contact() {
       <div className={styles.root}>
         <div>
           <div className={styles.title}>In a hurry?</div>
-          <Button renderATag link="resume.pdf">
+          <Button renderATag link="myresume.pdf">
             RESUME PDF
           </Button>
         </div>
