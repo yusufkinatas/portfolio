@@ -1,0 +1,21 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": [
+          "RRGLN8WGKF.com.podopolo.app",
+          "RRGLN8WGKF.com.podopolo.staging",
+          "RRGLN8WGKF.com.podopolo.dev"
+        ],
+        "components": [
+          {
+            "/": "/episode/*"
+          },
+          {
+            "/": "/podcast/*"
+          }
+        ]
+      }
+    ]
+  }
+}
