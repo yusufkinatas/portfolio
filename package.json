@@ -13,7 +13,7 @@
     "lint:eslint": "eslint src",
     "lint:prettier": "prettier \"src/**/*.(ts|tsx|js|css|json)\" -c",
     "lint:tsc": "tsc",
-    "contentful:codegen": "graphql-codegen  --require dotenv/config --config codegen.yml dotenv_config_path=.env"
+    "codegen": "graphql-codegen --require dotenv/config --config codegen.yml"
   },
   "author": "",
   "license": "ISC",
@@ -24,7 +24,7 @@
     "@emotion/styled": "^11.8.1",
     "clsx": "^1.1.1",
     "framer-motion": "^6.3.3",
-    "graphql": "^16.5.0",
+    "graphql": "^15.5.0",
     "graphql-request": "^4.2.0",
     "next": "^12.1.6",
     "react": "^18.1.0",
@@ -35,11 +35,11 @@
     "@contentful/rich-text-types": "^15.12.1",
     "@emotion/babel-plugin": "^11.9.2",
     "@emotion/eslint-plugin": "^11.7.0",
-    "@graphql-codegen/cli": "^2.6.2",
+    "@graphql-codegen/cli": "^1.20.1",
     "@graphql-codegen/schema-ast": "^2.4.1",
-    "@graphql-codegen/typescript": "^2.4.11",
-    "@graphql-codegen/typescript-graphql-request": "^4.4.8",
-    "@graphql-codegen/typescript-operations": "^2.4.0",
+    "@graphql-codegen/typescript": "^1.20.2",
+    "@graphql-codegen/typescript-graphql-request": "3.0.0",
+    "@graphql-codegen/typescript-operations": "^1.17.14",
     "@types/prettier": "^2.6.1",
     "@types/react": "^18.0.9",
     "@typescript-eslint/eslint-plugin": "^5.23.0",
@@ -50,6 +50,7 @@
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-react": "^7.29.4",
     "eslint-plugin-react-hooks": "^4.5.0",
+    "npm-run-all": "^4.1.5",
     "prettier": "^2.6.2",
     "typescript": "^4.6.4"
   }

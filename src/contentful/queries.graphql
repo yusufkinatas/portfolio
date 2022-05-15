@@ -1,0 +1,12 @@
+query getPerson {
+  personCollection(limit: 1) {
+    items {
+      name
+      title
+      description
+      contactText {
+        json
+      }
+    }
+  }
+}

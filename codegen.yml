@@ -3,10 +3,7 @@ schema:
 documents:
   - 'src/**/*.graphql'
 generates:
-  ./src/api/contentful/contentful.graphql.types.ts:
-    hooks:
-      afterOneFileWrite:
-        - prettier --write
+  ./src/contentful/contentful.graphql.types.ts:
     plugins:
       - typescript
       - typescript-operations
