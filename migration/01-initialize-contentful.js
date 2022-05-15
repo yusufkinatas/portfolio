@@ -3,25 +3,25 @@
 /**
  * @param migration {import('contentful-migration').default}
  */
-module.exports = migration => {
+module.exports = (migration) => {
   // Create person type
-  const person = migration.createContentType('person', { name: 'Person', displayField: 'name' });
+  const person = migration.createContentType('person', { name: 'Person', displayField: 'name' })
 
   person.createField('name', {
     name: 'Name',
     type: 'Symbol',
     required: true,
-  });
+  })
   person.createField('title', {
     name: 'Title',
     type: 'Symbol',
     required: true,
-  });
+  })
   person.createField('description', {
     name: 'Description',
     type: 'Symbol',
     required: true,
-  });
+  })
   person.createField('contactText', {
     name: 'Contact Text',
     type: 'RichText',
@@ -39,47 +39,47 @@ module.exports = migration => {
         nodes: {},
       },
     ],
-  });
+  })
 
   // Create experience type
   const experience = migration.createContentType('experience', {
     name: 'Experience',
     displayField: 'company',
-  });
+  })
 
   experience.createField('company', {
     name: 'Company',
     type: 'Symbol',
     required: true,
-  });
+  })
   experience.createField('title', {
     name: 'Title',
     type: 'Symbol',
     required: true,
-  });
+  })
   experience.createField('year', {
     name: 'Year',
     type: 'Symbol',
     required: true,
-  });
+  })
 
   // Create skill list type
   const skillList = migration.createContentType('skillList', {
     name: 'Skill List',
     displayField: 'title',
-  });
+  })
 
   skillList.createField('title', {
     name: 'Title',
     type: 'Symbol',
     required: true,
-  });
+  })
   skillList.createField('icon', {
     name: 'Icon',
     type: 'Link',
     required: true,
     linkType: 'Asset',
-  });
+  })
   skillList.createField('skills', {
     name: 'Skills',
     type: 'Array',
@@ -88,12 +88,12 @@ module.exports = migration => {
       type: 'Symbol',
       validations: [],
     },
-  });
+  })
 
   // Create resume page type
   const resumePage = migration.createContentType('resumePage', {
     name: 'Resume Page',
-  });
+  })
 
   resumePage.createField('experiences', {
     name: 'Experiences',
@@ -108,7 +108,7 @@ module.exports = migration => {
       ],
       linkType: 'Entry',
     },
-  });
+  })
 
   resumePage.createField('resumePdf', {
     name: 'Resume PDF',
@@ -119,9 +119,8 @@ module.exports = migration => {
       },
     ],
     linkType: 'Asset',
-  });
-
-  [1, 2, 3, 4].forEach(num => {
+  })
+  ;[1, 2, 3, 4].forEach((num) => {
     resumePage.createField(`skillList${num}`, {
       name: `Skill List ${num}`,
       type: 'Link',
@@ -132,20 +131,20 @@ module.exports = migration => {
         },
       ],
       linkType: 'Entry',
-    });
-  });
+    })
+  })
 
   // Create project url type
   const projectUrl = migration.createContentType('projectUrl', {
     name: 'Project URL',
     displayField: 'name',
-  });
+  })
 
   projectUrl.createField('name', {
     name: 'Name',
     type: 'Symbol',
     required: true,
-  });
+  })
   projectUrl.createField('Type', {
     name: 'Type',
     type: 'Symbol',
@@ -155,24 +154,24 @@ module.exports = migration => {
         in: ['GITHUB', 'GOOGLE_PLAY', 'APP_STORE', 'WEBSITE'],
       },
     ],
-  });
+  })
   projectUrl.createField('url', {
     name: 'URL',
     type: 'Symbol',
     required: true,
-  });
+  })
 
   // Create project type
   const project = migration.createContentType('project', {
     name: 'Project',
     displayField: 'name',
-  });
+  })
 
   project.createField('name', {
     name: 'Name',
     type: 'Symbol',
     required: true,
-  });
+  })
   project.createField('logo', {
     name: 'Logo',
     type: 'Link',
@@ -183,12 +182,12 @@ module.exports = migration => {
       },
     ],
     linkType: 'Asset',
-  });
+  })
   project.createField('primaryColor', {
     name: 'Primary Color',
     type: 'Symbol',
     required: true,
-  });
+  })
   project.createField('urLs', {
     name: 'URLs',
     type: 'Array',
@@ -202,7 +201,7 @@ module.exports = migration => {
       ],
       linkType: 'Entry',
     },
-  });
+  })
   project.createField('categories', {
     name: 'Categories',
     type: 'Array',
@@ -211,7 +210,7 @@ module.exports = migration => {
       type: 'Symbol',
       validations: [],
     },
-  });
+  })
   project.createField('description', {
     name: 'Description',
     type: 'RichText',
@@ -243,7 +242,7 @@ module.exports = migration => {
         nodes: {},
       },
     ],
-  });
+  })
   project.createField('techStack', {
     name: 'Tech Stack',
     type: 'Array',
@@ -252,11 +251,11 @@ module.exports = migration => {
       type: 'Symbol',
       validations: [],
     },
-  });
+  })
   project.createField('youtubeUrl', {
     name: 'Youtube URL',
     type: 'Symbol',
-  });
+  })
   project.createField('images', {
     name: 'Images',
     type: 'Array',
@@ -270,5 +269,25 @@ module.exports = migration => {
       ],
       linkType: 'Asset',
     },
-  });
-};
+  })
+
+  // Create project page type
+  const projectPage = migration.createContentType('projectPage', {
+    name: 'Project Page',
+  })
+
+  projectPage.createField('projects', {
+    name: 'Projects',
+    required: true,
+    type: 'Array',
+    items: {
+      type: 'Link',
+      validations: [
+        {
+          linkContentType: ['project'],
+        },
+      ],
+      linkType: 'Entry',
+    },
+  })
+}
