@@ -1,8 +1,16 @@
 import Link from 'next/link';
 import styles from '../styles/components/button.module.scss';
 import clsx from 'clsx';
+import { ReactNode } from 'react';
 
-function Button({ link, renderATag, className, children }) {
+interface Props {
+  link: string;
+  renderATag?: boolean;
+  className?: string;
+  children: ReactNode;
+}
+
+function Button({ link, renderATag, className, children }: Props) {
   if (renderATag) {
     return (
       <a href={link} target="blank" rel="noopener noreferrer">

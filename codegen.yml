@@ -1,0 +1,18 @@
+schema:
+  - https://graphql.contentful.com/content/v1/spaces/${NEXT_PUBLIC_CONTENTFUL_SPACE_ID}/environments/${NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT}?access_token=${NEXT_PUBLIC_CONTENTFUL_CDA_TOKEN}:
+documents:
+  - 'src/**/*.graphql'
+generates:
+  ./src/api/contentful/contentful.graphql.types.ts:
+    hooks:
+      afterOneFileWrite:
+        - prettier --write
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-graphql-request:
+          documentMode: documentNode
+  # Save the remote ast schema to a file for a better IDE experience
+  schema.graphql:
+    plugins:
+      - schema-ast

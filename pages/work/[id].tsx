@@ -1,14 +1,15 @@
-import Head from 'next/head';
+// import Head from 'next/head';
 import Page from '../../components/Page';
-import Link from '../../components/Link';
-import NextLink from 'next/link';
-import { getAllProjectIds, getProjectData, linkTypes } from '../../lib/projects';
-import styles from '../../styles/pages/work/work.module.scss';
+// import Link from '../../components/Link';
+// import NextLink from 'next/link';
+import { getAllProjectIds, getProjectData } from '../../lib/projects';
+import { GetStaticPaths, GetStaticProps } from 'next';
+// import styles from '../../styles/pages/work/work.module.scss';
 
-function ProjectDetails({ data }) {
+function ProjectDetails() {
   return (
     <Page>
-      <Head>
+      {/* <Head>
         <title>{data.title}</title>
       </Head>
       <div>
@@ -38,33 +39,33 @@ function ProjectDetails({ data }) {
 
             return (
               <div>
-                {/* <img src={`/icons/${link.type}.svg`} style={{filter:""}} /> */}
+                <img src={`/icons/${link.type}.svg`} style={{ filter: '' }} />
                 <Link href={link.url}>{text}</Link>
               </div>
             );
           })}
         </div>
-      </div>
+      </div> */}
     </Page>
   );
 }
 
-export function getStaticPaths() {
+export const getStaticPaths: GetStaticPaths = () => {
   const paths = getAllProjectIds();
   return {
     paths,
     fallback: false,
   };
-}
+};
 
-export function getStaticProps({ params }) {
-  const data = getProjectData(params.id);
+export const getStaticProps: GetStaticProps<{}, { id: string }> = ctx => {
+  const data = getProjectData(ctx.params?.id || '');
 
   return {
     props: {
       data,
     },
   };
-}
+};
 
 export default ProjectDetails;

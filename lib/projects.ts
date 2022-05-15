@@ -8,11 +8,9 @@ export function getAllProjectIds() {
   });
 }
 
-export function getProjectData(id) {
+export function getProjectData(id: string) {
   return projects.find(p => p.id === id);
 }
-
-//link types: android, ios, web, github
 
 export const linkTypes = {
   android: 'android',
@@ -44,13 +42,11 @@ export const projects = [
     links: [
       {
         type: linkTypes.web,
-        url:
-          'http://narmoni.com.tr/',
+        url: 'http://narmoni.com.tr/',
       },
       {
         type: linkTypes.ios,
-        url:
-          'https://apps.apple.com/tr/app/narmoni-ak%C4%B1ll%C4%B1-al%C4%B1%C5%9Fveri%C5%9F/id1478123052',
+        url: 'https://apps.apple.com/tr/app/narmoni-ak%C4%B1ll%C4%B1-al%C4%B1%C5%9Fveri%C5%9F/id1478123052',
       },
       { type: linkTypes.android, url: 'https://play.google.com/store/apps/details?id=com.narmoni' },
     ],

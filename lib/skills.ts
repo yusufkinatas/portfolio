@@ -6,7 +6,6 @@ export const skillList = {
   },
   ui: {
     title: 'UI Development',
-    title: 'UI',
     icon: '/icons/skill-ui.svg',
     list: ['LESS', 'SASS', 'styled-components', 'Framer Motion', 'Ant Design'],
   },

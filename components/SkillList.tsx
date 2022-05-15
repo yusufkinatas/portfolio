@@ -6,7 +6,18 @@ import { skillList } from '../lib/skills';
 
 let zIndexCounter = 100;
 
-const Section = ({ id, skillData, onClick, expandedId }) => {
+interface Props {
+  id: number;
+  skillData: {
+    title: string,
+    icon: string,
+    list: string[],
+  };
+  onClick: () => void;
+  expandedId: number;
+}
+
+const Section = ({ id, skillData, onClick, expandedId }: Props) => {
   const [zIndex, setZIndex] = useState(1);
 
   const { title, icon, list } = skillData;
@@ -47,7 +58,7 @@ const Section = ({ id, skillData, onClick, expandedId }) => {
 function SkillList() {
   const [expanded, setExpanded] = useState(0);
 
-  const expandSection = id => setExpanded(oldId => (oldId == id ? 0 : id));
+  const expandSection = (id: number) => setExpanded(oldId => (oldId == id ? 0 : id));
 
   return (
     <div className={styles.outerContainer}>

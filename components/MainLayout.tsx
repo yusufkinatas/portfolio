@@ -4,8 +4,14 @@ import Link from 'next/link';
 
 import styles from '../styles/components/main-layout.module.scss';
 import clsx from 'clsx';
+import { ReactNode } from 'react';
 
-function MainLayout({ children, route }) {
+interface Props {
+  route: string;
+  children: ReactNode;
+}
+
+function MainLayout({ children, route }: Props) {
   return (
     <div className={styles.root}>
       <Head>

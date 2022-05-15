@@ -130,3 +130,6 @@ yarn.lock
 #PROJECT
 src/
 report.*.json
+
+#BUILD_INFO
+tsconfig.tsbuildinfo

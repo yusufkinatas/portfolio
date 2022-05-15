@@ -1,7 +1,12 @@
 import { motion } from 'framer-motion';
+import { ReactNode } from 'react';
 import styles from '../styles/components/page.module.scss';
 
-function Page({ children }) {
+interface Props {
+  children: ReactNode;
+}
+
+function Page({ children }: Props) {
   return (
     <motion.div
       className={styles.root}
