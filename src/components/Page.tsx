@@ -1,9 +1,9 @@
-import { motion } from 'framer-motion';
-import { ReactNode } from 'react';
-import styles from '../styles/components/page.module.scss';
+import { motion } from 'framer-motion'
+import { ReactNode } from 'react'
+import styles from '../styles/components/page.module.scss'
 
 interface Props {
-  children: ReactNode;
+  children: ReactNode
 }
 
 function Page({ children }: Props) {
@@ -17,7 +17,7 @@ function Page({ children }: Props) {
     >
       {children}
     </motion.div>
-  );
+  )
 }
 
-export default Page;
+export default Page

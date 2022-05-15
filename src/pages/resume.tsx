@@ -1,8 +1,8 @@
-import Page from '../components/Page';
-import Button from '../components/Button';
-import SkillList from 'components/SkillList';
-import ExperienceList from 'components/ExperienceList';
-import styles from 'styles/pages/resume.module.scss';
+import Page from '../components/Page'
+import Button from '../components/Button'
+import SkillList from 'components/SkillList'
+import ExperienceList from 'components/ExperienceList'
+import styles from 'styles/pages/resume.module.scss'
 
 function Contact() {
   return (
@@ -18,7 +18,7 @@ function Contact() {
         <SkillList />
       </div>
     </Page>
-  );
+  )
 }
 
-export default Contact;
+export default Contact

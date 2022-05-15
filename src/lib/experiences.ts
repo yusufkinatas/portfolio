@@ -17,8 +17,7 @@ export const experienceList = [
     year: '2018',
     title: 'Mobile Developer',
     company: 'Kodnet',
-    description:
-      'I developed Reportly (an Instagram account analysis application) using React-Native.',
+    description: 'I developed Reportly (an Instagram account analysis application) using React-Native.',
   },
   {
     year: '2017',
@@ -33,4 +32,4 @@ export const experienceList = [
     company: 'Devtek IT',
     description: 'I developed a video converter tool using FFmpeg library.',
   },
-];
+]

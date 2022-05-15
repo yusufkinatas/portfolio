@@ -19,4 +19,4 @@ export const skillList = {
     icon: '/icons/skill-teamwork.svg',
     list: ['Scrum', 'Git', 'Figma', 'Sketch', 'Zeplin'],
   },
-};
+}

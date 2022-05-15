@@ -1,10 +1,10 @@
-import styles from '../styles/components/experience-list.module.scss';
-import { experienceList } from '../lib/experiences';
+import styles from '../styles/components/experience-list.module.scss'
+import { experienceList } from '../lib/experiences'
 
 interface ExperienceProps {
-  year: string;
-  company: string;
-  title: string;
+  year: string
+  company: string
+  title: string
 }
 
 const Experience = ({ year, company, title }: ExperienceProps) => {
@@ -18,8 +18,8 @@ const Experience = ({ year, company, title }: ExperienceProps) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
 function ExperienceList() {
   return (
@@ -28,7 +28,7 @@ function ExperienceList() {
         <Experience key={index} {...e} />
       ))}
     </div>
-  );
+  )
 }
 
-export default ExperienceList;
+export default ExperienceList

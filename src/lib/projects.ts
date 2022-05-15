@@ -1,15 +1,15 @@
 export function getAllProjectIds() {
-  return projects.map(project => {
+  return projects.map((project) => {
     return {
       params: {
         id: project.id,
       },
-    };
-  });
+    }
+  })
 }
 
 export function getProjectData(id: string) {
-  return projects.find(p => p.id === id);
+  return projects.find((p) => p.id === id)
 }
 
 export const linkTypes = {
@@ -17,7 +17,7 @@ export const linkTypes = {
   ios: 'ios',
   web: 'web',
   github: 'github',
-};
+}
 
 export const projects = [
   {
@@ -131,4 +131,4 @@ export const projects = [
       },
     ],
   },
-];
+]

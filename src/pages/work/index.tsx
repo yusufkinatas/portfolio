@@ -1,7 +1,7 @@
-import Page from 'components/Page';
-import { projects } from 'lib/projects';
+import Page from 'components/Page'
+import { projects } from 'lib/projects'
 
-import styles from 'styles/pages/work/work.module.scss';
+import styles from 'styles/pages/work/work.module.scss'
 
 function Work() {
   return (
@@ -9,7 +9,7 @@ function Work() {
       <div className={styles.root}>
         <h2>Here is some of my best projects</h2>
         <div className={styles.projectList}>
-          {projects.map(p => (
+          {projects.map((p) => (
             <a href={p.links[0].url} target="_">
               <div>
                 <div className={styles.project} style={{ background: p.color }}>
@@ -30,7 +30,7 @@ function Work() {
         </div>
       </div>
     </Page>
-  );
+  )
 }
 
-export default Work;
+export default Work

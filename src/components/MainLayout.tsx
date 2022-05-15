@@ -1,14 +1,14 @@
-import { AnimatePresence } from 'framer-motion';
-import Head from 'next/head';
-import Link from 'next/link';
+import { AnimatePresence } from 'framer-motion'
+import Head from 'next/head'
+import Link from 'next/link'
 
-import styles from '../styles/components/main-layout.module.scss';
-import clsx from 'clsx';
-import { ReactNode } from 'react';
+import styles from '../styles/components/main-layout.module.scss'
+import clsx from 'clsx'
+import { ReactNode } from 'react'
 
 interface Props {
-  route: string;
-  children: ReactNode;
+  route: string
+  children: ReactNode
 }
 
 function MainLayout({ children, route }: Props) {
@@ -17,10 +17,7 @@ function MainLayout({ children, route }: Props) {
       <Head>
         <meta charSet="utf-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1 maximum-scale=1, user-scalable=0"
-        />
+        <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1, user-scalable=0" />
         <link
           href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap"
           rel="stylesheet"
@@ -54,7 +51,7 @@ function MainLayout({ children, route }: Props) {
       )}
       <AnimatePresence>{children}</AnimatePresence>
     </div>
-  );
+  )
 }
 
-export default MainLayout;
+export default MainLayout

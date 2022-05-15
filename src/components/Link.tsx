@@ -1,9 +1,9 @@
-import { ReactNode } from 'react';
-import styles from '../styles/components/link.module.scss';
+import { ReactNode } from 'react'
+import styles from '../styles/components/link.module.scss'
 
 interface Props {
-  href: string;
-  children: ReactNode;
+  href: string
+  children: ReactNode
 }
 
 function Link({ href, children }: Props) {
@@ -11,7 +11,7 @@ function Link({ href, children }: Props) {
     <a className={styles.link} href={href} target="blank" rel="noopener noreferrer">
       {children}
     </a>
-  );
+  )
 }
 
-export default Link;
+export default Link

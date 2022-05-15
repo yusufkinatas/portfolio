@@ -1,6 +1,6 @@
-import Button from 'components/Button';
-import Page from 'components/Page';
-import styles from 'styles/pages/index.module.scss';
+import Button from 'components/Button'
+import Page from 'components/Page'
+import styles from 'styles/pages/index.module.scss'
 
 function About() {
   return (
@@ -23,7 +23,7 @@ function About() {
         </div>
       </div>
     </Page>
-  );
+  )
 }
 
-export default About;
+export default About
