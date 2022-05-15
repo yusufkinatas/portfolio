@@ -1,7 +1,7 @@
-import Page from '../../components/Page';
-import { projects } from '../../lib/projects';
+import Page from 'components/Page';
+import { projects } from 'lib/projects';
 
-import styles from '../../styles/pages/work/work.module.scss';
+import styles from 'styles/pages/work/work.module.scss';
 
 function Work() {
   return (

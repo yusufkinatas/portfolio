@@ -128,7 +128,6 @@ yarn.lock
 .vscode
 
 #PROJECT
-src/
 report.*.json
 
 #BUILD_INFO

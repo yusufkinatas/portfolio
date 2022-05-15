@@ -1,10 +1,10 @@
 // import Head from 'next/head';
-import Page from '../../components/Page';
-// import Link from '../../components/Link';
+import Page from 'components/Page';
+// import Link from 'components/Link';
 // import NextLink from 'next/link';
-import { getAllProjectIds, getProjectData } from '../../lib/projects';
+import { getAllProjectIds, getProjectData } from 'lib/projects';
 import { GetStaticPaths, GetStaticProps } from 'next';
-// import styles from '../../styles/pages/work/work.module.scss';
+// import styles from 'styles/pages/work/work.module.scss';
 
 function ProjectDetails() {
   return (
@@ -58,7 +58,8 @@ export const getStaticPaths: GetStaticPaths = () => {
   };
 };
 
-export const getStaticProps: GetStaticProps<{}, { id: string }> = ctx => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const getStaticProps: GetStaticProps<any, { id: string }> = ctx => {
   const data = getProjectData(ctx.params?.id || '');
 
   return {

@@ -1,6 +1,6 @@
-import Page from '../components/Page';
-import Link from '../components/Link';
-import styles from '../styles/pages/contact.module.scss';
+import Page from 'components/Page';
+import Link from 'components/Link';
+import styles from 'styles/pages/contact.module.scss';
 
 function Contact() {
   return (

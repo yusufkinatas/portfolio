@@ -11,7 +11,7 @@
     "merge": "git fetch . dev:master && git push origin master:master",
     "lint": "run-p -lsc lint:*",
     "lint:eslint": "eslint src",
-    "lint:prettier": "prettier \"./**/*.(ts|tsx|js|css|json)\" -c",
+    "lint:prettier": "prettier \"src/**/*.(ts|tsx|js|css|json)\" -c",
     "lint:tsc": "tsc",
     "contentful:codegen": "graphql-codegen  --require dotenv/config --config codegen.yml dotenv_config_path=.env"
   },
@@ -50,7 +50,6 @@
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-react": "^7.29.4",
     "eslint-plugin-react-hooks": "^4.5.0",
-    "npm-run-all": "^4.1.5",
     "prettier": "^2.6.2",
     "typescript": "^4.6.4"
   }

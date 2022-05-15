@@ -28,7 +28,7 @@ const Section = ({ id, skillData, onClick, expandedId }: Props) => {
     } else {
       setZIndex(0);
     }
-  }, [expandedId]);
+  }, [expandedId, id]);
 
   let positionStyle;
   if (id === 1) positionStyle = styles.topLeft;
@@ -40,7 +40,8 @@ const Section = ({ id, skillData, onClick, expandedId }: Props) => {
     <div
       style={{ zIndex: zIndex > 1 ? zIndex : 1 }}
       className={clsx(styles.sectionContainer, positionStyle, expandedId === id && styles.expanded)}
-      onClick={onClick}>
+      onClick={onClick}
+    >
       <div className={styles.cover}>
         <img className={styles.icon} src={icon} />
         <div className={styles.title}>{title}</div>
@@ -58,7 +59,7 @@ const Section = ({ id, skillData, onClick, expandedId }: Props) => {
 function SkillList() {
   const [expanded, setExpanded] = useState(0);
 
-  const expandSection = (id: number) => setExpanded(oldId => (oldId == id ? 0 : id));
+  const expandSection = (id: number) => setExpanded(oldId => (oldId === id ? 0 : id));
 
   return (
     <div className={styles.outerContainer}>
