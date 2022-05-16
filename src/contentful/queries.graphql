@@ -1,11 +1,98 @@
+fragment ImageFields on Asset {
+  title
+  description
+  fileName
+  url
+}
+
 query getPerson {
   personCollection(limit: 1) {
     items {
       name
       title
-      description
+      description {
+        json
+      }
       contactText {
         json
+      }
+    }
+  }
+}
+
+fragment SkillListFields on SkillList {
+  title
+  skills
+  icon {
+    ...ImageFields
+  }
+}
+
+query getResumePage {
+  resumePageCollection(limit: 1) {
+    items {
+      resumePdf {
+        url
+      }
+      experiencesCollection(limit: 20) {
+        items {
+          company
+          title
+          year
+        }
+      }
+      skillList1 {
+        ...SkillListFields
+      }
+      skillList2 {
+        ...SkillListFields
+      }
+      skillList3 {
+        ...SkillListFields
+      }
+      skillList4 {
+        ...SkillListFields
+      }
+    }
+  }
+}
+
+fragment ProjectUrlFields on ProjectUrl {
+  type
+  url
+}
+
+fragment ProjectFields on Project {
+  name
+  logo {
+    ...ImageFields
+  }
+  primaryColor
+  urls: urLsCollection(limit: 5) {
+    items {
+      ...ProjectUrlFields
+    }
+  }
+  categories
+  description {
+    json
+  }
+  techStack
+  youtubeUrl
+  images: imagesCollection(limit: 20) {
+    items {
+      ...ImageFields
+    }
+  }
+}
+
+query getProjectPage {
+  projectPageCollection(limit: 1) {
+    items {
+      projectsCollection {
+        items {
+          ...ProjectFields
+        }
       }
     }
   }

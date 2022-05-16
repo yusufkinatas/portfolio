@@ -399,7 +399,7 @@ type Person implements Entry {
   linkedFrom(allowedLocales: [String]): PersonLinkingCollections
   name(locale: String): String
   title(locale: String): String
-  description(locale: String): String
+  description(locale: String): PersonDescription
   contactText(locale: String): PersonContactText
 }
 
@@ -431,6 +431,27 @@ type PersonContactTextLinks {
   assets: PersonContactTextAssets!
 }
 
+type PersonDescription {
+  json: JSON!
+  links: PersonDescriptionLinks!
+}
+
+type PersonDescriptionAssets {
+  hyperlink: [Asset]!
+  block: [Asset]!
+}
+
+type PersonDescriptionEntries {
+  inline: [Entry]!
+  hyperlink: [Entry]!
+  block: [Entry]!
+}
+
+type PersonDescriptionLinks {
+  entries: PersonDescriptionEntries!
+  assets: PersonDescriptionAssets!
+}
+
 input PersonFilter {
   sys: SysFilter
   contentfulMetadata: ContentfulMetadataFilter
@@ -449,10 +470,6 @@ input PersonFilter {
   title_contains: String
   title_not_contains: String
   description_exists: Boolean
-  description: String
-  description_not: String
-  description_in: [String]
-  description_not_in: [String]
   description_contains: String
   description_not_contains: String
   contactText_exists: Boolean
@@ -471,8 +488,6 @@ enum PersonOrder {
   name_DESC
   title_ASC
   title_DESC
-  description_ASC
-  description_DESC
   sys_id_ASC
   sys_id_DESC
   sys_publishedAt_ASC
@@ -573,6 +588,7 @@ input ProjectFilter {
 
 type ProjectLinkingCollections {
   entryCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String): EntryCollection
+  projectPageCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String): ProjectPageCollection
 }
 
 enum ProjectOrder {
@@ -590,6 +606,53 @@ enum ProjectOrder {
   sys_firstPublishedAt_DESC
   sys_publishedVersion_ASC
   sys_publishedVersion_DESC
+}
+
+"""
+[See type definition](https://app.contentful.com/spaces/fydf0o2ery42/content_types/projectPage)
+"""
+type ProjectPage implements Entry {
+  sys: Sys!
+  contentfulMetadata: ContentfulMetadata!
+  linkedFrom(allowedLocales: [String]): ProjectPageLinkingCollections
+  projectsCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String): ProjectPageProjectsCollection
+}
+
+type ProjectPageCollection {
+  total: Int!
+  skip: Int!
+  limit: Int!
+  items: [ProjectPage]!
+}
+
+input ProjectPageFilter {
+  sys: SysFilter
+  contentfulMetadata: ContentfulMetadataFilter
+  projectsCollection_exists: Boolean
+  OR: [ProjectPageFilter]
+  AND: [ProjectPageFilter]
+}
+
+type ProjectPageLinkingCollections {
+  entryCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String): EntryCollection
+}
+
+enum ProjectPageOrder {
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
+}
+
+type ProjectPageProjectsCollection {
+  total: Int!
+  skip: Int!
+  limit: Int!
+  items: [Project]!
 }
 
 type ProjectUrLsCollection {
@@ -676,6 +739,10 @@ scalar Quality
 type Query {
   asset(id: String!, preview: Boolean, locale: String): Asset
   assetCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String, where: AssetFilter, order: [AssetOrder]): AssetCollection
+  person(id: String!, preview: Boolean, locale: String): Person
+  personCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String, where: PersonFilter, order: [PersonOrder]): PersonCollection
+  projectPage(id: String!, preview: Boolean, locale: String): ProjectPage
+  projectPageCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String, where: ProjectPageFilter, order: [ProjectPageOrder]): ProjectPageCollection
   project(id: String!, preview: Boolean, locale: String): Project
   projectCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String, where: ProjectFilter, order: [ProjectOrder]): ProjectCollection
   projectUrl(id: String!, preview: Boolean, locale: String): ProjectUrl
@@ -686,8 +753,6 @@ type Query {
   skillListCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String, where: SkillListFilter, order: [SkillListOrder]): SkillListCollection
   experience(id: String!, preview: Boolean, locale: String): Experience
   experienceCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String, where: ExperienceFilter, order: [ExperienceOrder]): ExperienceCollection
-  person(id: String!, preview: Boolean, locale: String): Person
-  personCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String, where: PersonFilter, order: [PersonOrder]): PersonCollection
   entryCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String, where: EntryFilter, order: [EntryOrder]): EntryCollection
 }
 

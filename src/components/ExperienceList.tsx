@@ -1,5 +1,5 @@
 import styles from '../styles/components/experience-list.module.scss'
-import { experienceList } from '../lib/experiences'
+import { GetResumePageQuery } from 'contentful/contentful.graphql.types'
 
 interface ExperienceProps {
   year: string
@@ -21,11 +21,13 @@ const Experience = ({ year, company, title }: ExperienceProps) => {
   )
 }
 
-function ExperienceList() {
+function ExperienceList({ data }: { data: GetResumePageQuery }) {
+  const resume = data.resumePageCollection?.items[0]
+
   return (
     <div className={styles.outerContainer}>
-      {experienceList.map((e, index) => (
-        <Experience key={index} {...e} />
+      {resume?.experiencesCollection?.items.map((e, index) => (
+        <Experience key={index} year={e?.year || ''} company={e?.company || ''} title={e?.title || ''} />
       ))}
     </div>
   )

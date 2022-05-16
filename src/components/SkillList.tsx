@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 
 import styles from '../styles/components/skill-list.module.scss'
 import clsx from 'clsx'
-import { skillList } from '../lib/skills'
+import { GetResumePageQuery } from 'contentful/contentful.graphql.types'
 
 let zIndexCounter = 100
 
@@ -56,18 +56,31 @@ const Section = ({ id, skillData, onClick, expandedId }: Props) => {
   )
 }
 
-function SkillList() {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const parseSkillList = (skillList: any) => {
+  return {
+    icon: skillList?.icon?.url,
+    list: skillList?.skills,
+    title: skillList?.title,
+  }
+}
+
+function SkillList({ data }: { data: GetResumePageQuery }) {
   const [expanded, setExpanded] = useState(0)
 
   const expandSection = (id: number) => setExpanded((oldId) => (oldId === id ? 0 : id))
 
+  const resume = data.resumePageCollection?.items[0]
+
+  const { skillList1, skillList2, skillList3, skillList4 } = resume || {}
+
   return (
     <div className={styles.outerContainer}>
       <div>
-        <Section id={1} skillData={skillList.frameworks} expandedId={expanded} onClick={() => expandSection(1)} />
-        <Section id={2} skillData={skillList.ui} expandedId={expanded} onClick={() => expandSection(2)} />
-        <Section id={3} skillData={skillList.data} expandedId={expanded} onClick={() => expandSection(3)} />
-        <Section id={4} skillData={skillList.teamwork} expandedId={expanded} onClick={() => expandSection(4)} />
+        <Section id={1} skillData={parseSkillList(skillList1)} expandedId={expanded} onClick={() => expandSection(1)} />
+        <Section id={2} skillData={parseSkillList(skillList2)} expandedId={expanded} onClick={() => expandSection(2)} />
+        <Section id={3} skillData={parseSkillList(skillList3)} expandedId={expanded} onClick={() => expandSection(3)} />
+        <Section id={4} skillData={parseSkillList(skillList4)} expandedId={expanded} onClick={() => expandSection(4)} />
       </div>
     </div>
   )

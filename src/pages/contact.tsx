@@ -1,28 +1,38 @@
 import Page from 'components/Page'
-import Link from 'components/Link'
 import styles from 'styles/pages/contact.module.scss'
+import { GetStaticProps } from 'next'
+import { GetPersonQuery } from 'contentful/contentful.graphql.types'
+import { contentful } from 'contentful/api'
+import ContentfulWarning from 'components/ContentfulWarning'
+import ContentfulContent from 'components/ContentfulContent'
 
-function Contact() {
+interface PageProps {
+  data: GetPersonQuery
+}
+
+function Contact({ data }: PageProps) {
+  const person = data.personCollection?.items[0]
+
+  if (!person) return <ContentfulWarning />
+
   return (
     <Page>
       <div className={styles.root}>
-        <p>
-          Wanna get in touch?
-          <br />
-          Send an email to me at <Link href="mailto:yusufkinatas@gmail.com">yusufkinatas@gmail.com</Link>
-          <br />
-          Don't worry. I check my emails daily.
-        </p>
-        <p>
-          You can also connect with me on <Link href="https://www.linkedin.com/in/yusuf-kinatas/">Linkedin</Link> in
-          seconds
-        </p>
-        <p>
-          Check my <Link href="https://github.com/yusufkinatas">Github</Link> for the latest projects.
-        </p>
+        <ContentfulContent data={person?.contactText?.json} />
       </div>
     </Page>
   )
 }
 
 export default Contact
+
+export const getStaticProps: GetStaticProps<PageProps> = async () => {
+  const data = await contentful.getPerson()
+
+  return {
+    props: {
+      data,
+    },
+    revalidate: 10,
+  }
+}

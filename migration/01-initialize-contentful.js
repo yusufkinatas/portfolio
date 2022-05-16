@@ -1,5 +1,32 @@
 // Migration command: npx contentful space migration --space-id=fydf0o2ery42 --management-token=CFPAT-wwlvFHgkGjmEgxccI3H19xeTDDwwmMbX04emthQ85Do -e test-env
 
+const richTextValidations = [
+  {
+    enabledMarks: ['bold', 'italic', 'underline', 'code'],
+    message: 'Only bold, italic, underline, and code marks are allowed',
+  },
+  {
+    enabledNodeTypes: [
+      'ordered-list',
+      'unordered-list',
+      'hr',
+      'blockquote',
+      'table',
+      'hyperlink',
+      'heading-1',
+      'heading-2',
+      'heading-3',
+      'heading-4',
+      'heading-5',
+      'heading-6',
+    ],
+    message:
+      'Only ordered list, unordered list, horizontal rule, quote, table, link to Url, heading 1, heading 2, heading 3, heading 4, heading 5, and heading 6 nodes are allowed',
+  },
+  {
+    nodes: {},
+  },
+]
 /**
  * @param migration {import('contentful-migration').default}
  */
@@ -17,28 +44,19 @@ module.exports = (migration) => {
     type: 'Symbol',
     required: true,
   })
+
   person.createField('description', {
     name: 'Description',
-    type: 'Symbol',
+    type: 'RichText',
     required: true,
+    validations: richTextValidations,
   })
+
   person.createField('contactText', {
     name: 'Contact Text',
     type: 'RichText',
     required: true,
-    validations: [
-      {
-        enabledMarks: [],
-        message: 'Marks are not allowed',
-      },
-      {
-        enabledNodeTypes: ['hyperlink'],
-        message: 'Only link to Url nodes are allowed',
-      },
-      {
-        nodes: {},
-      },
-    ],
+    validations: richTextValidations,
   })
 
   // Create experience type
@@ -60,7 +78,6 @@ module.exports = (migration) => {
   experience.createField('year', {
     name: 'Year',
     type: 'Symbol',
-    required: true,
   })
 
   // Create skill list type
@@ -215,33 +232,7 @@ module.exports = (migration) => {
     name: 'Description',
     type: 'RichText',
     required: true,
-    validations: [
-      {
-        enabledMarks: ['bold', 'italic', 'underline', 'code'],
-        message: 'Only bold, italic, underline, and code marks are allowed',
-      },
-      {
-        enabledNodeTypes: [
-          'ordered-list',
-          'unordered-list',
-          'hr',
-          'blockquote',
-          'table',
-          'hyperlink',
-          'heading-1',
-          'heading-2',
-          'heading-3',
-          'heading-4',
-          'heading-5',
-          'heading-6',
-        ],
-        message:
-          'Only ordered list, unordered list, horizontal rule, quote, table, link to Url, heading 1, heading 2, heading 3, heading 4, heading 5, and heading 6 nodes are allowed',
-      },
-      {
-        nodes: {},
-      },
-    ],
+    validations: richTextValidations,
   })
   project.createField('techStack', {
     name: 'Tech Stack',
