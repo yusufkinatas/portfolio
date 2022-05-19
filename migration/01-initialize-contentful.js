@@ -39,6 +39,18 @@ module.exports = (migration) => {
     type: 'Symbol',
     required: true,
   })
+
+  person.createField('slug', {
+    name: 'Slug',
+    type: 'Symbol',
+    required: true,
+    validations: [
+      {
+        unique: true,
+      },
+    ],
+  })
+
   person.createField('title', {
     name: 'Title',
     type: 'Symbol',
@@ -154,14 +166,15 @@ module.exports = (migration) => {
   // Create project url type
   const projectUrl = migration.createContentType('projectUrl', {
     name: 'Project URL',
-    displayField: 'name',
+    displayField: 'url',
   })
 
-  projectUrl.createField('name', {
-    name: 'Name',
+  projectUrl.createField('url', {
+    name: 'URL',
     type: 'Symbol',
     required: true,
   })
+
   projectUrl.createField('Type', {
     name: 'Type',
     type: 'Symbol',
@@ -172,10 +185,11 @@ module.exports = (migration) => {
       },
     ],
   })
-  projectUrl.createField('url', {
-    name: 'URL',
+
+  projectUrl.createField('title', {
+    name: 'Name',
     type: 'Symbol',
-    required: true,
+    required: false,
   })
 
   // Create project type
@@ -208,7 +222,6 @@ module.exports = (migration) => {
   project.createField('urLs', {
     name: 'URLs',
     type: 'Array',
-    required: true,
     items: {
       type: 'Link',
       validations: [

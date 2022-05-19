@@ -1,1 +1,49 @@
 @import '../../variables.scss';
+
+.page {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+
+  flex-direction: column;
+
+  .content {
+    background: $background-2;
+
+    flex: 1;
+    max-width: 540px;
+    width: 100%;
+    margin: auto;
+
+    padding: 30px 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    .backButton {
+      transform: rotate(180deg);
+      cursor: pointer;
+      aspect-ratio: 1;
+    }
+
+    .linksWrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      .link {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+
+        img {
+          width: 30px;
+          height: 30px;
+
+          filter: invert(100%) brightness(100%) contrast(85%);
+        }
+      }
+    }
+  }
+}

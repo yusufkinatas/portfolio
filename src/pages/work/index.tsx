@@ -1,32 +1,36 @@
+import ContentfulWarning from 'components/ContentfulWarning'
 import Page from 'components/Page'
-import { projects } from 'lib/projects'
+import { contentful } from 'contentful/api'
+import { GetProjectPageQuery } from 'contentful/contentful.graphql.types'
+import { GetStaticProps } from 'next'
+import Link from 'next/link'
 
 import styles from 'styles/pages/work/work.module.scss'
 
-function Work() {
+interface PageProps {
+  data: GetProjectPageQuery
+}
+
+function Work({ data }: PageProps) {
+  const projects = data.projectPageCollection?.items[0]?.projectsCollection?.items
+
+  if (!projects || !projects.length) return <ContentfulWarning />
+
   return (
     <Page>
       <div className={styles.root}>
         <h2>Here is some of my best projects</h2>
         <div className={styles.projectList}>
           {projects.map((p) => (
-            <a href={p.links[0].url} target="_">
-              <div>
-                <div className={styles.project} style={{ background: p.color }}>
-                  <img src={p.logo} />
-                  <div className={styles.title}>{p.title}</div>
+            <Link key={p?.slug} href="/work/[slug]" as={`/work/${p?.slug}`} passHref>
+              <a>
+                <div className={styles.project} style={{ background: p?.primaryColor || '' }}>
+                  <img src={p?.logo?.url || ''} />
+                  <div className={styles.title}>{p?.name}</div>
                 </div>
-              </div>
-            </a>
-          ))}
-          {/* {projects.map(p => (
-            <Link key={p.id} href="/work/[id]" as={`/work/${p.id}`}>
-              <div className={styles.project} style={{ background: p.color }}>
-                <img src={p.logo} />
-                <div className={styles.title}>{p.title}</div>
-              </div>
+              </a>
             </Link>
-          ))} */}
+          ))}
         </div>
       </div>
     </Page>
@@ -34,3 +38,14 @@ function Work() {
 }
 
 export default Work
+
+export const getStaticProps: GetStaticProps<PageProps> = async () => {
+  const data = await contentful.getProjectPage()
+
+  return {
+    props: {
+      data,
+    },
+    revalidate: 10,
+  }
+}

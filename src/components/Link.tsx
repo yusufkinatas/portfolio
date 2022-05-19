@@ -1,14 +1,16 @@
+import clsx from 'clsx'
 import { ReactNode } from 'react'
 import styles from '../styles/components/link.module.scss'
 
 interface Props {
   href: string
   children: ReactNode
+  className?: string
 }
 
-function Link({ href, children }: Props) {
+function Link({ href, children, className }: Props) {
   return (
-    <a className={styles.link} href={href} target="blank" rel="noopener noreferrer">
+    <a className={clsx(styles.link, className)} href={href} target="blank" rel="noopener noreferrer">
       {children}
     </a>
   )

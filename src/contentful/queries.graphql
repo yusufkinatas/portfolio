@@ -58,11 +58,13 @@ query getResumePage {
 }
 
 fragment ProjectUrlFields on ProjectUrl {
-  type
   url
+  type
+  title
 }
 
 fragment ProjectFields on Project {
+  slug
   name
   logo {
     ...ImageFields
@@ -94,6 +96,22 @@ query getProjectPage {
           ...ProjectFields
         }
       }
+    }
+  }
+}
+
+query getAllProjectSlugs {
+  projectCollection {
+    items {
+      slug
+    }
+  }
+}
+
+query getProjectBySlug($slug: String) {
+  projectCollection(limit: 1, where: { slug: $slug }) {
+    items {
+      ...ProjectFields
     }
   }
 }

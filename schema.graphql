@@ -506,6 +506,7 @@ type Project implements Entry {
   contentfulMetadata: ContentfulMetadata!
   linkedFrom(allowedLocales: [String]): ProjectLinkingCollections
   name(locale: String): String
+  slug(locale: String): String
   logo(preview: Boolean, locale: String): Asset
   primaryColor(locale: String): String
   urLsCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String): ProjectUrLsCollection
@@ -554,6 +555,13 @@ input ProjectFilter {
   name_not_in: [String]
   name_contains: String
   name_not_contains: String
+  slug_exists: Boolean
+  slug: String
+  slug_not: String
+  slug_in: [String]
+  slug_not_in: [String]
+  slug_contains: String
+  slug_not_contains: String
   logo_exists: Boolean
   primaryColor_exists: Boolean
   primaryColor: String
@@ -594,6 +602,8 @@ type ProjectLinkingCollections {
 enum ProjectOrder {
   name_ASC
   name_DESC
+  slug_ASC
+  slug_DESC
   primaryColor_ASC
   primaryColor_DESC
   youtubeUrl_ASC
@@ -669,9 +679,9 @@ type ProjectUrl implements Entry {
   sys: Sys!
   contentfulMetadata: ContentfulMetadata!
   linkedFrom(allowedLocales: [String]): ProjectUrlLinkingCollections
-  name(locale: String): String
-  type(locale: String): String
   url(locale: String): String
+  type(locale: String): String
+  title(locale: String): String
 }
 
 type ProjectUrlCollection {
@@ -684,20 +694,6 @@ type ProjectUrlCollection {
 input ProjectUrlFilter {
   sys: SysFilter
   contentfulMetadata: ContentfulMetadataFilter
-  name_exists: Boolean
-  name: String
-  name_not: String
-  name_in: [String]
-  name_not_in: [String]
-  name_contains: String
-  name_not_contains: String
-  Type_exists: Boolean
-  Type: String
-  Type_not: String
-  Type_in: [String]
-  Type_not_in: [String]
-  Type_contains: String
-  Type_not_contains: String
   url_exists: Boolean
   url: String
   url_not: String
@@ -705,6 +701,20 @@ input ProjectUrlFilter {
   url_not_in: [String]
   url_contains: String
   url_not_contains: String
+  Type_exists: Boolean
+  Type: String
+  Type_not: String
+  Type_in: [String]
+  Type_not_in: [String]
+  Type_contains: String
+  Type_not_contains: String
+  title_exists: Boolean
+  title: String
+  title_not: String
+  title_in: [String]
+  title_not_in: [String]
+  title_contains: String
+  title_not_contains: String
   OR: [ProjectUrlFilter]
   AND: [ProjectUrlFilter]
 }
@@ -715,12 +725,12 @@ type ProjectUrlLinkingCollections {
 }
 
 enum ProjectUrlOrder {
-  name_ASC
-  name_DESC
-  Type_ASC
-  Type_DESC
   url_ASC
   url_DESC
+  Type_ASC
+  Type_DESC
+  title_ASC
+  title_DESC
   sys_id_ASC
   sys_id_DESC
   sys_publishedAt_ASC
@@ -739,20 +749,20 @@ scalar Quality
 type Query {
   asset(id: String!, preview: Boolean, locale: String): Asset
   assetCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String, where: AssetFilter, order: [AssetOrder]): AssetCollection
+  projectUrl(id: String!, preview: Boolean, locale: String): ProjectUrl
+  projectUrlCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String, where: ProjectUrlFilter, order: [ProjectUrlOrder]): ProjectUrlCollection
+  project(id: String!, preview: Boolean, locale: String): Project
+  projectCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String, where: ProjectFilter, order: [ProjectOrder]): ProjectCollection
+  experience(id: String!, preview: Boolean, locale: String): Experience
+  experienceCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String, where: ExperienceFilter, order: [ExperienceOrder]): ExperienceCollection
   person(id: String!, preview: Boolean, locale: String): Person
   personCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String, where: PersonFilter, order: [PersonOrder]): PersonCollection
   projectPage(id: String!, preview: Boolean, locale: String): ProjectPage
   projectPageCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String, where: ProjectPageFilter, order: [ProjectPageOrder]): ProjectPageCollection
-  project(id: String!, preview: Boolean, locale: String): Project
-  projectCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String, where: ProjectFilter, order: [ProjectOrder]): ProjectCollection
-  projectUrl(id: String!, preview: Boolean, locale: String): ProjectUrl
-  projectUrlCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String, where: ProjectUrlFilter, order: [ProjectUrlOrder]): ProjectUrlCollection
   resumePage(id: String!, preview: Boolean, locale: String): ResumePage
   resumePageCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String, where: ResumePageFilter, order: [ResumePageOrder]): ResumePageCollection
   skillList(id: String!, preview: Boolean, locale: String): SkillList
   skillListCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String, where: SkillListFilter, order: [SkillListOrder]): SkillListCollection
-  experience(id: String!, preview: Boolean, locale: String): Experience
-  experienceCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String, where: ExperienceFilter, order: [ExperienceOrder]): ExperienceCollection
   entryCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String, where: EntryFilter, order: [EntryOrder]): EntryCollection
 }
 

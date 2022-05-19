@@ -4,6 +4,8 @@ import { AppProps } from 'next/app'
 import '../styles/app.scss'
 
 function App({ Component, pageProps, router }: AppProps) {
+  if (router.route === '/work/[slug]') return <Component {...pageProps} key={router.route} />
+
   return (
     <MainLayout route={router.route}>
       <Component {...pageProps} key={router.route} />
