@@ -80,7 +80,7 @@ fragment ProjectFields on Project {
     json
   }
   techStack
-  youtubeUrl
+  youtubeVideoId
   images: imagesCollection(limit: 20) {
     items {
       ...ImageFields

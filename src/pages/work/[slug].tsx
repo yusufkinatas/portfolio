@@ -8,6 +8,8 @@ import styles from 'styles/pages/work/project-detail.module.scss'
 import Error from 'next/error'
 import Link from 'components/Link'
 import ContentfulContent from 'components/ContentfulContent'
+import { Carousel } from 'react-responsive-carousel'
+import { useMemo } from 'react'
 
 enum LinkType {
   GITHUB = 'GITHUB',
@@ -20,8 +22,44 @@ interface PageProps {
   data: GetProjectBySlugQuery
 }
 
+const defaultUrlTitles: Record<LinkType, string> = {
+  APP_STORE: 'Download for iOS',
+  GITHUB: 'View Code on Github',
+  GOOGLE_PLAY: 'Download for Android',
+  WEBSITE: 'Visit Website',
+}
+
 function ProjectDetails({ data }: PageProps) {
   const project = data?.projectCollection?.items[0]
+
+  const carouselItems = useMemo(() => {
+    const items = project?.images?.items?.map((img) => (
+      <div
+        key={img?.url}
+        onClick={() => {
+          window.open(img?.url || '', 'blank')
+        }}
+        className={styles.carouselItemWrapper}
+      >
+        <img src={img?.url || ''} />
+      </div>
+    ))
+
+    if (project?.youtubeVideoId) {
+      items?.unshift(
+        <div key="yt" className={styles.carouselItemWrapper}>
+          <iframe
+            src={`https://www.youtube.com/embed/${project.youtubeVideoId}`}
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        </div>
+      )
+    }
+
+    return items
+  }, [project])
 
   if (!project) return <Error statusCode={404} />
 
@@ -36,54 +74,48 @@ function ProjectDetails({ data }: PageProps) {
             <img className={styles.backButton} src="/icons/arrow-right.svg" />
           </NextLink>
 
-          <div>
+          <div className={styles.header}>
             <img src={project.logo?.url || ''} />
             <div>
-              <h1>{project.name}</h1>
-              <div>{project.categories?.join(' | ')}</div>
+              <div className={styles.title}>{project.name}</div>
+              <div className={styles.categories}>{project.categories?.join(' | ')}</div>
             </div>
           </div>
 
+          <Carousel swipeable className={styles.carousel} showThumbs={false} infiniteLoop showStatus={false}>
+            {carouselItems}
+          </Carousel>
+
           <div className={styles.linksWrapper}>
             {project.urls?.items.map((link) => {
-              let text
-              switch (link?.type as LinkType) {
-                case LinkType.GOOGLE_PLAY:
-                  text = 'Download for Android'
-                  break
-                case LinkType.APP_STORE:
-                  text = 'Download for iOS'
-                  break
-                case LinkType.WEBSITE:
-                  text = 'Visit Website'
-                  break
-                case LinkType.GITHUB:
-                  text = 'View Code on Github'
-                  break
-                default:
-                  break
-              }
-
               return (
                 <Link className={styles.link} href={link?.url || ''}>
                   <img src={`/icons/${link?.type}.svg`} style={{ filter: '' }} />
-                  {link?.title || text}
+                  {link?.title || defaultUrlTitles[link?.type as LinkType]}
                 </Link>
               )
             })}
           </div>
 
-          <h2>About Project</h2>
-          <ContentfulContent data={project.description?.json} />
+          <div>
+            <div className={styles.title}>About Project</div>
+            <div className={styles.description}>
+              <ContentfulContent data={project.description?.json} />
+            </div>
+          </div>
 
-          <h2>Technologies</h2>
-          <div>Code technologies and skills I got involved while working on this project</div>
+          <div>
+            <div className={styles.title}>Technologies</div>
+            <div>Code technologies and skills I got involved while working on this project</div>
 
-          <ul>
-            {project.techStack?.map((tech, i) => (
-              <li key={i}>{tech}</li>
-            ))}
-          </ul>
+            <div className={styles.divider} />
+
+            <ul className={styles.techs}>
+              {project.techStack?.map((tech, i) => (
+                <li key={i}>{tech}</li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </Page>

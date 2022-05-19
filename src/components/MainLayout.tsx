@@ -18,10 +18,6 @@ function MainLayout({ children, route }: Props) {
         <meta charSet="utf-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1, user-scalable=0" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap"
-          rel="stylesheet"
-        />
       </Head>
       {route !== '/work/[id]' && (
         <div className={styles.navbarWrapper}>

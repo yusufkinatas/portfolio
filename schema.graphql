@@ -513,7 +513,7 @@ type Project implements Entry {
   categories(locale: String): [String]
   description(locale: String): ProjectDescription
   techStack(locale: String): [String]
-  youtubeUrl(locale: String): String
+  youtubeVideoId(locale: String): String
   imagesCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String): AssetCollection
 }
 
@@ -582,13 +582,13 @@ input ProjectFilter {
   techStack_contains_all: [String]
   techStack_contains_some: [String]
   techStack_contains_none: [String]
-  youtubeUrl_exists: Boolean
-  youtubeUrl: String
-  youtubeUrl_not: String
-  youtubeUrl_in: [String]
-  youtubeUrl_not_in: [String]
-  youtubeUrl_contains: String
-  youtubeUrl_not_contains: String
+  youtubeVideoId_exists: Boolean
+  youtubeVideoId: String
+  youtubeVideoId_not: String
+  youtubeVideoId_in: [String]
+  youtubeVideoId_not_in: [String]
+  youtubeVideoId_contains: String
+  youtubeVideoId_not_contains: String
   imagesCollection_exists: Boolean
   OR: [ProjectFilter]
   AND: [ProjectFilter]
@@ -606,8 +606,8 @@ enum ProjectOrder {
   slug_DESC
   primaryColor_ASC
   primaryColor_DESC
-  youtubeUrl_ASC
-  youtubeUrl_DESC
+  youtubeVideoId_ASC
+  youtubeVideoId_DESC
   sys_id_ASC
   sys_id_DESC
   sys_publishedAt_ASC
@@ -749,10 +749,10 @@ scalar Quality
 type Query {
   asset(id: String!, preview: Boolean, locale: String): Asset
   assetCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String, where: AssetFilter, order: [AssetOrder]): AssetCollection
-  projectUrl(id: String!, preview: Boolean, locale: String): ProjectUrl
-  projectUrlCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String, where: ProjectUrlFilter, order: [ProjectUrlOrder]): ProjectUrlCollection
   project(id: String!, preview: Boolean, locale: String): Project
   projectCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String, where: ProjectFilter, order: [ProjectOrder]): ProjectCollection
+  projectUrl(id: String!, preview: Boolean, locale: String): ProjectUrl
+  projectUrlCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String, where: ProjectUrlFilter, order: [ProjectUrlOrder]): ProjectUrlCollection
   experience(id: String!, preview: Boolean, locale: String): Experience
   experienceCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String, where: ExperienceFilter, order: [ExperienceOrder]): ExperienceCollection
   person(id: String!, preview: Boolean, locale: String): Person

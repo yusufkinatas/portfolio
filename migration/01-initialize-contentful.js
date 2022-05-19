@@ -256,8 +256,8 @@ module.exports = (migration) => {
       validations: [],
     },
   })
-  project.createField('youtubeUrl', {
-    name: 'Youtube URL',
+  project.createField('youtubeVideoId', {
+    name: 'Youtube Video ID',
     type: 'Symbol',
   })
   project.createField('images', {
