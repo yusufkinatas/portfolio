@@ -1,7 +1,7 @@
 module.exports = {
   root: true,
   parser: '@typescript-eslint/parser', // Specifies the ESLint parser
-  plugins: ['import', 'react', 'react-hooks', '@typescript-eslint', '@emotion'],
+  plugins: ['import', 'react', 'react-hooks', '@typescript-eslint'],
   parserOptions: {
     ecmaVersion: 2020, // Allows for the parsing of modern ECMAScript features
     sourceType: 'module', // Allows for the use of imports
@@ -188,7 +188,6 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     'react/require-render-return': 'error',
     'react/style-prop-object': 'warn',
-    '@emotion/pkg-renaming': 'error',
   },
   overrides: [
     {
@@ -250,4 +249,4 @@ module.exports = {
       },
     },
   ],
-};
+}
