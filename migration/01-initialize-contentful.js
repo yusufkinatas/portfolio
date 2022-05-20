@@ -40,17 +40,6 @@ module.exports = (migration) => {
     required: true,
   })
 
-  person.createField('slug', {
-    name: 'Slug',
-    type: 'Symbol',
-    required: true,
-    validations: [
-      {
-        unique: true,
-      },
-    ],
-  })
-
   person.createField('title', {
     name: 'Title',
     type: 'Symbol',
@@ -198,10 +187,29 @@ module.exports = (migration) => {
     displayField: 'name',
   })
 
+  project.createField('slug', {
+    name: 'Slug',
+    type: 'Symbol',
+    required: true,
+    validations: [
+      {
+        unique: true,
+      },
+    ],
+  })
   project.createField('name', {
     name: 'Name',
     type: 'Symbol',
     required: true,
+  })
+  project.createField('categories', {
+    name: 'Categories',
+    type: 'Array',
+    required: true,
+    items: {
+      type: 'Symbol',
+      validations: [],
+    },
   })
   project.createField('logo', {
     name: 'Logo',
@@ -213,6 +221,24 @@ module.exports = (migration) => {
       },
     ],
     linkType: 'Asset',
+  })
+  project.createField('images', {
+    name: 'Images',
+    type: 'Array',
+    required: true,
+    items: {
+      type: 'Link',
+      validations: [
+        {
+          linkMimetypeGroup: ['image'],
+        },
+      ],
+      linkType: 'Asset',
+    },
+  })
+  project.createField('youtubeVideoId', {
+    name: 'Youtube Video ID',
+    type: 'Symbol',
   })
   project.createField('primaryColor', {
     name: 'Primary Color',
@@ -232,15 +258,6 @@ module.exports = (migration) => {
       linkType: 'Entry',
     },
   })
-  project.createField('categories', {
-    name: 'Categories',
-    type: 'Array',
-    required: true,
-    items: {
-      type: 'Symbol',
-      validations: [],
-    },
-  })
   project.createField('description', {
     name: 'Description',
     type: 'RichText',
@@ -254,24 +271,6 @@ module.exports = (migration) => {
     items: {
       type: 'Symbol',
       validations: [],
-    },
-  })
-  project.createField('youtubeVideoId', {
-    name: 'Youtube Video ID',
-    type: 'Symbol',
-  })
-  project.createField('images', {
-    name: 'Images',
-    type: 'Array',
-    required: true,
-    items: {
-      type: 'Link',
-      validations: [
-        {
-          linkMimetypeGroup: ['image'],
-        },
-      ],
-      linkType: 'Asset',
     },
   })
 
