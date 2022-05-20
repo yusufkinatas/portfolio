@@ -138,6 +138,7 @@ export const getStaticProps: GetStaticProps<PageProps, { slug: string }> = async
     props: {
       data,
     },
+    revalidate: 10,
   }
 }
 
