@@ -6,7 +6,6 @@ import styles from 'styles/pages/resume.module.scss'
 import { contentful } from 'contentful/api'
 import { GetResumePageQuery } from 'contentful/contentful.graphql.types'
 import { GetStaticProps } from 'next'
-import ContentfulWarning from 'components/ContentfulWarning'
 
 interface PageProps {
   data: GetResumePageQuery
@@ -15,13 +14,12 @@ interface PageProps {
 function Contact({ data }: PageProps) {
   const resume = data.resumePageCollection?.items[0]
 
-  if (!resume) return <ContentfulWarning />
   return (
-    <Page>
+    <Page title="Resume | YK" showContentfulWarning={!resume}>
       <div className={styles.root}>
         <div>
           <div className={styles.title}>In a hurry?</div>
-          <Button renderATag link={resume.resumePdf?.url || ''}>
+          <Button renderATag link={resume?.resumePdf?.url || ''}>
             RESUME PDF
           </Button>
         </div>

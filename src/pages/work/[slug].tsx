@@ -1,4 +1,3 @@
-import Head from 'next/head'
 import Page from 'components/Page'
 import { contentful } from 'contentful/api'
 import { GetProjectBySlugQuery } from 'contentful/contentful.graphql.types'
@@ -64,10 +63,7 @@ function ProjectDetails({ data }: PageProps) {
   if (!project) return <Error statusCode={404} />
 
   return (
-    <Page>
-      <Head>
-        <title>Project: {project.name}</title>
-      </Head>
+    <Page title={`${project.name || ''} | YK`}>
       <div className={styles.page}>
         <div className={styles.content}>
           <NextLink href="/work">

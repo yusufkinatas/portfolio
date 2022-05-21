@@ -1,6 +1,5 @@
 import Button from 'components/Button'
 import ContentfulContent from 'components/ContentfulContent'
-import ContentfulWarning from 'components/ContentfulWarning'
 import Page from 'components/Page'
 import { contentful } from 'contentful/api'
 import { GetPersonQuery } from 'contentful/contentful.graphql.types'
@@ -15,16 +14,14 @@ interface PageProps {
 function About({ data }: PageProps) {
   const person = data.personCollection?.items[0]
 
-  if (!person) return <ContentfulWarning />
-
   return (
-    <Page>
+    <Page title="YK | Front End Developer" showContentfulWarning={!person}>
       <div className={styles.root}>
         <div className={styles.content}>
-          <div className={styles.hi}>Hi, I'm {person.name}</div>
-          <div className={styles.title}>{person.title}</div>
+          <div className={styles.hi}>Hi, I'm {person?.name}</div>
+          <div className={styles.title}>{person?.title}</div>
           <div className={styles.description}>
-            <ContentfulContent data={person.description?.json} />
+            <ContentfulContent data={person?.description?.json} />
           </div>
           <Button className={styles.button} link="/work">
             SEE MY WORK

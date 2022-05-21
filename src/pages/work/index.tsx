@@ -1,4 +1,3 @@
-import ContentfulWarning from 'components/ContentfulWarning'
 import Page from 'components/Page'
 import { contentful } from 'contentful/api'
 import { GetProjectPageQuery } from 'contentful/contentful.graphql.types'
@@ -14,14 +13,12 @@ interface PageProps {
 function Work({ data }: PageProps) {
   const projects = data.projectPageCollection?.items[0]?.projectsCollection?.items
 
-  if (!projects || !projects.length) return <ContentfulWarning />
-
   return (
-    <Page>
+    <Page title="Work | YK" showContentfulWarning={!projects || !projects.length}>
       <div className={styles.root}>
         <h2>Here is some of my best projects</h2>
         <div className={styles.projectList}>
-          {projects.map((p) => (
+          {projects?.map((p) => (
             <Link key={p?.slug} href="/work/[slug]" as={`/work/${p?.slug}`} passHref>
               <a>
                 <div className={styles.project} style={{ background: p?.primaryColor || '' }}>
