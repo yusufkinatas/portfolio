@@ -132,3 +132,5 @@ report.*.json
 
 #BUILD_INFO
 tsconfig.tsbuildinfo
+
+public/locales/**/*.missing.json

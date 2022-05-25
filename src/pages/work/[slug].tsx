@@ -9,6 +9,9 @@ import Link from 'components/Link'
 import ContentfulContent from 'components/ContentfulContent'
 import { Carousel } from 'react-responsive-carousel'
 import { useMemo } from 'react'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { DefaultResources } from 'react-i18next'
+import { useTranslation } from 'next-i18next'
 
 enum LinkType {
   GITHUB = 'GITHUB',
@@ -21,15 +24,17 @@ interface PageProps {
   data: GetProjectBySlugQuery
 }
 
-const defaultUrlTitles: Record<LinkType, string> = {
-  APP_STORE: 'Download for iOS',
-  GITHUB: 'View Code on Github',
-  GOOGLE_PLAY: 'Download for Android',
-  WEBSITE: 'Visit Website',
+const defaultUrlTitleKeys: Record<LinkType, keyof DefaultResources['work']> = {
+  APP_STORE: 'app_store',
+  GITHUB: 'github',
+  GOOGLE_PLAY: 'google_play',
+  WEBSITE: 'website',
 }
 
 function ProjectDetails({ data }: PageProps) {
   const project = data?.projectCollection?.items[0]
+
+  const { t } = useTranslation('work')
 
   const carouselItems = useMemo(() => {
     const items = project?.images?.items?.map((img) => (
@@ -83,26 +88,26 @@ function ProjectDetails({ data }: PageProps) {
           </Carousel>
 
           <div className={styles.linksWrapper}>
-            {project.urls?.items.map((link) => {
+            {project.urls?.items.map((link, i) => {
               return (
-                <Link className={styles.link} href={link?.url || ''}>
+                <Link key={i} className={styles.link} href={link?.url || ''}>
                   <img src={`/icons/${link?.type}.svg`} style={{ filter: '' }} />
-                  {link?.title || defaultUrlTitles[link?.type as LinkType]}
+                  {link?.title || t(defaultUrlTitleKeys[link?.type as LinkType])}
                 </Link>
               )
             })}
           </div>
 
           <div>
-            <div className={styles.title}>About Project</div>
+            <div className={styles.title}>{t('about')}</div>
             <div className={styles.description}>
               <ContentfulContent data={project.description?.json} />
             </div>
           </div>
 
           <div>
-            <div className={styles.title}>Technologies</div>
-            <div>Code technologies and skills I got involved while working on this project</div>
+            <div className={styles.title}>{t('tech_title')}</div>
+            <div>{t('tech_desc')}</div>
 
             <div className={styles.divider} />
 
@@ -127,11 +132,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 }
 
-export const getStaticProps: GetStaticProps<PageProps, { slug: string }> = async (ctx) => {
-  const data = await contentful.getProjectBySlug({ slug: ctx.params?.slug })
+export const getStaticProps: GetStaticProps<PageProps, { slug: string }> = async ({ locale, params }) => {
+  const data = await contentful.getProjectBySlug({ slug: params?.slug })
 
   return {
     props: {
+      ...(await serverSideTranslations(String(locale), ['common', 'work'])),
       data,
     },
     revalidate: 10,

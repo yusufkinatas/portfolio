@@ -6,6 +6,8 @@ import styles from 'styles/pages/resume.module.scss'
 import { contentful } from 'contentful/api'
 import { GetResumePageQuery } from 'contentful/contentful.graphql.types'
 import { GetStaticProps } from 'next'
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { useTranslation } from 'next-i18next'
 
 interface PageProps {
   data: GetResumePageQuery
@@ -14,13 +16,15 @@ interface PageProps {
 function Contact({ data }: PageProps) {
   const resume = data.resumePageCollection?.items[0]
 
+  const { t } = useTranslation(['common', 'resume'])
+
   return (
-    <Page title="Resume | YK" showContentfulWarning={!resume}>
+    <Page title={`${t('common:menu_resume')} | YK`} showContentfulWarning={!resume}>
       <div className={styles.root}>
         <div>
-          <div className={styles.title}>In a hurry?</div>
+          <div className={styles.title}>{t('resume:inAHurry')}</div>
           <Button renderATag link={resume?.resumePdf?.url || ''}>
-            RESUME PDF
+            {t('resume:pdfCta')}
           </Button>
         </div>
         <ExperienceList data={data} />
@@ -32,11 +36,12 @@ function Contact({ data }: PageProps) {
 
 export default Contact
 
-export const getStaticProps: GetStaticProps<PageProps> = async () => {
+export const getStaticProps: GetStaticProps<PageProps> = async ({ locale }) => {
   const data = await contentful.getResumePage()
 
   return {
     props: {
+      ...(await serverSideTranslations(String(locale), ['common', 'resume'])),
       data,
     },
     revalidate: 10,
