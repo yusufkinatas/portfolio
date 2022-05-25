@@ -123,11 +123,21 @@ function ProjectDetails({ data }: PageProps) {
   )
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async ({ locales }) => {
   const res = await contentful.getAllProjectSlugs()
 
   return {
-    paths: res.projectCollection?.items.map((s) => ({ params: { slug: String(s?.slug) } })) || [],
+    paths:
+      res.projectCollection?.items
+        .map((s) => {
+          const params = { slug: String(s?.slug) }
+
+          return [
+            { params, locale: 'en' },
+            { params, locale: 'tr' },
+          ]
+        })
+        .flat() || [],
     fallback: true,
   }
 }
