@@ -1,10 +1,10 @@
 {
-  "work_landing_message": "Here is some of my best projects",
+  "work_about": "About Project",
   "work_app_store": "Download for iOS",
   "work_github": "View Code on Github",
   "work_google_play": "Download for Android",
-  "work_website": "Visit Website",
-  "work_about": "About Project",
+  "work_landing_message": "Here is some of my best projects",
+  "work_tech_desc": "Code technologies and skills I got involved while working on this project",
   "work_tech_title": "Technologies",
-  "work_tech_desc": "Code technologies and skills I got involved while working on this project"
+  "work_website": "Visit Website"
 }
