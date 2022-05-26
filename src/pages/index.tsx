@@ -22,13 +22,13 @@ function About({ data }: PageProps) {
     <Page title="YK | Front End Developer" showContentfulWarning={!person}>
       <div className={styles.root}>
         <div className={styles.content}>
-          <div className={styles.hi}>{t('home:greet', { name: person?.name })}</div>
+          <div className={styles.hi}>{t('home:home_greet', { name: person?.name })}</div>
           <div className={styles.title}>{person?.title}</div>
           <div className={styles.description}>
             <ContentfulContent data={person?.description?.json} />
           </div>
           <Button className={styles.button} link="/work">
-            {t('home:cta')}
+            {t('home:home_cta')}
           </Button>
         </div>
         <div className={styles.logo}>

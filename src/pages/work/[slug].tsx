@@ -25,10 +25,10 @@ interface PageProps {
 }
 
 const defaultUrlTitleKeys: Record<LinkType, keyof DefaultResources['work']> = {
-  APP_STORE: 'app_store',
-  GITHUB: 'github',
-  GOOGLE_PLAY: 'google_play',
-  WEBSITE: 'website',
+  APP_STORE: 'work_app_store',
+  GITHUB: 'work_github',
+  GOOGLE_PLAY: 'work_google_play',
+  WEBSITE: 'work_website',
 }
 
 function ProjectDetails({ data }: PageProps) {
@@ -99,15 +99,15 @@ function ProjectDetails({ data }: PageProps) {
           </div>
 
           <div>
-            <div className={styles.title}>{t('about')}</div>
+            <div className={styles.title}>{t('work_about')}</div>
             <div className={styles.description}>
               <ContentfulContent data={project.description?.json} />
             </div>
           </div>
 
           <div>
-            <div className={styles.title}>{t('tech_title')}</div>
-            <div>{t('tech_desc')}</div>
+            <div className={styles.title}>{t('work_tech_title')}</div>
+            <div>{t('work_tech_desc')}</div>
 
             <div className={styles.divider} />
 

@@ -19,12 +19,12 @@ function Contact({ data }: PageProps) {
   const { t } = useTranslation(['common', 'resume'])
 
   return (
-    <Page title={`${t('common:menu_resume')} | YK`} showContentfulWarning={!resume}>
+    <Page title={`${t('common:common_resume')} | YK`} showContentfulWarning={!resume}>
       <div className={styles.root}>
         <div>
-          <div className={styles.title}>{t('resume:inAHurry')}</div>
+          <div className={styles.title}>{t('resume:resume_inAHurry')}</div>
           <Button renderATag link={resume?.resumePdf?.url || ''}>
-            {t('resume:pdfCta')}
+            {t('resume:resume_pdfCta')}
           </Button>
         </div>
         <ExperienceList data={data} />

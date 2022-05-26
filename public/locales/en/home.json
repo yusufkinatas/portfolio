@@ -1,4 +1,4 @@
 {
-  "greet": "Hi, I'm {{name}}",
-  "cta": "See My Work"
+  "home_greet": "Hi, I'm {{name}}",
+  "home_cta": "See My Work"
 }

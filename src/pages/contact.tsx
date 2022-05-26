@@ -17,7 +17,7 @@ function Contact({ data }: PageProps) {
   const { t } = useTranslation('common')
 
   return (
-    <Page showContentfulWarning={!person} title={`${t('menu_contact')} | YK`}>
+    <Page showContentfulWarning={!person} title={`${t('common_contact')} | YK`}>
       <div className={styles.root}>
         <ContentfulContent data={person?.contactText?.json} />
       </div>

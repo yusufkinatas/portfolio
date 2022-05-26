@@ -30,22 +30,22 @@ function MainLayout({ children, route }: Props) {
           <div className={styles.navbar}>
             <Link href="/">
               <a>
-                <div className={clsx(route === '/' && styles.active)}>{t('menu_about')}</div>
+                <div className={clsx(route === '/' && styles.active)}>{t('common_about')}</div>
               </a>
             </Link>
             <Link href="/work">
               <a>
-                <div className={clsx(route === '/work' && styles.active)}>{t('menu_work')}</div>
+                <div className={clsx(route === '/work' && styles.active)}>{t('common_work')}</div>
               </a>
             </Link>
             <Link href="/resume">
               <a>
-                <div className={clsx(route === '/resume' && styles.active)}>{t('menu_resume')}</div>
+                <div className={clsx(route === '/resume' && styles.active)}>{t('common_resume')}</div>
               </a>
             </Link>
             <Link href="/contact">
               <a>
-                <div className={clsx(route === '/contact' && styles.active)}>{t('menu_contact')}</div>
+                <div className={clsx(route === '/contact' && styles.active)}>{t('common_contact')}</div>
               </a>
             </Link>
             <Link href={router.pathname} as={router.asPath} locale={router.locale === 'en' ? 'tr' : 'en'}>

@@ -18,9 +18,9 @@ function Work({ data }: PageProps) {
   const { t } = useTranslation(['work', 'common'])
 
   return (
-    <Page title={`${t('common:menu_work')} | YK`} showContentfulWarning={!projects || !projects.length}>
+    <Page title={`${t('common:common_work')} | YK`} showContentfulWarning={!projects || !projects.length}>
       <div className={styles.root}>
-        <h2>{t('work:landing_message')}</h2>
+        <h2>{t('work:work_landing_message')}</h2>
         <div className={styles.projectList}>
           {projects?.map((p) => (
             <Link key={p?.slug} href="/work/[slug]" as={`/work/${p?.slug}`} passHref>

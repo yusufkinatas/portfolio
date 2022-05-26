@@ -1,6 +1,6 @@
 {
-  "menu_about": "About",
-  "menu_work": "Work",
-  "menu_resume": "Resume",
-  "menu_contact": "Contact"
+  "common_about": "About",
+  "common_work": "Work",
+  "common_resume": "Resume",
+  "common_contact": "Contact"
 }
