@@ -1,0 +1,23 @@
+phrase:
+  access_token: 57cce9a479bdd9f25385198b95ed49560c39a65071cb6f782f1810df53e5a282
+  project_id: 8a22d245d26df360cc2c94117c846725
+  file_format: i18next_4
+  push:
+    sources:
+      - file: ./public/locales/en/<tag>.json
+        params:
+          locale_id: "1948ced9e046f0530752b9dbd8220930"
+  pull:
+    targets:
+      - file: ./public/locales/<locale_name>/common.json
+        params:
+          tags: common
+      - file: ./public/locales/<locale_name>/home.json
+        params:
+          tags: home
+      - file: ./public/locales/<locale_name>/resume.json
+        params:
+          tags: resume
+      - file: ./public/locales/<locale_name>/work.json
+        params:
+          tags: work
