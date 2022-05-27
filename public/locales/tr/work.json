@@ -1,2 +1,10 @@
 {
+  "work_about": "Proje Hakkında",
+  "work_app_store": "iOS İçin İndir",
+  "work_github": "Kaynak Kodu Github'da Görüntüle",
+  "work_google_play": "Android İçin İndir",
+  "work_landing_message": "İşte en iyi projelerimden bazıları",
+  "work_tech_desc": "Bu projeyi geliştirirken kullandığım araçlar ve teknolojiler",
+  "work_tech_title": "Teknolojiler",
+  "work_website": "Web Sitesini Ziyaret Et"
 }
