@@ -33,13 +33,10 @@ function App({ Component, pageProps, router }: AppProps) {
         description="Hi! I'm Yusuf, Frontend Developer. I'm focused on Javascript, web apps, mobile apps, responsive design, animation, and performance."
         image="og_image.jpg"
       />
-      {router.route === '/work/[slug]' ? (
+
+      <MainLayout route={router.route}>
         <Component {...pageProps} key={router.route} />
-      ) : (
-        <MainLayout route={router.route}>
-          <Component {...pageProps} key={router.route} />
-        </MainLayout>
-      )}
+      </MainLayout>
     </>
   )
 }

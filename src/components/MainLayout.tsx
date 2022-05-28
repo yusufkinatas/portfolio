@@ -19,7 +19,7 @@ function MainLayout({ children, route }: Props) {
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1, user-scalable=0" />
       </Head>
-      {route !== '/work/[id]' && (
+      {route !== '/work/[slug]' && (
         <div className={styles.navbarWrapper}>
           <div className={styles.navbar}>
             <Link href="/">

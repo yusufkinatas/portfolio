@@ -63,6 +63,14 @@ fragment ProjectUrlFields on ProjectUrl {
   title
 }
 
+fragment TechTagFields on TechTag {
+  sys {
+    id
+  }
+  slug
+  name
+}
+
 fragment ProjectFields on Project {
   slug
   name
@@ -79,7 +87,11 @@ fragment ProjectFields on Project {
   description {
     json
   }
-  techStack
+  techTagsCollection(limit: 20) {
+    items {
+      ...TechTagFields
+    }
+  }
   youtubeVideoId
   images: imagesCollection(limit: 20) {
     items {
@@ -112,6 +124,19 @@ query getProjectBySlug($slug: String) {
   projectCollection(limit: 1, where: { slug: $slug }) {
     items {
       ...ProjectFields
+    }
+  }
+}
+
+query getTechTags {
+  techTagCollection {
+    items {
+      ...TechTagFields
+      linkedFrom {
+        projectCollection {
+          total
+        }
+      }
     }
   }
 }

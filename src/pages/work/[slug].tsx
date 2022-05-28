@@ -83,9 +83,9 @@ function ProjectDetails({ data }: PageProps) {
           </Carousel>
 
           <div className={styles.linksWrapper}>
-            {project.urls?.items.map((link) => {
+            {project.urls?.items.map((link, i) => {
               return (
-                <Link className={styles.link} href={link?.url || ''}>
+                <Link key={i} className={styles.link} href={link?.url || ''}>
                   <img src={`/icons/${link?.type}.svg`} style={{ filter: '' }} />
                   {link?.title || defaultUrlTitles[link?.type as LinkType]}
                 </Link>
@@ -107,8 +107,8 @@ function ProjectDetails({ data }: PageProps) {
             <div className={styles.divider} />
 
             <ul className={styles.techs}>
-              {project.techStack?.map((tech, i) => (
-                <li key={i}>{tech}</li>
+              {project.techTagsCollection?.items?.map((tech, i) => (
+                <li key={i}>{tech?.name}</li>
               ))}
             </ul>
           </div>

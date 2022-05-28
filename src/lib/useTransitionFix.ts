@@ -21,6 +21,6 @@ export const useTransitionFix = (): void => {
   }, [])
 
   useEffect(() => {
-    Router.router?.push(Router.router?.pathname)
+    Router.router?.push(Router.router?.pathname, Router.router.asPath)
   }, [])
 }

@@ -505,16 +505,16 @@ type Project implements Entry {
   sys: Sys!
   contentfulMetadata: ContentfulMetadata!
   linkedFrom(allowedLocales: [String]): ProjectLinkingCollections
-  name(locale: String): String
   slug(locale: String): String
+  name(locale: String): String
+  categories(locale: String): [String]
   logo(preview: Boolean, locale: String): Asset
+  imagesCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String): AssetCollection
+  youtubeVideoId(locale: String): String
   primaryColor(locale: String): String
   urLsCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String): ProjectUrLsCollection
-  categories(locale: String): [String]
   description(locale: String): ProjectDescription
-  techStack(locale: String): [String]
-  youtubeVideoId(locale: String): String
-  imagesCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String): AssetCollection
+  techTagsCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String): ProjectTechTagsCollection
 }
 
 type ProjectCollection {
@@ -548,13 +548,6 @@ type ProjectDescriptionLinks {
 input ProjectFilter {
   sys: SysFilter
   contentfulMetadata: ContentfulMetadataFilter
-  name_exists: Boolean
-  name: String
-  name_not: String
-  name_in: [String]
-  name_not_in: [String]
-  name_contains: String
-  name_not_contains: String
   slug_exists: Boolean
   slug: String
   slug_not: String
@@ -562,7 +555,26 @@ input ProjectFilter {
   slug_not_in: [String]
   slug_contains: String
   slug_not_contains: String
+  name_exists: Boolean
+  name: String
+  name_not: String
+  name_in: [String]
+  name_not_in: [String]
+  name_contains: String
+  name_not_contains: String
+  categories_exists: Boolean
+  categories_contains_all: [String]
+  categories_contains_some: [String]
+  categories_contains_none: [String]
   logo_exists: Boolean
+  imagesCollection_exists: Boolean
+  youtubeVideoId_exists: Boolean
+  youtubeVideoId: String
+  youtubeVideoId_not: String
+  youtubeVideoId_in: [String]
+  youtubeVideoId_not_in: [String]
+  youtubeVideoId_contains: String
+  youtubeVideoId_not_contains: String
   primaryColor_exists: Boolean
   primaryColor: String
   primaryColor_not: String
@@ -571,25 +583,10 @@ input ProjectFilter {
   primaryColor_contains: String
   primaryColor_not_contains: String
   urLsCollection_exists: Boolean
-  categories_exists: Boolean
-  categories_contains_all: [String]
-  categories_contains_some: [String]
-  categories_contains_none: [String]
   description_exists: Boolean
   description_contains: String
   description_not_contains: String
-  techStack_exists: Boolean
-  techStack_contains_all: [String]
-  techStack_contains_some: [String]
-  techStack_contains_none: [String]
-  youtubeVideoId_exists: Boolean
-  youtubeVideoId: String
-  youtubeVideoId_not: String
-  youtubeVideoId_in: [String]
-  youtubeVideoId_not_in: [String]
-  youtubeVideoId_contains: String
-  youtubeVideoId_not_contains: String
-  imagesCollection_exists: Boolean
+  techTagsCollection_exists: Boolean
   OR: [ProjectFilter]
   AND: [ProjectFilter]
 }
@@ -600,14 +597,14 @@ type ProjectLinkingCollections {
 }
 
 enum ProjectOrder {
-  name_ASC
-  name_DESC
   slug_ASC
   slug_DESC
-  primaryColor_ASC
-  primaryColor_DESC
+  name_ASC
+  name_DESC
   youtubeVideoId_ASC
   youtubeVideoId_DESC
+  primaryColor_ASC
+  primaryColor_DESC
   sys_id_ASC
   sys_id_DESC
   sys_publishedAt_ASC
@@ -663,6 +660,13 @@ type ProjectPageProjectsCollection {
   skip: Int!
   limit: Int!
   items: [Project]!
+}
+
+type ProjectTechTagsCollection {
+  total: Int!
+  skip: Int!
+  limit: Int!
+  items: [TechTag]!
 }
 
 type ProjectUrLsCollection {
@@ -751,6 +755,8 @@ type Query {
   assetCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String, where: AssetFilter, order: [AssetOrder]): AssetCollection
   project(id: String!, preview: Boolean, locale: String): Project
   projectCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String, where: ProjectFilter, order: [ProjectOrder]): ProjectCollection
+  techTag(id: String!, preview: Boolean, locale: String): TechTag
+  techTagCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String, where: TechTagFilter, order: [TechTagOrder]): TechTagCollection
   projectUrl(id: String!, preview: Boolean, locale: String): ProjectUrl
   projectUrlCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String, where: ProjectUrlFilter, order: [ProjectUrlOrder]): ProjectUrlCollection
   experience(id: String!, preview: Boolean, locale: String): Experience
@@ -927,6 +933,65 @@ input SysFilter {
   publishedVersion_gte: Float
   publishedVersion_lt: Float
   publishedVersion_lte: Float
+}
+
+"""
+[See type definition](https://app.contentful.com/spaces/fydf0o2ery42/content_types/techTag)
+"""
+type TechTag implements Entry {
+  sys: Sys!
+  contentfulMetadata: ContentfulMetadata!
+  linkedFrom(allowedLocales: [String]): TechTagLinkingCollections
+  slug(locale: String): String
+  name(locale: String): String
+}
+
+type TechTagCollection {
+  total: Int!
+  skip: Int!
+  limit: Int!
+  items: [TechTag]!
+}
+
+input TechTagFilter {
+  sys: SysFilter
+  contentfulMetadata: ContentfulMetadataFilter
+  slug_exists: Boolean
+  slug: String
+  slug_not: String
+  slug_in: [String]
+  slug_not_in: [String]
+  slug_contains: String
+  slug_not_contains: String
+  name_exists: Boolean
+  name: String
+  name_not: String
+  name_in: [String]
+  name_not_in: [String]
+  name_contains: String
+  name_not_contains: String
+  OR: [TechTagFilter]
+  AND: [TechTagFilter]
+}
+
+type TechTagLinkingCollections {
+  entryCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String): EntryCollection
+  projectCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String): ProjectCollection
+}
+
+enum TechTagOrder {
+  slug_ASC
+  slug_DESC
+  name_ASC
+  name_DESC
+  sys_id_ASC
+  sys_id_DESC
+  sys_publishedAt_ASC
+  sys_publishedAt_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
+  sys_publishedVersion_ASC
+  sys_publishedVersion_DESC
 }
 
 input cfSkillListNestedFilter {
