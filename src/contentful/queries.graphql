@@ -103,6 +103,11 @@ fragment ProjectFields on Project {
 query getProjectPage {
   projectPageCollection(limit: 1) {
     items {
+      topCategoriesCollection(limit: 10) {
+        items {
+          ...TechTagFields
+        }
+      }
       projectsCollection {
         items {
           ...ProjectFields
@@ -124,19 +129,6 @@ query getProjectBySlug($slug: String) {
   projectCollection(limit: 1, where: { slug: $slug }) {
     items {
       ...ProjectFields
-    }
-  }
-}
-
-query getTechTags {
-  techTagCollection {
-    items {
-      ...TechTagFields
-      linkedFrom {
-        projectCollection {
-          total
-        }
-      }
     }
   }
 }

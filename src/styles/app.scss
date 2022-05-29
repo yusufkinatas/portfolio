@@ -15,11 +15,6 @@
 html {
   line-height: 1.23; /* 1 */
   -webkit-text-size-adjust: 100%; /* 2 */
-
-  scrollbar-width: none;
-  &::-webkit-scrollbar {
-    display: none;
-  }
 }
 
 body {

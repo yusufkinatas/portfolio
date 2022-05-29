@@ -623,6 +623,7 @@ type ProjectPage implements Entry {
   contentfulMetadata: ContentfulMetadata!
   linkedFrom(allowedLocales: [String]): ProjectPageLinkingCollections
   projectsCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String): ProjectPageProjectsCollection
+  topCategoriesCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String): ProjectPageTopCategoriesCollection
 }
 
 type ProjectPageCollection {
@@ -636,6 +637,7 @@ input ProjectPageFilter {
   sys: SysFilter
   contentfulMetadata: ContentfulMetadataFilter
   projectsCollection_exists: Boolean
+  topCategoriesCollection_exists: Boolean
   OR: [ProjectPageFilter]
   AND: [ProjectPageFilter]
 }
@@ -660,6 +662,13 @@ type ProjectPageProjectsCollection {
   skip: Int!
   limit: Int!
   items: [Project]!
+}
+
+type ProjectPageTopCategoriesCollection {
+  total: Int!
+  skip: Int!
+  limit: Int!
+  items: [TechTag]!
 }
 
 type ProjectTechTagsCollection {
@@ -753,6 +762,8 @@ scalar Quality
 type Query {
   asset(id: String!, preview: Boolean, locale: String): Asset
   assetCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String, where: AssetFilter, order: [AssetOrder]): AssetCollection
+  projectPage(id: String!, preview: Boolean, locale: String): ProjectPage
+  projectPageCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String, where: ProjectPageFilter, order: [ProjectPageOrder]): ProjectPageCollection
   project(id: String!, preview: Boolean, locale: String): Project
   projectCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String, where: ProjectFilter, order: [ProjectOrder]): ProjectCollection
   techTag(id: String!, preview: Boolean, locale: String): TechTag
@@ -763,8 +774,6 @@ type Query {
   experienceCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String, where: ExperienceFilter, order: [ExperienceOrder]): ExperienceCollection
   person(id: String!, preview: Boolean, locale: String): Person
   personCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String, where: PersonFilter, order: [PersonOrder]): PersonCollection
-  projectPage(id: String!, preview: Boolean, locale: String): ProjectPage
-  projectPageCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String, where: ProjectPageFilter, order: [ProjectPageOrder]): ProjectPageCollection
   resumePage(id: String!, preview: Boolean, locale: String): ResumePage
   resumePageCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String, where: ResumePageFilter, order: [ResumePageOrder]): ResumePageCollection
   skillList(id: String!, preview: Boolean, locale: String): SkillList
@@ -976,6 +985,7 @@ input TechTagFilter {
 
 type TechTagLinkingCollections {
   entryCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String): EntryCollection
+  projectPageCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String): ProjectPageCollection
   projectCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String): ProjectCollection
 }
 

@@ -28,15 +28,22 @@ function App({ Component, pageProps, router }: AppProps) {
         <meta name="msapplication-TileColor" content="#ffffff" />
         <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
         <meta name="theme-color" content="#ffffff" />
+        <meta charSet="utf-8" />
+        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1 maximum-scale=1, user-scalable=0" />
       </Head>
       <PageMeta
         description="Hi! I'm Yusuf, Frontend Developer. I'm focused on Javascript, web apps, mobile apps, responsive design, animation, and performance."
         image="og_image.jpg"
       />
 
-      <MainLayout route={router.route}>
+      {router.route === '/work/[slug]' ? (
         <Component {...pageProps} key={router.route} />
-      </MainLayout>
+      ) : (
+        <MainLayout route={router.route}>
+          <Component {...pageProps} key={router.route} />
+        </MainLayout>
+      )}
     </>
   )
 }
