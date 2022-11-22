@@ -29,7 +29,7 @@ function Work({ data }: PageProps) {
   return (
     <Page title="Work | YK" showContentfulWarning={!projects || !projects.length}>
       <div className={styles.root}>
-        <h2>Here is some of my best projects</h2>
+        <h2>Here are some of my best projects</h2>
 
         <div className={styles.topCategories}>
           <div className={styles.title}>Top Categories</div>
