@@ -1,7 +1,7 @@
-import Head from 'next/head'
+import Head from "next/head";
 
 export function PageTitle(props: { title?: string }) {
-  const title = props.title?.trim()
+  const title = props.title?.trim();
   return (
     <Head>
       <title>{title}</title>
@@ -9,5 +9,5 @@ export function PageTitle(props: { title?: string }) {
       <meta property="og:title" content={title} key="og:title" />
       <meta property="twitter:title" content={title} key="twitter:title" />
     </Head>
-  )
+  );
 }

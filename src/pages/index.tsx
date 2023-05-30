@@ -1,18 +1,18 @@
-import Button from 'components/Button'
-import ContentfulContent from 'components/ContentfulContent'
-import Page from 'components/Page'
-import { contentful } from 'contentful/api'
-import { GetPersonQuery } from 'contentful/contentful.graphql.types'
-import { GetStaticProps } from 'next'
+import Button from "components/Button";
+import ContentfulContent from "components/ContentfulContent";
+import Page from "components/Page";
+import { contentful } from "contentful/api";
+import { GetPersonQuery } from "contentful/contentful.graphql.types";
+import { GetStaticProps } from "next";
 
-import styles from 'styles/pages/index.module.scss'
+import styles from "styles/pages/index.module.scss";
 
 interface PageProps {
-  data: GetPersonQuery
+  data: GetPersonQuery;
 }
 
 function About({ data }: PageProps) {
-  const person = data.personCollection?.items[0]
+  const person = data.personCollection?.items[0];
 
   return (
     <Page title="YK | Front End Developer" showContentfulWarning={!person}>
@@ -32,18 +32,18 @@ function About({ data }: PageProps) {
         </div>
       </div>
     </Page>
-  )
+  );
 }
 
-export default About
+export default About;
 
 export const getStaticProps: GetStaticProps<PageProps> = async () => {
-  const data = await contentful.getPerson()
+  const data = await contentful.getPerson();
 
   return {
     props: {
       data,
     },
     revalidate: 10,
-  }
-}
+  };
+};

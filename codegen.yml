@@ -1,7 +1,7 @@
 schema:
   - https://graphql.contentful.com/content/v1/spaces/${NEXT_PUBLIC_CONTENTFUL_SPACE_ID}/environments/${NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT}?access_token=${NEXT_PUBLIC_CONTENTFUL_CDA_TOKEN}:
 documents:
-  - 'src/**/*.graphql'
+  - "src/**/*.graphql"
 generates:
   ./src/contentful/contentful.graphql.types.ts:
     plugins:

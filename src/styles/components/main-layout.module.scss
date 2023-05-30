@@ -1,4 +1,4 @@
-@import '../variables.scss';
+@import "../variables.scss";
 
 .root {
   .navbarWrapper {
@@ -32,7 +32,7 @@
           position: relative;
           &.active {
             &::after {
-              content: '';
+              content: "";
               position: absolute;
               height: 0.1rem;
               left: -0.5rem;

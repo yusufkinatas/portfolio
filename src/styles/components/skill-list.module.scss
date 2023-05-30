@@ -1,4 +1,4 @@
-@import '../variables.scss';
+@import "../variables.scss";
 
 .outerContainer {
   position: relative;
@@ -121,7 +121,7 @@
     }
 
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       box-shadow: #575757a8 0px 0px 10px 7px;
       top: 0;

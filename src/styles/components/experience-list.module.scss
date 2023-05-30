@@ -1,12 +1,12 @@
-@import '../variables.scss';
+@import "../variables.scss";
 
 .outerContainer {
   position: relative;
   margin-top: 4rem;
-  
+
   width: 90vw;
   max-width: 550px;
-  
+
   .experienceRoot {
     margin-bottom: 1rem;
     text-align: left;
@@ -18,7 +18,7 @@
         font-weight: 600;
         font-size: 0.58rem;
         flex: 1;
-        margin-top: .2rem;
+        margin-top: 0.2rem;
       }
 
       .rightContainer {
@@ -35,7 +35,7 @@
           font-weight: 600;
           font-size: 0.58rem;
           color: $text-3;
-          margin-top: .5rem;
+          margin-top: 0.5rem;
           text-transform: uppercase;
         }
       }
