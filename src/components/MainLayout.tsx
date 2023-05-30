@@ -16,24 +16,16 @@ function MainLayout({ children, route }: Props) {
       <div className={styles.navbarWrapper}>
         <div className={styles.navbar}>
           <Link href="/">
-            <a>
-              <div className={clsx(route === '/' && styles.active)}>about</div>
-            </a>
+            <div className={clsx(route === '/' && styles.active)}>about</div>
           </Link>
           <Link href="/work">
-            <a>
-              <div className={clsx(route === '/work' && styles.active)}>work</div>
-            </a>
+            <div className={clsx(route === '/work' && styles.active)}>work</div>
           </Link>
           <Link href="/resume">
-            <a>
-              <div className={clsx(route === '/resume' && styles.active)}>resume</div>
-            </a>
+            <div className={clsx(route === '/resume' && styles.active)}>resume</div>
           </Link>
           <Link href="/contact">
-            <a>
-              <div className={clsx(route === '/contact' && styles.active)}>contact</div>
-            </a>
+            <div className={clsx(route === '/contact' && styles.active)}>contact</div>
           </Link>
         </div>
       </div>

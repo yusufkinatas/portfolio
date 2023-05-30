@@ -49,13 +49,11 @@ function Work({ data }: PageProps) {
 
         <div className={styles.projectList}>
           {filteredProjects?.map((p) => (
-            <Link key={p?.slug} href="/work/[slug]" as={`/work/${p?.slug}`} passHref>
-              <a>
-                <div className={styles.project} style={{ background: p?.primaryColor || '' }}>
-                  <img src={p?.logo?.url || ''} />
-                  <div className={styles.title}>{p?.name}</div>
-                </div>
-              </a>
+            <Link key={p?.slug} href="/work/[slug]" as={`/work/${p?.slug}`}>
+              <div className={styles.project} style={{ background: p?.primaryColor || '' }}>
+                <img src={p?.logo?.url || ''} />
+                <div className={styles.title}>{p?.name}</div>
+              </div>
             </Link>
           ))}
         </div>
