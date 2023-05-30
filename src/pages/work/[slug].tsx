@@ -66,8 +66,8 @@ function ProjectDetails({ data }: PageProps) {
     <Page title={`${project.name || ''} | YK`}>
       <div className={styles.page}>
         <div className={styles.content}>
-          <NextLink href="/work">
-            <img className={styles.backButton} src="/icons/arrow-right.svg" />
+          <NextLink href="/work" className={styles.backButton}>
+            <img src="/icons/chevron-left.svg" />
           </NextLink>
 
           <div className={styles.header}>

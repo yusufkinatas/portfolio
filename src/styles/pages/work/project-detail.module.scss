@@ -52,9 +52,12 @@
     }
 
     .backButton {
-      transform: rotate(180deg);
-      cursor: pointer;
-      aspect-ratio: 1;
+      line-height: 0;
+
+      img {
+        width: 28px;
+        height: 28px;
+      }
     }
 
     .carousel {
