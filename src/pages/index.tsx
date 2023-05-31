@@ -1,17 +1,16 @@
-import Button from "components/Button";
-import ContentfulContent from "components/ContentfulContent";
-import Page from "components/Page";
+import Button from "components/button";
+import ContentfulContent from "components/contentful-content";
+import Page from "components/page";
 import { contentful } from "contentful/api";
 import { GetPersonQuery } from "contentful/contentful.graphql.types";
 import { GetStaticProps } from "next";
-
 import styles from "styles/pages/index.module.scss";
 
 interface PageProps {
   data: GetPersonQuery;
 }
 
-function About({ data }: PageProps) {
+const About = ({ data }: PageProps) => {
   const person = data.personCollection?.items[0];
 
   return (
@@ -28,12 +27,12 @@ function About({ data }: PageProps) {
           </Button>
         </div>
         <div className={styles.logo}>
-          <img src="/icons/yk-logo.svg" />
+          <img src="/icons/yk-logo.svg" alt="YK Logo" />
         </div>
       </div>
     </Page>
   );
-}
+};
 
 export default About;
 

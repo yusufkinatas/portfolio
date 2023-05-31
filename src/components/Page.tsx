@@ -1,8 +1,9 @@
 import { motion } from "framer-motion";
 import { ReactNode } from "react";
+
 import styles from "../styles/components/page.module.scss";
-import ContentfulWarning from "./ContentfulWarning";
-import { PageTitle } from "./PageTitle";
+import ContentfulWarning from "./contentful-warning";
+import { PageTitle } from "./page-title";
 
 interface Props {
   children: ReactNode;
@@ -10,7 +11,7 @@ interface Props {
   showContentfulWarning?: boolean;
 }
 
-function Page({ children, title, showContentfulWarning }: Props) {
+const Page = ({ children, title, showContentfulWarning }: Props) => {
   return (
     <>
       <PageTitle title={title} />
@@ -25,6 +26,6 @@ function Page({ children, title, showContentfulWarning }: Props) {
       </motion.div>
     </>
   );
-}
+};
 
 export default Page;

@@ -1,4 +1,4 @@
-function ContentfulWarning() {
+const ContentfulWarning = () => {
   return (
     <div
       style={{
@@ -13,6 +13,6 @@ function ContentfulWarning() {
       Contentful data!
     </div>
   );
-}
+};
 
 export default ContentfulWarning;

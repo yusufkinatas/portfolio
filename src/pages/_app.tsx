@@ -1,11 +1,12 @@
-import { useTransitionFix } from "lib/useTransitionFix";
-import MainLayout from "components/MainLayout";
-import { AppProps } from "next/app";
-import { PageMeta } from "components/PageMeta";
-import Head from "next/head";
 import "../styles/app.scss";
 
-function App({ Component, pageProps, router }: AppProps) {
+import MainLayout from "components/main-layout";
+import { PageMeta } from "components/page-meta";
+import { useTransitionFix } from "lib/use-transition-fix";
+import { AppProps } from "next/app";
+import Head from "next/head";
+
+const App = ({ Component, pageProps, router }: AppProps) => {
   useTransitionFix();
 
   return (
@@ -105,6 +106,6 @@ function App({ Component, pageProps, router }: AppProps) {
       )}
     </>
   );
-}
+};
 
 export default App;

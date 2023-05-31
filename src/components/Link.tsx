@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import { ReactNode } from "react";
+
 import styles from "../styles/components/link.module.scss";
 
 interface Props {
@@ -8,7 +9,7 @@ interface Props {
   className?: string;
 }
 
-function Link({ href, children, className }: Props) {
+const Link = ({ href, children, className }: Props) => {
   return (
     <a
       className={clsx(styles.link, className)}
@@ -19,6 +20,6 @@ function Link({ href, children, className }: Props) {
       {children}
     </a>
   );
-}
+};
 
 export default Link;

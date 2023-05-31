@@ -3,9 +3,9 @@ import { useEffect } from "react";
 
 const routeChange = () => {
   const allStyleElems = document.querySelectorAll('style[media="x"]');
-  allStyleElems.forEach((elem) => {
+  for (const elem of allStyleElems) {
     elem.removeAttribute("media");
-  });
+  }
 };
 
 // Took this from https://github.com/vercel/next.js/issues/17464#issuecomment-1080337949
@@ -21,6 +21,6 @@ export const useTransitionFix = (): void => {
   }, []);
 
   useEffect(() => {
-    Router.router?.push(Router.router?.pathname, Router.router.asPath);
+    Router.router?.push(Router.router.pathname, Router.router.asPath);
   }, []);
 };

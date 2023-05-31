@@ -1,7 +1,8 @@
-import Link from "next/link";
-import styles from "../styles/components/button.module.scss";
 import clsx from "clsx";
+import Link from "next/link";
 import { ReactNode } from "react";
+
+import styles from "../styles/components/button.module.scss";
 
 interface Props {
   link: string;
@@ -10,7 +11,7 @@ interface Props {
   children: ReactNode;
 }
 
-function Button({ link, renderATag, className, children }: Props) {
+const Button = ({ link, renderATag, className, children }: Props) => {
   if (renderATag) {
     return (
       <a href={link} target="blank" rel="noopener noreferrer">
@@ -24,6 +25,6 @@ function Button({ link, renderATag, className, children }: Props) {
       <div className={clsx(styles.root, className)}>{children}</div>
     </Link>
   );
-}
+};
 
 export default Button;

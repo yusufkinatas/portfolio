@@ -141,7 +141,8 @@ module.exports = (migration) => {
     ],
     linkType: "Asset",
   });
-  [1, 2, 3, 4].forEach((num) => {
+
+  for (const num of [1, 2, 3, 4]) {
     resumePage.createField(`skillList${num}`, {
       name: `Skill List ${num}`,
       type: "Link",
@@ -153,7 +154,7 @@ module.exports = (migration) => {
       ],
       linkType: "Entry",
     });
-  });
+  }
 
   // Create project url type
   const projectUrl = migration.createContentType("projectUrl", {

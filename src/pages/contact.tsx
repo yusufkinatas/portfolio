@@ -1,15 +1,15 @@
-import Page from "components/Page";
-import styles from "styles/pages/contact.module.scss";
-import { GetStaticProps } from "next";
-import { GetPersonQuery } from "contentful/contentful.graphql.types";
+import ContentfulContent from "components/contentful-content";
+import Page from "components/page";
 import { contentful } from "contentful/api";
-import ContentfulContent from "components/ContentfulContent";
+import { GetPersonQuery } from "contentful/contentful.graphql.types";
+import { GetStaticProps } from "next";
+import styles from "styles/pages/contact.module.scss";
 
 interface PageProps {
   data: GetPersonQuery;
 }
 
-function Contact({ data }: PageProps) {
+const Contact = ({ data }: PageProps) => {
   const person = data.personCollection?.items[0];
 
   return (
@@ -19,7 +19,7 @@ function Contact({ data }: PageProps) {
       </div>
     </Page>
   );
-}
+};
 
 export default Contact;
 

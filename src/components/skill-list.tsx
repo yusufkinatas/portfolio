@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
-
-import styles from "../styles/components/skill-list.module.scss";
 import clsx from "clsx";
 import { GetResumePageQuery } from "contentful/contentful.graphql.types";
+import { useEffect, useState } from "react";
+
+import styles from "../styles/components/skill-list.module.scss";
 
 let zIndexCounter = 100;
 
@@ -31,10 +31,15 @@ const Section = ({ id, skillData, onClick, expandedId }: Props) => {
   }, [expandedId, id]);
 
   let positionStyle;
-  if (id === 1) positionStyle = styles.topLeft;
-  else if (id === 2) positionStyle = styles.topRight;
-  else if (id === 3) positionStyle = styles.bottomLeft;
-  else positionStyle = styles.bottomRight;
+  if (id === 1) {
+    positionStyle = styles.topLeft;
+  } else if (id === 2) {
+    positionStyle = styles.topRight;
+  } else if (id === 3) {
+    positionStyle = styles.bottomLeft;
+  } else {
+    positionStyle = styles.bottomRight;
+  }
 
   return (
     <div
@@ -47,11 +52,15 @@ const Section = ({ id, skillData, onClick, expandedId }: Props) => {
       onClick={onClick}
     >
       <div className={styles.cover}>
-        <img className={styles.icon} src={icon} />
+        <img className={styles.icon} src={icon} alt="skill icon" />
         <div className={styles.title}>{title}</div>
       </div>
       <div className={styles.content}>
-        <img className={styles.backgroundIcon} src={icon} />
+        <img
+          className={styles.backgroundIcon}
+          src={icon}
+          alt="skill background icon"
+        />
         {list.map((skill) => (
           <div key={skill}>{skill}</div>
         ))}
@@ -69,7 +78,7 @@ const parseSkillList = (skillList: any) => {
   };
 };
 
-function SkillList({ data }: { data: GetResumePageQuery }) {
+const SkillList = ({ data }: { data: GetResumePageQuery }) => {
   const [expanded, setExpanded] = useState(0);
 
   const expandSection = (id: number) =>
@@ -77,7 +86,7 @@ function SkillList({ data }: { data: GetResumePageQuery }) {
 
   const resume = data.resumePageCollection?.items[0];
 
-  const { skillList1, skillList2, skillList3, skillList4 } = resume || {};
+  const { skillList1, skillList2, skillList3, skillList4 } = resume ?? {};
 
   return (
     <div className={styles.outerContainer}>
@@ -109,6 +118,6 @@ function SkillList({ data }: { data: GetResumePageQuery }) {
       </div>
     </div>
   );
-}
+};
 
 export default SkillList;

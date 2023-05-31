@@ -1,14 +1,14 @@
-import Page from "components/Page";
+import ContentfulContent from "components/contentful-content";
+import Link from "components/link";
+import Page from "components/page";
 import { contentful } from "contentful/api";
 import { GetProjectBySlugQuery } from "contentful/contentful.graphql.types";
-import NextLink from "next/link";
 import { GetStaticPaths, GetStaticProps } from "next";
-import styles from "styles/pages/work/project-detail.module.scss";
 import Error from "next/error";
-import Link from "components/Link";
-import ContentfulContent from "components/ContentfulContent";
-import { Carousel } from "react-responsive-carousel";
+import NextLink from "next/link";
 import { useMemo } from "react";
+import { Carousel } from "react-responsive-carousel";
+import styles from "styles/pages/work/project-detail.module.scss";
 
 enum LinkType {
   GITHUB = "GITHUB",
@@ -28,19 +28,19 @@ const defaultUrlTitles: Record<LinkType, string> = {
   WEBSITE: "Visit Website",
 };
 
-function ProjectDetails({ data }: PageProps) {
-  const project = data?.projectCollection?.items[0];
+const ProjectDetails = ({ data }: PageProps) => {
+  const project = data.projectCollection?.items[0];
 
   const carouselItems = useMemo(() => {
-    const items = project?.images?.items?.map((img) => (
+    const items = project?.images?.items.map((img) => (
       <div
         key={img?.url}
         onClick={() => {
-          window.open(img?.url || "", "blank");
+          window.open(img?.url ?? "", "blank");
         }}
         className={styles.carouselItemWrapper}
       >
-        <img src={img?.url || ""} />
+        <img src={img?.url ?? ""} alt="project visual" />
       </div>
     ));
 
@@ -60,18 +60,20 @@ function ProjectDetails({ data }: PageProps) {
     return items;
   }, [project]);
 
-  if (!project) return <Error statusCode={404} />;
+  if (!project) {
+    return <Error statusCode={404} />;
+  }
 
   return (
-    <Page title={`${project.name || ""} | YK`}>
+    <Page title={`${project.name ?? ""} | YK`}>
       <div className={styles.page}>
         <div className={styles.content}>
           <NextLink href="/work" className={styles.backButton}>
-            <img src="/icons/chevron-left.svg" />
+            <img src="/icons/chevron-left.svg" alt="go back button" />
           </NextLink>
 
           <div className={styles.header}>
-            <img src={project.logo?.url || ""} />
+            <img src={project.logo?.url ?? ""} alt="project logo" />
             <div>
               <div className={styles.title}>{project.name}</div>
               <div className={styles.categories}>
@@ -91,14 +93,19 @@ function ProjectDetails({ data }: PageProps) {
           </Carousel>
 
           <div className={styles.linksWrapper}>
-            {project.urls?.items.map((link, i) => {
+            {project.urls?.items.map((link) => {
               return (
-                <Link key={i} className={styles.link} href={link?.url || ""}>
+                <Link
+                  key={link?.url}
+                  className={styles.link}
+                  href={link?.url ?? ""}
+                >
                   <img
                     src={`/icons/${link?.type}.svg`}
                     style={{ filter: "" }}
+                    alt="link type visual"
                   />
-                  {link?.title || defaultUrlTitles[link?.type as LinkType]}
+                  {link?.title ?? defaultUrlTitles[link?.type as LinkType]}
                 </Link>
               );
             })}
@@ -121,8 +128,8 @@ function ProjectDetails({ data }: PageProps) {
             <div className={styles.divider} />
 
             <ul className={styles.techs}>
-              {project.techTagsCollection?.items?.map((tech, i) => (
-                <li key={i}>{tech?.name}</li>
+              {project.techTagsCollection?.items.map((tech) => (
+                <li key={tech?.slug}>{tech?.name}</li>
               ))}
             </ul>
           </div>
@@ -130,16 +137,16 @@ function ProjectDetails({ data }: PageProps) {
       </div>
     </Page>
   );
-}
+};
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const res = await contentful.getAllProjectSlugs();
 
   return {
     paths:
-      res.projectCollection?.items.map((s) => ({
-        params: { slug: String(s?.slug) },
-      })) || [],
+      res.projectCollection?.items.map((project) => ({
+        params: { slug: String(project?.slug) },
+      })) ?? [],
     fallback: true,
   };
 };

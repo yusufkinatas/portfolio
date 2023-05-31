@@ -1,16 +1,16 @@
+import clsx from "clsx";
 import { AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import { ReactNode } from "react";
 
 import styles from "../styles/components/main-layout.module.scss";
-import clsx from "clsx";
-import { ReactNode } from "react";
 
 interface Props {
   route: string;
   children: ReactNode;
 }
 
-function MainLayout({ children, route }: Props) {
+const MainLayout = ({ children, route }: Props) => {
   return (
     <div className={styles.root}>
       <div className={styles.navbarWrapper}>
@@ -36,6 +36,6 @@ function MainLayout({ children, route }: Props) {
       <AnimatePresence>{children}</AnimatePresence>
     </div>
   );
-}
+};
 
 export default MainLayout;

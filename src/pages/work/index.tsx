@@ -1,18 +1,17 @@
 import clsx from "clsx";
-import Page from "components/Page";
+import Page from "components/page";
 import { contentful } from "contentful/api";
 import { GetProjectPageQuery } from "contentful/contentful.graphql.types";
 import { GetStaticProps } from "next";
 import Link from "next/link";
 import { useMemo, useState } from "react";
-
 import styles from "styles/pages/work/work.module.scss";
 
 interface PageProps {
   data: GetProjectPageQuery;
 }
 
-function Work({ data }: PageProps) {
+const Work = ({ data }: PageProps) => {
   const projects =
     data.projectPageCollection?.items[0]?.projectsCollection?.items;
   const tags =
@@ -21,12 +20,14 @@ function Work({ data }: PageProps) {
   const [selectedCategory, setSelectedCategory] = useState<string | null>();
 
   const filteredProjects = useMemo(() => {
-    if (!selectedCategory) return projects;
+    if (!selectedCategory) {
+      return projects;
+    }
 
     return projects?.filter(
-      (p) =>
+      (project) =>
         Number(
-          p?.techTagsCollection?.items.findIndex(
+          project?.techTagsCollection?.items.findIndex(
             (i) => i?.slug === selectedCategory,
           ),
         ) > -1,
@@ -44,31 +45,38 @@ function Work({ data }: PageProps) {
         <div className={styles.topCategories}>
           <div className={styles.title}>Top Categories</div>
           <div className={styles.tags}>
-            {tags?.map((t) => (
+            {tags?.map((tag) => (
               <div
+                key={tag?.slug}
                 className={clsx(
                   styles.tag,
-                  selectedCategory === t?.slug && styles.selected,
+                  selectedCategory === tag?.slug && styles.selected,
                 )}
                 onClick={() => {
-                  setSelectedCategory((c) => (t?.slug === c ? "" : t?.slug));
+                  setSelectedCategory((category) =>
+                    tag?.slug === category ? "" : tag?.slug,
+                  );
                 }}
               >
-                {t?.name}
+                {tag?.name}
               </div>
             ))}
           </div>
         </div>
 
         <div className={styles.projectList}>
-          {filteredProjects?.map((p) => (
-            <Link key={p?.slug} href="/work/[slug]" as={`/work/${p?.slug}`}>
+          {filteredProjects?.map((project) => (
+            <Link
+              key={project?.slug}
+              href="/work/[slug]"
+              as={`/work/${project?.slug}`}
+            >
               <div
                 className={styles.project}
-                style={{ background: p?.primaryColor || "" }}
+                style={{ background: project?.primaryColor ?? "" }}
               >
-                <img src={p?.logo?.url || ""} />
-                <div className={styles.title}>{p?.name}</div>
+                <img src={project?.logo?.url ?? ""} alt="project logo" />
+                <div className={styles.title}>{project?.name}</div>
               </div>
             </Link>
           ))}
@@ -76,7 +84,7 @@ function Work({ data }: PageProps) {
       </div>
     </Page>
   );
-}
+};
 
 export default Work;
 

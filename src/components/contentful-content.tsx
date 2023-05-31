@@ -3,7 +3,8 @@ import {
   Options,
 } from "@contentful/rich-text-react-renderer";
 import { BLOCKS, Document, INLINES } from "@contentful/rich-text-types";
-import Link from "./Link";
+
+import Link from "./link";
 
 interface Props {
   data: Document;
@@ -11,15 +12,15 @@ interface Props {
 
 const options: Options = {
   renderNode: {
-    [BLOCKS.PARAGRAPH]: (node, children) => <div>{children}</div>,
-    [INLINES.HYPERLINK]: (node, children) => (
-      <Link href={node.data.uri}>{children}</Link>
+    [BLOCKS.PARAGRAPH]: (_, children) => <div>{children}</div>,
+    [INLINES.HYPERLINK]: ({ data }, children) => (
+      <Link href={data.uri}>{children}</Link>
     ),
   },
 };
 
-function ContentfulContent({ data }: Props) {
+const ContentfulContent = ({ data }: Props) => {
   return <>{documentToReactComponents(data, options)}</>;
-}
+};
 
 export default ContentfulContent;

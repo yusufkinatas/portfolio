@@ -1,17 +1,18 @@
-import Page from "../components/Page";
-import Button from "../components/Button";
-import SkillList from "components/SkillList";
-import ExperienceList from "components/ExperienceList";
-import styles from "styles/pages/resume.module.scss";
+import ExperienceList from "components/experience-list";
+import SkillList from "components/skill-list";
 import { contentful } from "contentful/api";
 import { GetResumePageQuery } from "contentful/contentful.graphql.types";
 import { GetStaticProps } from "next";
+import styles from "styles/pages/resume.module.scss";
+
+import Button from "../components/button";
+import Page from "../components/page";
 
 interface PageProps {
   data: GetResumePageQuery;
 }
 
-function Contact({ data }: PageProps) {
+const Contact = ({ data }: PageProps) => {
   const resume = data.resumePageCollection?.items[0];
 
   return (
@@ -19,7 +20,7 @@ function Contact({ data }: PageProps) {
       <div className={styles.root}>
         <div>
           <div className={styles.title}>In a hurry?</div>
-          <Button renderATag link={resume?.resumePdf?.url || ""}>
+          <Button renderATag link={resume?.resumePdf?.url ?? ""}>
             RESUME PDF
           </Button>
         </div>
@@ -28,7 +29,7 @@ function Contact({ data }: PageProps) {
       </div>
     </Page>
   );
-}
+};
 
 export default Contact;
 

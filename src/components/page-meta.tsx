@@ -1,46 +1,50 @@
 import Head from "next/head";
-import { Fragment } from "react";
 import url from "url";
 
-function isAbsolute(url: string) {
-  return url?.indexOf("http://") === 0 || url?.indexOf("https://") === 0;
+function isAbsolute(urlToCheck: string) {
+  return (
+    urlToCheck.indexOf("http://") === 0 || urlToCheck.indexOf("https://") === 0
+  );
 }
 
-export function PageMeta(props: {
+export const PageMeta = ({
+  description,
+  image,
+}: {
   description?: string | null;
   image?: string | null;
-}) {
+}) => {
   const base = "https://yusufkinatas.com";
 
-  let imageUrl = props.image;
+  let imageUrl = image;
   if (imageUrl && !isAbsolute(imageUrl)) {
     imageUrl = url.resolve(base, imageUrl);
   }
 
   return (
     <Head>
-      {props.description && (
-        <Fragment>
+      {description && (
+        <>
           <meta
             key="description"
             name="description"
             property="description"
-            content={props.description}
+            content={description}
           />
           <meta
             key="og:description"
             property="og:description"
-            content={props.description}
+            content={description}
           />
           <meta
             key="twitter:description"
             property="twitter:description"
-            content={props.description}
+            content={description}
           />
-        </Fragment>
+        </>
       )}
       {imageUrl && (
-        <Fragment>
+        <>
           <meta key="image" name="image" content={imageUrl} />
           <meta key="og:image" property="og:image" content={imageUrl} />
           <meta
@@ -53,8 +57,8 @@ export function PageMeta(props: {
             property="twitter:image"
             content={imageUrl}
           />
-        </Fragment>
+        </>
       )}
     </Head>
   );
-}
+};
