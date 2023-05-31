@@ -2,9 +2,13 @@ import "../styles/app.scss";
 
 import { MainLayout } from "components/main-layout/main-layout";
 import { PageMeta } from "components/page-meta";
+import { LazyMotion } from "framer-motion";
 import { useTransitionFix } from "lib/use-transition-fix";
 import { AppProps } from "next/app";
 import Head from "next/head";
+
+const loadFramerFeatures = () =>
+  import("../lib/framer-features").then((res) => res.default);
 
 const App = ({ Component, pageProps, router }: AppProps) => {
   useTransitionFix();
@@ -97,13 +101,15 @@ const App = ({ Component, pageProps, router }: AppProps) => {
         image="og_image.jpg"
       />
 
-      {router.route === "/work/[slug]" ? (
-        <Component {...pageProps} key={router.route} />
-      ) : (
-        <MainLayout route={router.route}>
+      <LazyMotion features={loadFramerFeatures} strict>
+        {router.route === "/work/[slug]" ? (
           <Component {...pageProps} key={router.route} />
-        </MainLayout>
-      )}
+        ) : (
+          <MainLayout route={router.route}>
+            <Component {...pageProps} key={router.route} />
+          </MainLayout>
+        )}
+      </LazyMotion>
     </>
   );
 };

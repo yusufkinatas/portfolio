@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { ReactNode } from "react";
 
 import { ContentfulWarning } from "../contentful-warning";
@@ -15,7 +15,7 @@ export const Page = ({ children, title, showContentfulWarning }: Props) => {
   return (
     <>
       <PageTitle title={title} />
-      <motion.div
+      <m.div
         className={styles.root}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -23,7 +23,7 @@ export const Page = ({ children, title, showContentfulWarning }: Props) => {
         transition={{ duration: 0.5, type: "tween", ease: "easeInOut" }}
       >
         {showContentfulWarning ? <ContentfulWarning /> : children}
-      </motion.div>
+      </m.div>
     </>
   );
 };
