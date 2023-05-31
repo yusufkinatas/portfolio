@@ -1,4 +1,4 @@
-const ContentfulWarning = () => {
+export const ContentfulWarning = () => {
   return (
     <div
       style={{
@@ -14,5 +14,3 @@ const ContentfulWarning = () => {
     </div>
   );
 };
-
-export default ContentfulWarning;

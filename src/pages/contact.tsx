@@ -1,5 +1,5 @@
-import ContentfulContent from "components/contentful-content";
-import Page from "components/page";
+import { ContentfulContent } from "components/contentful-content";
+import { Page } from "components/page";
 import { contentful } from "contentful/api";
 import { GetPersonQuery } from "contentful/contentful.graphql.types";
 import { GetStaticProps } from "next";

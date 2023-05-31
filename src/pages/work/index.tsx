@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import Page from "components/page";
+import { Page } from "components/page";
 import { contentful } from "contentful/api";
 import { GetProjectPageQuery } from "contentful/contentful.graphql.types";
 import { GetStaticProps } from "next";

@@ -4,7 +4,7 @@ import {
 } from "@contentful/rich-text-react-renderer";
 import { BLOCKS, Document, INLINES } from "@contentful/rich-text-types";
 
-import Link from "./link";
+import { Link } from "./link";
 
 interface Props {
   data: Document;
@@ -19,8 +19,6 @@ const options: Options = {
   },
 };
 
-const ContentfulContent = ({ data }: Props) => {
+export const ContentfulContent = ({ data }: Props) => {
   return <>{documentToReactComponents(data, options)}</>;
 };
-
-export default ContentfulContent;

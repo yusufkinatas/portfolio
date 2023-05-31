@@ -10,7 +10,7 @@ interface Props {
   children: ReactNode;
 }
 
-const MainLayout = ({ children, route }: Props) => {
+export const MainLayout = ({ children, route }: Props) => {
   return (
     <div className={styles.root}>
       <div className={styles.navbarWrapper}>
@@ -37,5 +37,3 @@ const MainLayout = ({ children, route }: Props) => {
     </div>
   );
 };
-
-export default MainLayout;

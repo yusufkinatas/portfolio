@@ -11,7 +11,7 @@ interface Props {
   children: ReactNode;
 }
 
-const Button = ({ link, renderATag, className, children }: Props) => {
+export const Button = ({ link, renderATag, className, children }: Props) => {
   if (renderATag) {
     return (
       <a href={link} target="blank" rel="noopener noreferrer">
@@ -26,5 +26,3 @@ const Button = ({ link, renderATag, className, children }: Props) => {
     </Link>
   );
 };
-
-export default Button;

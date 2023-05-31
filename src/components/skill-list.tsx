@@ -78,7 +78,7 @@ const parseSkillList = (skillList: any) => {
   };
 };
 
-const SkillList = ({ data }: { data: GetResumePageQuery }) => {
+export const SkillList = ({ data }: { data: GetResumePageQuery }) => {
   const [expanded, setExpanded] = useState(0);
 
   const expandSection = (id: number) =>
@@ -119,5 +119,3 @@ const SkillList = ({ data }: { data: GetResumePageQuery }) => {
     </div>
   );
 };
-
-export default SkillList;

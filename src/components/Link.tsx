@@ -9,7 +9,7 @@ interface Props {
   className?: string;
 }
 
-const Link = ({ href, children, className }: Props) => {
+export const Link = ({ href, children, className }: Props) => {
   return (
     <a
       className={clsx(styles.link, className)}
@@ -21,5 +21,3 @@ const Link = ({ href, children, className }: Props) => {
     </a>
   );
 };
-
-export default Link;

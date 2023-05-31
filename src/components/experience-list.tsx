@@ -22,7 +22,7 @@ const Experience = ({ year, company, title }: ExperienceProps) => {
   );
 };
 
-const ExperienceList = ({ data }: { data: GetResumePageQuery }) => {
+export const ExperienceList = ({ data }: { data: GetResumePageQuery }) => {
   const resume = data.resumePageCollection?.items[0];
 
   return (
@@ -38,5 +38,3 @@ const ExperienceList = ({ data }: { data: GetResumePageQuery }) => {
     </div>
   );
 };
-
-export default ExperienceList;

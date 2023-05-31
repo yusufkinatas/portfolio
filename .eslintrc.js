@@ -33,6 +33,7 @@ module.exports = {
     window: true,
   },
   rules: {
+    "import/no-default-export": "error",
     "no-undef-init": "off",
     "no-underscore-dangle": "off",
     "no-nested-ternary": "off",
@@ -226,6 +227,12 @@ module.exports = {
             varsIgnorePattern: "^_+",
           },
         ],
+      },
+    },
+    {
+      files: ["./src/pages/**"],
+      rules: {
+        "import/no-default-export": "off",
       },
     },
   ],

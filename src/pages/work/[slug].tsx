@@ -1,6 +1,6 @@
-import ContentfulContent from "components/contentful-content";
-import Link from "components/link";
-import Page from "components/page";
+import { ContentfulContent } from "components/contentful-content";
+import { Link } from "components/link";
+import { Page } from "components/page";
 import { contentful } from "contentful/api";
 import { GetProjectBySlugQuery } from "contentful/contentful.graphql.types";
 import { GetStaticPaths, GetStaticProps } from "next";

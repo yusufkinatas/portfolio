@@ -1,6 +1,6 @@
 import "../styles/app.scss";
 
-import MainLayout from "components/main-layout";
+import { MainLayout } from "components/main-layout";
 import { PageMeta } from "components/page-meta";
 import { useTransitionFix } from "lib/use-transition-fix";
 import { AppProps } from "next/app";

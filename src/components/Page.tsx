@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { ReactNode } from "react";
 
 import styles from "../styles/components/page.module.scss";
-import ContentfulWarning from "./contentful-warning";
+import { ContentfulWarning } from "./contentful-warning";
 import { PageTitle } from "./page-title";
 
 interface Props {
@@ -11,7 +11,7 @@ interface Props {
   showContentfulWarning?: boolean;
 }
 
-const Page = ({ children, title, showContentfulWarning }: Props) => {
+export const Page = ({ children, title, showContentfulWarning }: Props) => {
   return (
     <>
       <PageTitle title={title} />
@@ -27,5 +27,3 @@ const Page = ({ children, title, showContentfulWarning }: Props) => {
     </>
   );
 };
-
-export default Page;
