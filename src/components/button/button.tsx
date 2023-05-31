@@ -2,7 +2,7 @@ import clsx from "clsx";
 import Link from "next/link";
 import { ReactNode } from "react";
 
-import styles from "../styles/components/button.module.scss";
+import styles from "./button.module.scss";
 
 interface Props {
   link: string;

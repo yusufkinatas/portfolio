@@ -3,7 +3,7 @@ import { AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { ReactNode } from "react";
 
-import styles from "../styles/components/main-layout.module.scss";
+import styles from "./main-layout.module.scss";
 
 interface Props {
   route: string;

@@ -1,11 +1,12 @@
-import { Button } from "components/button";
-import { ExperienceList } from "components/experience-list";
-import { Page } from "components/page";
-import { SkillList } from "components/skill-list";
+import { Button } from "components/button/button";
+import { ExperienceList } from "components/experience-list/experience-list";
+import { Page } from "components/page/page";
+import { SkillList } from "components/skill-list/skill-list";
 import { contentful } from "contentful/api";
 import { GetResumePageQuery } from "contentful/contentful.graphql.types";
 import { GetStaticProps } from "next";
-import styles from "styles/pages/resume.module.scss";
+
+import styles from "./resume.module.scss";
 
 interface PageProps {
   data: GetResumePageQuery;

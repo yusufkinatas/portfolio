@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { ReactNode } from "react";
 
-import styles from "../styles/components/link.module.scss";
+import styles from "./link.module.scss";
 
 interface Props {
   href: string;

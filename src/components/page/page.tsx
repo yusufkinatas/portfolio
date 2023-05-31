@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 import { ReactNode } from "react";
 
-import styles from "../styles/components/page.module.scss";
-import { ContentfulWarning } from "./contentful-warning";
-import { PageTitle } from "./page-title";
+import { ContentfulWarning } from "../contentful-warning";
+import { PageTitle } from "../page-title";
+import styles from "./page.module.scss";
 
 interface Props {
   children: ReactNode;

@@ -1,6 +1,6 @@
 import { GetResumePageQuery } from "contentful/contentful.graphql.types";
 
-import styles from "../styles/components/experience-list.module.scss";
+import styles from "./experience-list.module.scss";
 
 interface ExperienceProps {
   year: string;

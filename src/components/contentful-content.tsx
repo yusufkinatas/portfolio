@@ -4,7 +4,7 @@ import {
 } from "@contentful/rich-text-react-renderer";
 import { BLOCKS, Document, INLINES } from "@contentful/rich-text-types";
 
-import { Link } from "./link";
+import { Link } from "./link/link";
 
 interface Props {
   data: Document;

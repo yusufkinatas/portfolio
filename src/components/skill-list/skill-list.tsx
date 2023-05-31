@@ -2,7 +2,7 @@ import clsx from "clsx";
 import { GetResumePageQuery } from "contentful/contentful.graphql.types";
 import { useEffect, useState } from "react";
 
-import styles from "../styles/components/skill-list.module.scss";
+import styles from "./skill-list.module.scss";
 
 let zIndexCounter = 100;
 

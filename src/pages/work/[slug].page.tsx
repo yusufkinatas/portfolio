@@ -1,6 +1,6 @@
 import { ContentfulContent } from "components/contentful-content";
-import { Link } from "components/link";
-import { Page } from "components/page";
+import { Link } from "components/link/link";
+import { Page } from "components/page/page";
 import { contentful } from "contentful/api";
 import { GetProjectBySlugQuery } from "contentful/contentful.graphql.types";
 import { GetStaticPaths, GetStaticProps } from "next";
@@ -8,7 +8,8 @@ import Error from "next/error";
 import NextLink from "next/link";
 import { useMemo } from "react";
 import { Carousel } from "react-responsive-carousel";
-import styles from "styles/pages/work/project-detail.module.scss";
+
+import styles from "./project-detail.module.scss";
 
 enum LinkType {
   GITHUB = "GITHUB",

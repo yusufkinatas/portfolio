@@ -1,11 +1,12 @@
 import clsx from "clsx";
-import { Page } from "components/page";
+import { Page } from "components/page/page";
 import { contentful } from "contentful/api";
 import { GetProjectPageQuery } from "contentful/contentful.graphql.types";
 import { GetStaticProps } from "next";
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import styles from "styles/pages/work/work.module.scss";
+
+import styles from "./work.module.scss";
 
 interface PageProps {
   data: GetProjectPageQuery;

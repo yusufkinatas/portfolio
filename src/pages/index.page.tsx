@@ -1,10 +1,11 @@
-import { Button } from "components/button";
+import { Button } from "components/button/button";
 import { ContentfulContent } from "components/contentful-content";
-import { Page } from "components/page";
+import { Page } from "components/page/page";
 import { contentful } from "contentful/api";
 import { GetPersonQuery } from "contentful/contentful.graphql.types";
 import { GetStaticProps } from "next";
-import styles from "styles/pages/index.module.scss";
+
+import styles from "./index.module.scss";
 
 interface PageProps {
   data: GetPersonQuery;
