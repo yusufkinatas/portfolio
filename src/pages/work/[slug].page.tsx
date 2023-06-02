@@ -21,7 +21,7 @@ enum LinkType {
 }
 
 interface PageProps {
-  data: GetProjectBySlugQuery;
+  data?: GetProjectBySlugQuery;
   blurUrls: string[];
 }
 
@@ -36,7 +36,7 @@ const ProjectDetails = ({ data, blurUrls }: PageProps) => {
   const dialogRef = useRef<HTMLDialogElement>(null);
   const [focusedImage, setFocusedImage] = useState("");
 
-  const project = data.projectCollection?.items[0];
+  const project = data?.projectCollection?.items[0];
 
   const carouselItems = useMemo(() => {
     const items = project?.images?.items.map((img, index) => (
