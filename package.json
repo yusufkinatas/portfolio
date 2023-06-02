@@ -34,10 +34,12 @@
     "graphql": "^16.6.0",
     "graphql-request": "^6.1.0",
     "next": "^13.4.4",
+    "plaiceholder": "^3.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-responsive-carousel": "^3.2.23",
-    "sass": "^1.62.1"
+    "sass": "^1.62.1",
+    "sharp": "^0.32.1"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.21.8",

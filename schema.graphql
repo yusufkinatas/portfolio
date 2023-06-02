@@ -1,122 +1,122 @@
 """Represents a binary file in a space. An asset can be any file type."""
 type Asset {
-  sys: Sys!
-  contentfulMetadata: ContentfulMetadata!
-  title(locale: String): String
-  description(locale: String): String
   contentType(locale: String): String
+  contentfulMetadata: ContentfulMetadata!
+  description(locale: String): String
   fileName(locale: String): String
-  size(locale: String): Int
-  url(transform: ImageTransformOptions, locale: String): String
-  width(locale: String): Int
   height(locale: String): Int
   linkedFrom(allowedLocales: [String]): AssetLinkingCollections
+  size(locale: String): Int
+  sys: Sys!
+  title(locale: String): String
+  url(locale: String, transform: ImageTransformOptions): String
+  width(locale: String): Int
 }
 
 type AssetCollection {
-  total: Int!
-  skip: Int!
-  limit: Int!
   items: [Asset]!
+  limit: Int!
+  skip: Int!
+  total: Int!
 }
 
 input AssetFilter {
-  sys: SysFilter
-  contentfulMetadata: ContentfulMetadataFilter
-  title_exists: Boolean
-  title: String
-  title_not: String
-  title_in: [String]
-  title_not_in: [String]
-  title_contains: String
-  title_not_contains: String
-  description_exists: Boolean
-  description: String
-  description_not: String
-  description_in: [String]
-  description_not_in: [String]
-  description_contains: String
-  description_not_contains: String
-  url_exists: Boolean
-  url: String
-  url_not: String
-  url_in: [String]
-  url_not_in: [String]
-  url_contains: String
-  url_not_contains: String
-  size_exists: Boolean
-  size: Int
-  size_not: Int
-  size_in: [Int]
-  size_not_in: [Int]
-  size_gt: Int
-  size_gte: Int
-  size_lt: Int
-  size_lte: Int
-  contentType_exists: Boolean
+  AND: [AssetFilter]
+  OR: [AssetFilter]
   contentType: String
-  contentType_not: String
-  contentType_in: [String]
-  contentType_not_in: [String]
   contentType_contains: String
+  contentType_exists: Boolean
+  contentType_in: [String]
+  contentType_not: String
   contentType_not_contains: String
-  fileName_exists: Boolean
+  contentType_not_in: [String]
+  contentfulMetadata: ContentfulMetadataFilter
+  description: String
+  description_contains: String
+  description_exists: Boolean
+  description_in: [String]
+  description_not: String
+  description_not_contains: String
+  description_not_in: [String]
   fileName: String
-  fileName_not: String
-  fileName_in: [String]
-  fileName_not_in: [String]
   fileName_contains: String
+  fileName_exists: Boolean
+  fileName_in: [String]
+  fileName_not: String
   fileName_not_contains: String
-  width_exists: Boolean
-  width: Int
-  width_not: Int
-  width_in: [Int]
-  width_not_in: [Int]
-  width_gt: Int
-  width_gte: Int
-  width_lt: Int
-  width_lte: Int
-  height_exists: Boolean
+  fileName_not_in: [String]
   height: Int
-  height_not: Int
-  height_in: [Int]
-  height_not_in: [Int]
+  height_exists: Boolean
   height_gt: Int
   height_gte: Int
+  height_in: [Int]
   height_lt: Int
   height_lte: Int
-  OR: [AssetFilter]
-  AND: [AssetFilter]
+  height_not: Int
+  height_not_in: [Int]
+  size: Int
+  size_exists: Boolean
+  size_gt: Int
+  size_gte: Int
+  size_in: [Int]
+  size_lt: Int
+  size_lte: Int
+  size_not: Int
+  size_not_in: [Int]
+  sys: SysFilter
+  title: String
+  title_contains: String
+  title_exists: Boolean
+  title_in: [String]
+  title_not: String
+  title_not_contains: String
+  title_not_in: [String]
+  url: String
+  url_contains: String
+  url_exists: Boolean
+  url_in: [String]
+  url_not: String
+  url_not_contains: String
+  url_not_in: [String]
+  width: Int
+  width_exists: Boolean
+  width_gt: Int
+  width_gte: Int
+  width_in: [Int]
+  width_lt: Int
+  width_lte: Int
+  width_not: Int
+  width_not_in: [Int]
 }
 
 type AssetLinkingCollections {
-  entryCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String): EntryCollection
-  projectCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String): ProjectCollection
-  resumePageCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String): ResumePageCollection
-  skillListCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String): SkillListCollection
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+  projectCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ProjectCollection
+  resumePageCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ResumePageCollection
+  skillListCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): SkillListCollection
 }
 
 enum AssetOrder {
-  url_ASC
-  url_DESC
-  size_ASC
-  size_DESC
   contentType_ASC
   contentType_DESC
   fileName_ASC
   fileName_DESC
-  width_ASC
-  width_DESC
   height_ASC
   height_DESC
+  size_ASC
+  size_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
   sys_id_ASC
   sys_id_DESC
   sys_publishedAt_ASC
   sys_publishedAt_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
   sys_publishedVersion_ASC
   sys_publishedVersion_DESC
+  url_ASC
+  url_DESC
+  width_ASC
+  width_DESC
 }
 
 type ContentfulMetadata {
@@ -124,14 +124,14 @@ type ContentfulMetadata {
 }
 
 input ContentfulMetadataFilter {
-  tags_exists: Boolean
   tags: ContentfulMetadataTagsFilter
+  tags_exists: Boolean
 }
 
 input ContentfulMetadataTagsFilter {
   id_contains_all: [String]
-  id_contains_some: [String]
   id_contains_none: [String]
+  id_contains_some: [String]
 }
 
 """
@@ -157,31 +157,31 @@ The 'Dimension' type represents dimensions as whole numeric values between `1` a
 scalar Dimension
 
 interface Entry {
-  sys: Sys!
   contentfulMetadata: ContentfulMetadata!
+  sys: Sys!
 }
 
 type EntryCollection {
-  total: Int!
-  skip: Int!
-  limit: Int!
   items: [Entry]!
+  limit: Int!
+  skip: Int!
+  total: Int!
 }
 
 input EntryFilter {
-  sys: SysFilter
-  contentfulMetadata: ContentfulMetadataFilter
-  OR: [EntryFilter]
   AND: [EntryFilter]
+  OR: [EntryFilter]
+  contentfulMetadata: ContentfulMetadataFilter
+  sys: SysFilter
 }
 
 enum EntryOrder {
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
   sys_id_ASC
   sys_id_DESC
   sys_publishedAt_ASC
   sys_publishedAt_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
   sys_publishedVersion_ASC
   sys_publishedVersion_DESC
 }
@@ -190,75 +190,77 @@ enum EntryOrder {
 [See type definition](https://app.contentful.com/spaces/fydf0o2ery42/content_types/experience)
 """
 type Experience implements Entry {
-  sys: Sys!
+  company(locale: String): String
   contentfulMetadata: ContentfulMetadata!
   linkedFrom(allowedLocales: [String]): ExperienceLinkingCollections
-  company(locale: String): String
+  sys: Sys!
   title(locale: String): String
   year(locale: String): String
 }
 
 type ExperienceCollection {
-  total: Int!
-  skip: Int!
-  limit: Int!
   items: [Experience]!
+  limit: Int!
+  skip: Int!
+  total: Int!
 }
 
 input ExperienceFilter {
-  sys: SysFilter
-  contentfulMetadata: ContentfulMetadataFilter
-  company_exists: Boolean
-  company: String
-  company_not: String
-  company_in: [String]
-  company_not_in: [String]
-  company_contains: String
-  company_not_contains: String
-  title_exists: Boolean
-  title: String
-  title_not: String
-  title_in: [String]
-  title_not_in: [String]
-  title_contains: String
-  title_not_contains: String
-  year_exists: Boolean
-  year: String
-  year_not: String
-  year_in: [String]
-  year_not_in: [String]
-  year_contains: String
-  year_not_contains: String
-  OR: [ExperienceFilter]
   AND: [ExperienceFilter]
+  OR: [ExperienceFilter]
+  company: String
+  company_contains: String
+  company_exists: Boolean
+  company_in: [String]
+  company_not: String
+  company_not_contains: String
+  company_not_in: [String]
+  contentfulMetadata: ContentfulMetadataFilter
+  sys: SysFilter
+  title: String
+  title_contains: String
+  title_exists: Boolean
+  title_in: [String]
+  title_not: String
+  title_not_contains: String
+  title_not_in: [String]
+  year: String
+  year_contains: String
+  year_exists: Boolean
+  year_in: [String]
+  year_not: String
+  year_not_contains: String
+  year_not_in: [String]
 }
 
 type ExperienceLinkingCollections {
-  entryCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String): EntryCollection
-  resumePageCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String): ResumePageCollection
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+  resumePageCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ResumePageCollection
 }
 
 enum ExperienceOrder {
   company_ASC
   company_DESC
-  title_ASC
-  title_DESC
-  year_ASC
-  year_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
   sys_id_ASC
   sys_id_DESC
   sys_publishedAt_ASC
   sys_publishedAt_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
   sys_publishedVersion_ASC
   sys_publishedVersion_DESC
+  title_ASC
+  title_DESC
+  year_ASC
+  year_DESC
 }
 
 """The 'HexColor' type represents color in `rgb:ffffff` string format."""
 scalar HexColor
 
 enum ImageFormat {
+  AVIF
+
   """JPG image format."""
   JPG
 
@@ -281,45 +283,54 @@ enum ImageFormat {
 
   """WebP image format."""
   WEBP
-  AVIF
 }
 
 enum ImageResizeFocus {
-  """Focus the resizing on the center."""
-  CENTER
-
-  """Focus the resizing on the top."""
-  TOP
-
-  """Focus the resizing on the top right."""
-  TOP_RIGHT
-
-  """Focus the resizing on the right."""
-  RIGHT
-
-  """Focus the resizing on the bottom right."""
-  BOTTOM_RIGHT
-
   """Focus the resizing on the bottom."""
   BOTTOM
 
   """Focus the resizing on the bottom left."""
   BOTTOM_LEFT
 
-  """Focus the resizing on the left."""
-  LEFT
+  """Focus the resizing on the bottom right."""
+  BOTTOM_RIGHT
 
-  """Focus the resizing on the top left."""
-  TOP_LEFT
+  """Focus the resizing on the center."""
+  CENTER
 
   """Focus the resizing on the largest face."""
   FACE
 
   """Focus the resizing on the area containing all the faces."""
   FACES
+
+  """Focus the resizing on the left."""
+  LEFT
+
+  """Focus the resizing on the right."""
+  RIGHT
+
+  """Focus the resizing on the top."""
+  TOP
+
+  """Focus the resizing on the top left."""
+  TOP_LEFT
+
+  """Focus the resizing on the top right."""
+  TOP_RIGHT
 }
 
 enum ImageResizeStrategy {
+  """
+  Crops a part of the original image to fit into the specified dimensions.
+  """
+  CROP
+
+  """
+  Resizes the image to the specified dimensions, cropping the image if needed.
+  """
+  FILL
+
   """Resizes the image to fit into the specified dimensions."""
   FIT
 
@@ -330,27 +341,31 @@ enum ImageResizeStrategy {
   PAD
 
   """
-  Resizes the image to the specified dimensions, cropping the image if needed.
-  """
-  FILL
-
-  """
   Resizes the image to the specified dimensions, changing the original aspect ratio if needed.
   """
   SCALE
-
-  """
-  Crops a part of the original image to fit into the specified dimensions.
-  """
-  CROP
 
   """Creates a thumbnail from the image."""
   THUMB
 }
 
 input ImageTransformOptions {
-  """Desired width in pixels. Defaults to the original image width."""
-  width: Dimension
+  """
+  Desired background color, used with corner radius or `PAD` resize strategy.
+          Defaults to transparent (for `PNG`, `PNG8` and `WEBP`) or white (for `JPG` and `JPG_PROGRESSIVE`).
+  """
+  backgroundColor: HexColor
+
+  """
+  Desired corner radius in pixels.
+          Results in an image with rounded corners (pass `-1` for a full circle/ellipse).
+          Defaults to `0`. Uses desired background color as padding color,
+          unless the format is `JPG` or `JPG_PROGRESSIVE` and resize strategy is `PAD`, then defaults to white.
+  """
+  cornerRadius: Int
+
+  """Desired image format. Defaults to the original image format."""
+  format: ImageFormat
 
   """Desired height in pixels. Defaults to the original image height."""
   height: Dimension
@@ -361,28 +376,14 @@ input ImageTransformOptions {
   """
   quality: Quality
 
-  """
-  Desired corner radius in pixels.
-          Results in an image with rounded corners (pass `-1` for a full circle/ellipse).
-          Defaults to `0`. Uses desired background color as padding color,
-          unless the format is `JPG` or `JPG_PROGRESSIVE` and resize strategy is `PAD`, then defaults to white.
-  """
-  cornerRadius: Int
+  """Desired resize focus area. Defaults to `CENTER`."""
+  resizeFocus: ImageResizeFocus
 
   """Desired resize strategy. Defaults to `FIT`."""
   resizeStrategy: ImageResizeStrategy
 
-  """Desired resize focus area. Defaults to `CENTER`."""
-  resizeFocus: ImageResizeFocus
-
-  """
-  Desired background color, used with corner radius or `PAD` resize strategy.
-          Defaults to transparent (for `PNG`, `PNG8` and `WEBP`) or white (for `JPG` and `JPG_PROGRESSIVE`).
-  """
-  backgroundColor: HexColor
-
-  """Desired image format. Defaults to the original image format."""
-  format: ImageFormat
+  """Desired width in pixels. Defaults to the original image width."""
+  width: Dimension
 }
 
 """
@@ -394,20 +395,20 @@ scalar JSON
 [See type definition](https://app.contentful.com/spaces/fydf0o2ery42/content_types/person)
 """
 type Person implements Entry {
-  sys: Sys!
+  contactText(locale: String): PersonContactText
   contentfulMetadata: ContentfulMetadata!
+  description(locale: String): PersonDescription
   linkedFrom(allowedLocales: [String]): PersonLinkingCollections
   name(locale: String): String
+  sys: Sys!
   title(locale: String): String
-  description(locale: String): PersonDescription
-  contactText(locale: String): PersonContactText
 }
 
 type PersonCollection {
-  total: Int!
-  skip: Int!
-  limit: Int!
   items: [Person]!
+  limit: Int!
+  skip: Int!
+  total: Int!
 }
 
 type PersonContactText {
@@ -416,19 +417,19 @@ type PersonContactText {
 }
 
 type PersonContactTextAssets {
-  hyperlink: [Asset]!
   block: [Asset]!
+  hyperlink: [Asset]!
 }
 
 type PersonContactTextEntries {
-  inline: [Entry]!
-  hyperlink: [Entry]!
   block: [Entry]!
+  hyperlink: [Entry]!
+  inline: [Entry]!
 }
 
 type PersonContactTextLinks {
-  entries: PersonContactTextEntries!
   assets: PersonContactTextAssets!
+  entries: PersonContactTextEntries!
 }
 
 type PersonDescription {
@@ -437,91 +438,91 @@ type PersonDescription {
 }
 
 type PersonDescriptionAssets {
-  hyperlink: [Asset]!
   block: [Asset]!
+  hyperlink: [Asset]!
 }
 
 type PersonDescriptionEntries {
-  inline: [Entry]!
-  hyperlink: [Entry]!
   block: [Entry]!
+  hyperlink: [Entry]!
+  inline: [Entry]!
 }
 
 type PersonDescriptionLinks {
-  entries: PersonDescriptionEntries!
   assets: PersonDescriptionAssets!
+  entries: PersonDescriptionEntries!
 }
 
 input PersonFilter {
-  sys: SysFilter
-  contentfulMetadata: ContentfulMetadataFilter
-  name_exists: Boolean
-  name: String
-  name_not: String
-  name_in: [String]
-  name_not_in: [String]
-  name_contains: String
-  name_not_contains: String
-  title_exists: Boolean
-  title: String
-  title_not: String
-  title_in: [String]
-  title_not_in: [String]
-  title_contains: String
-  title_not_contains: String
-  description_exists: Boolean
-  description_contains: String
-  description_not_contains: String
-  contactText_exists: Boolean
-  contactText_contains: String
-  contactText_not_contains: String
-  OR: [PersonFilter]
   AND: [PersonFilter]
+  OR: [PersonFilter]
+  contactText_contains: String
+  contactText_exists: Boolean
+  contactText_not_contains: String
+  contentfulMetadata: ContentfulMetadataFilter
+  description_contains: String
+  description_exists: Boolean
+  description_not_contains: String
+  name: String
+  name_contains: String
+  name_exists: Boolean
+  name_in: [String]
+  name_not: String
+  name_not_contains: String
+  name_not_in: [String]
+  sys: SysFilter
+  title: String
+  title_contains: String
+  title_exists: Boolean
+  title_in: [String]
+  title_not: String
+  title_not_contains: String
+  title_not_in: [String]
 }
 
 type PersonLinkingCollections {
-  entryCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String): EntryCollection
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
 }
 
 enum PersonOrder {
   name_ASC
   name_DESC
-  title_ASC
-  title_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
   sys_id_ASC
   sys_id_DESC
   sys_publishedAt_ASC
   sys_publishedAt_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
   sys_publishedVersion_ASC
   sys_publishedVersion_DESC
+  title_ASC
+  title_DESC
 }
 
 """
 [See type definition](https://app.contentful.com/spaces/fydf0o2ery42/content_types/project)
 """
 type Project implements Entry {
-  sys: Sys!
-  contentfulMetadata: ContentfulMetadata!
-  linkedFrom(allowedLocales: [String]): ProjectLinkingCollections
-  slug(locale: String): String
-  name(locale: String): String
   categories(locale: String): [String]
-  logo(preview: Boolean, locale: String): Asset
-  imagesCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String): AssetCollection
-  youtubeVideoId(locale: String): String
-  primaryColor(locale: String): String
-  urLsCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String): ProjectUrLsCollection
+  contentfulMetadata: ContentfulMetadata!
   description(locale: String): ProjectDescription
-  techTagsCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String): ProjectTechTagsCollection
+  imagesCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): AssetCollection
+  linkedFrom(allowedLocales: [String]): ProjectLinkingCollections
+  logo(locale: String, preview: Boolean): Asset
+  name(locale: String): String
+  primaryColor(locale: String): String
+  slug(locale: String): String
+  sys: Sys!
+  techTagsCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ProjectTechTagsCollection
+  urLsCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ProjectUrLsCollection
+  youtubeVideoId(locale: String): String
 }
 
 type ProjectCollection {
-  total: Int!
-  skip: Int!
-  limit: Int!
   items: [Project]!
+  limit: Int!
+  skip: Int!
+  total: Int!
 }
 
 type ProjectDescription {
@@ -530,228 +531,232 @@ type ProjectDescription {
 }
 
 type ProjectDescriptionAssets {
-  hyperlink: [Asset]!
   block: [Asset]!
+  hyperlink: [Asset]!
 }
 
 type ProjectDescriptionEntries {
-  inline: [Entry]!
-  hyperlink: [Entry]!
   block: [Entry]!
+  hyperlink: [Entry]!
+  inline: [Entry]!
 }
 
 type ProjectDescriptionLinks {
-  entries: ProjectDescriptionEntries!
   assets: ProjectDescriptionAssets!
+  entries: ProjectDescriptionEntries!
 }
 
 input ProjectFilter {
-  sys: SysFilter
-  contentfulMetadata: ContentfulMetadataFilter
-  slug_exists: Boolean
-  slug: String
-  slug_not: String
-  slug_in: [String]
-  slug_not_in: [String]
-  slug_contains: String
-  slug_not_contains: String
-  name_exists: Boolean
-  name: String
-  name_not: String
-  name_in: [String]
-  name_not_in: [String]
-  name_contains: String
-  name_not_contains: String
-  categories_exists: Boolean
-  categories_contains_all: [String]
-  categories_contains_some: [String]
-  categories_contains_none: [String]
-  logo_exists: Boolean
-  imagesCollection_exists: Boolean
-  youtubeVideoId_exists: Boolean
-  youtubeVideoId: String
-  youtubeVideoId_not: String
-  youtubeVideoId_in: [String]
-  youtubeVideoId_not_in: [String]
-  youtubeVideoId_contains: String
-  youtubeVideoId_not_contains: String
-  primaryColor_exists: Boolean
-  primaryColor: String
-  primaryColor_not: String
-  primaryColor_in: [String]
-  primaryColor_not_in: [String]
-  primaryColor_contains: String
-  primaryColor_not_contains: String
-  urLsCollection_exists: Boolean
-  description_exists: Boolean
-  description_contains: String
-  description_not_contains: String
-  techTagsCollection_exists: Boolean
-  OR: [ProjectFilter]
   AND: [ProjectFilter]
+  OR: [ProjectFilter]
+  categories_contains_all: [String]
+  categories_contains_none: [String]
+  categories_contains_some: [String]
+  categories_exists: Boolean
+  contentfulMetadata: ContentfulMetadataFilter
+  description_contains: String
+  description_exists: Boolean
+  description_not_contains: String
+  imagesCollection_exists: Boolean
+  logo_exists: Boolean
+  name: String
+  name_contains: String
+  name_exists: Boolean
+  name_in: [String]
+  name_not: String
+  name_not_contains: String
+  name_not_in: [String]
+  primaryColor: String
+  primaryColor_contains: String
+  primaryColor_exists: Boolean
+  primaryColor_in: [String]
+  primaryColor_not: String
+  primaryColor_not_contains: String
+  primaryColor_not_in: [String]
+  slug: String
+  slug_contains: String
+  slug_exists: Boolean
+  slug_in: [String]
+  slug_not: String
+  slug_not_contains: String
+  slug_not_in: [String]
+  sys: SysFilter
+  techTags: cfTechTagNestedFilter
+  techTagsCollection_exists: Boolean
+  urLs: cfProjectUrlNestedFilter
+  urLsCollection_exists: Boolean
+  youtubeVideoId: String
+  youtubeVideoId_contains: String
+  youtubeVideoId_exists: Boolean
+  youtubeVideoId_in: [String]
+  youtubeVideoId_not: String
+  youtubeVideoId_not_contains: String
+  youtubeVideoId_not_in: [String]
 }
 
 type ProjectLinkingCollections {
-  entryCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String): EntryCollection
-  projectPageCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String): ProjectPageCollection
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+  projectPageCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ProjectPageCollection
 }
 
 enum ProjectOrder {
-  slug_ASC
-  slug_DESC
   name_ASC
   name_DESC
-  youtubeVideoId_ASC
-  youtubeVideoId_DESC
   primaryColor_ASC
   primaryColor_DESC
+  slug_ASC
+  slug_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
   sys_id_ASC
   sys_id_DESC
   sys_publishedAt_ASC
   sys_publishedAt_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
   sys_publishedVersion_ASC
   sys_publishedVersion_DESC
+  youtubeVideoId_ASC
+  youtubeVideoId_DESC
 }
 
 """
 [See type definition](https://app.contentful.com/spaces/fydf0o2ery42/content_types/projectPage)
 """
 type ProjectPage implements Entry {
-  sys: Sys!
   contentfulMetadata: ContentfulMetadata!
   linkedFrom(allowedLocales: [String]): ProjectPageLinkingCollections
-  projectsCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String): ProjectPageProjectsCollection
-  topCategoriesCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String): ProjectPageTopCategoriesCollection
+  projectsCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ProjectPageProjectsCollection
+  sys: Sys!
+  topCategoriesCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ProjectPageTopCategoriesCollection
 }
 
 type ProjectPageCollection {
-  total: Int!
-  skip: Int!
-  limit: Int!
   items: [ProjectPage]!
+  limit: Int!
+  skip: Int!
+  total: Int!
 }
 
 input ProjectPageFilter {
-  sys: SysFilter
-  contentfulMetadata: ContentfulMetadataFilter
-  projectsCollection_exists: Boolean
-  topCategoriesCollection_exists: Boolean
-  OR: [ProjectPageFilter]
   AND: [ProjectPageFilter]
+  OR: [ProjectPageFilter]
+  contentfulMetadata: ContentfulMetadataFilter
+  projects: cfProjectNestedFilter
+  projectsCollection_exists: Boolean
+  sys: SysFilter
+  topCategories: cfTechTagNestedFilter
+  topCategoriesCollection_exists: Boolean
 }
 
 type ProjectPageLinkingCollections {
-  entryCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String): EntryCollection
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
 }
 
 enum ProjectPageOrder {
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
   sys_id_ASC
   sys_id_DESC
   sys_publishedAt_ASC
   sys_publishedAt_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
   sys_publishedVersion_ASC
   sys_publishedVersion_DESC
 }
 
 type ProjectPageProjectsCollection {
-  total: Int!
-  skip: Int!
-  limit: Int!
   items: [Project]!
+  limit: Int!
+  skip: Int!
+  total: Int!
 }
 
 type ProjectPageTopCategoriesCollection {
-  total: Int!
-  skip: Int!
-  limit: Int!
   items: [TechTag]!
+  limit: Int!
+  skip: Int!
+  total: Int!
 }
 
 type ProjectTechTagsCollection {
-  total: Int!
-  skip: Int!
-  limit: Int!
   items: [TechTag]!
+  limit: Int!
+  skip: Int!
+  total: Int!
 }
 
 type ProjectUrLsCollection {
-  total: Int!
-  skip: Int!
-  limit: Int!
   items: [ProjectUrl]!
+  limit: Int!
+  skip: Int!
+  total: Int!
 }
 
 """
 [See type definition](https://app.contentful.com/spaces/fydf0o2ery42/content_types/projectUrl)
 """
 type ProjectUrl implements Entry {
-  sys: Sys!
   contentfulMetadata: ContentfulMetadata!
   linkedFrom(allowedLocales: [String]): ProjectUrlLinkingCollections
-  url(locale: String): String
-  type(locale: String): String
+  sys: Sys!
   title(locale: String): String
+  type(locale: String): String
+  url(locale: String): String
 }
 
 type ProjectUrlCollection {
-  total: Int!
-  skip: Int!
-  limit: Int!
   items: [ProjectUrl]!
+  limit: Int!
+  skip: Int!
+  total: Int!
 }
 
 input ProjectUrlFilter {
-  sys: SysFilter
-  contentfulMetadata: ContentfulMetadataFilter
-  url_exists: Boolean
-  url: String
-  url_not: String
-  url_in: [String]
-  url_not_in: [String]
-  url_contains: String
-  url_not_contains: String
-  Type_exists: Boolean
-  Type: String
-  Type_not: String
-  Type_in: [String]
-  Type_not_in: [String]
-  Type_contains: String
-  Type_not_contains: String
-  title_exists: Boolean
-  title: String
-  title_not: String
-  title_in: [String]
-  title_not_in: [String]
-  title_contains: String
-  title_not_contains: String
-  OR: [ProjectUrlFilter]
   AND: [ProjectUrlFilter]
+  OR: [ProjectUrlFilter]
+  Type: String
+  Type_contains: String
+  Type_exists: Boolean
+  Type_in: [String]
+  Type_not: String
+  Type_not_contains: String
+  Type_not_in: [String]
+  contentfulMetadata: ContentfulMetadataFilter
+  sys: SysFilter
+  title: String
+  title_contains: String
+  title_exists: Boolean
+  title_in: [String]
+  title_not: String
+  title_not_contains: String
+  title_not_in: [String]
+  url: String
+  url_contains: String
+  url_exists: Boolean
+  url_in: [String]
+  url_not: String
+  url_not_contains: String
+  url_not_in: [String]
 }
 
 type ProjectUrlLinkingCollections {
-  entryCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String): EntryCollection
-  projectCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String): ProjectCollection
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+  projectCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ProjectCollection
 }
 
 enum ProjectUrlOrder {
-  url_ASC
-  url_DESC
   Type_ASC
   Type_DESC
-  title_ASC
-  title_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
   sys_id_ASC
   sys_id_DESC
   sys_publishedAt_ASC
   sys_publishedAt_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
   sys_publishedVersion_ASC
   sys_publishedVersion_DESC
+  title_ASC
+  title_DESC
+  url_ASC
+  url_DESC
 }
 
 """
@@ -760,84 +765,85 @@ The 'Quality' type represents quality as whole numeric values between `1` and `1
 scalar Quality
 
 type Query {
-  asset(id: String!, preview: Boolean, locale: String): Asset
-  assetCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String, where: AssetFilter, order: [AssetOrder]): AssetCollection
-  projectPage(id: String!, preview: Boolean, locale: String): ProjectPage
-  projectPageCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String, where: ProjectPageFilter, order: [ProjectPageOrder]): ProjectPageCollection
-  project(id: String!, preview: Boolean, locale: String): Project
-  projectCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String, where: ProjectFilter, order: [ProjectOrder]): ProjectCollection
-  techTag(id: String!, preview: Boolean, locale: String): TechTag
-  techTagCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String, where: TechTagFilter, order: [TechTagOrder]): TechTagCollection
-  projectUrl(id: String!, preview: Boolean, locale: String): ProjectUrl
-  projectUrlCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String, where: ProjectUrlFilter, order: [ProjectUrlOrder]): ProjectUrlCollection
-  experience(id: String!, preview: Boolean, locale: String): Experience
-  experienceCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String, where: ExperienceFilter, order: [ExperienceOrder]): ExperienceCollection
-  person(id: String!, preview: Boolean, locale: String): Person
-  personCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String, where: PersonFilter, order: [PersonOrder]): PersonCollection
-  resumePage(id: String!, preview: Boolean, locale: String): ResumePage
-  resumePageCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String, where: ResumePageFilter, order: [ResumePageOrder]): ResumePageCollection
-  skillList(id: String!, preview: Boolean, locale: String): SkillList
-  skillListCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String, where: SkillListFilter, order: [SkillListOrder]): SkillListCollection
-  entryCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String, where: EntryFilter, order: [EntryOrder]): EntryCollection
+  asset(id: String!, locale: String, preview: Boolean): Asset
+  assetCollection(limit: Int = 100, locale: String, order: [AssetOrder], preview: Boolean, skip: Int = 0, where: AssetFilter): AssetCollection
+  entryCollection(limit: Int = 100, locale: String, order: [EntryOrder], preview: Boolean, skip: Int = 0, where: EntryFilter): EntryCollection
+  experience(id: String!, locale: String, preview: Boolean): Experience
+  experienceCollection(limit: Int = 100, locale: String, order: [ExperienceOrder], preview: Boolean, skip: Int = 0, where: ExperienceFilter): ExperienceCollection
+  person(id: String!, locale: String, preview: Boolean): Person
+  personCollection(limit: Int = 100, locale: String, order: [PersonOrder], preview: Boolean, skip: Int = 0, where: PersonFilter): PersonCollection
+  project(id: String!, locale: String, preview: Boolean): Project
+  projectCollection(limit: Int = 100, locale: String, order: [ProjectOrder], preview: Boolean, skip: Int = 0, where: ProjectFilter): ProjectCollection
+  projectPage(id: String!, locale: String, preview: Boolean): ProjectPage
+  projectPageCollection(limit: Int = 100, locale: String, order: [ProjectPageOrder], preview: Boolean, skip: Int = 0, where: ProjectPageFilter): ProjectPageCollection
+  projectUrl(id: String!, locale: String, preview: Boolean): ProjectUrl
+  projectUrlCollection(limit: Int = 100, locale: String, order: [ProjectUrlOrder], preview: Boolean, skip: Int = 0, where: ProjectUrlFilter): ProjectUrlCollection
+  resumePage(id: String!, locale: String, preview: Boolean): ResumePage
+  resumePageCollection(limit: Int = 100, locale: String, order: [ResumePageOrder], preview: Boolean, skip: Int = 0, where: ResumePageFilter): ResumePageCollection
+  skillList(id: String!, locale: String, preview: Boolean): SkillList
+  skillListCollection(limit: Int = 100, locale: String, order: [SkillListOrder], preview: Boolean, skip: Int = 0, where: SkillListFilter): SkillListCollection
+  techTag(id: String!, locale: String, preview: Boolean): TechTag
+  techTagCollection(limit: Int = 100, locale: String, order: [TechTagOrder], preview: Boolean, skip: Int = 0, where: TechTagFilter): TechTagCollection
 }
 
 """
 [See type definition](https://app.contentful.com/spaces/fydf0o2ery42/content_types/resumePage)
 """
 type ResumePage implements Entry {
-  sys: Sys!
   contentfulMetadata: ContentfulMetadata!
+  experiencesCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ResumePageExperiencesCollection
   linkedFrom(allowedLocales: [String]): ResumePageLinkingCollections
-  experiencesCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String): ResumePageExperiencesCollection
-  resumePdf(preview: Boolean, locale: String): Asset
-  skillList1(preview: Boolean, locale: String): SkillList
-  skillList2(preview: Boolean, locale: String): SkillList
-  skillList3(preview: Boolean, locale: String): SkillList
-  skillList4(preview: Boolean, locale: String): SkillList
+  resumePdf(locale: String, preview: Boolean): Asset
+  skillList1(locale: String, preview: Boolean): SkillList
+  skillList2(locale: String, preview: Boolean): SkillList
+  skillList3(locale: String, preview: Boolean): SkillList
+  skillList4(locale: String, preview: Boolean): SkillList
+  sys: Sys!
 }
 
 type ResumePageCollection {
-  total: Int!
-  skip: Int!
-  limit: Int!
   items: [ResumePage]!
+  limit: Int!
+  skip: Int!
+  total: Int!
 }
 
 type ResumePageExperiencesCollection {
-  total: Int!
-  skip: Int!
-  limit: Int!
   items: [Experience]!
+  limit: Int!
+  skip: Int!
+  total: Int!
 }
 
 input ResumePageFilter {
-  skillList1: cfSkillListNestedFilter
-  skillList2: cfSkillListNestedFilter
-  skillList3: cfSkillListNestedFilter
-  skillList4: cfSkillListNestedFilter
-  sys: SysFilter
+  AND: [ResumePageFilter]
+  OR: [ResumePageFilter]
   contentfulMetadata: ContentfulMetadataFilter
+  experiences: cfExperienceNestedFilter
   experiencesCollection_exists: Boolean
   resumePdf_exists: Boolean
+  skillList1: cfSkillListNestedFilter
   skillList1_exists: Boolean
+  skillList2: cfSkillListNestedFilter
   skillList2_exists: Boolean
+  skillList3: cfSkillListNestedFilter
   skillList3_exists: Boolean
+  skillList4: cfSkillListNestedFilter
   skillList4_exists: Boolean
-  OR: [ResumePageFilter]
-  AND: [ResumePageFilter]
+  sys: SysFilter
 }
 
 type ResumePageLinkingCollections {
-  entryCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String): EntryCollection
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
 }
 
 enum ResumePageOrder {
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
   sys_id_ASC
   sys_id_DESC
   sys_publishedAt_ASC
   sys_publishedAt_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
   sys_publishedVersion_ASC
   sys_publishedVersion_DESC
 }
@@ -846,179 +852,302 @@ enum ResumePageOrder {
 [See type definition](https://app.contentful.com/spaces/fydf0o2ery42/content_types/skillList)
 """
 type SkillList implements Entry {
-  sys: Sys!
   contentfulMetadata: ContentfulMetadata!
+  icon(locale: String, preview: Boolean): Asset
   linkedFrom(allowedLocales: [String]): SkillListLinkingCollections
-  title(locale: String): String
-  icon(preview: Boolean, locale: String): Asset
   skills(locale: String): [String]
+  sys: Sys!
+  title(locale: String): String
 }
 
 type SkillListCollection {
-  total: Int!
-  skip: Int!
-  limit: Int!
   items: [SkillList]!
+  limit: Int!
+  skip: Int!
+  total: Int!
 }
 
 input SkillListFilter {
-  sys: SysFilter
-  contentfulMetadata: ContentfulMetadataFilter
-  title_exists: Boolean
-  title: String
-  title_not: String
-  title_in: [String]
-  title_not_in: [String]
-  title_contains: String
-  title_not_contains: String
-  icon_exists: Boolean
-  skills_exists: Boolean
-  skills_contains_all: [String]
-  skills_contains_some: [String]
-  skills_contains_none: [String]
-  OR: [SkillListFilter]
   AND: [SkillListFilter]
+  OR: [SkillListFilter]
+  contentfulMetadata: ContentfulMetadataFilter
+  icon_exists: Boolean
+  skills_contains_all: [String]
+  skills_contains_none: [String]
+  skills_contains_some: [String]
+  skills_exists: Boolean
+  sys: SysFilter
+  title: String
+  title_contains: String
+  title_exists: Boolean
+  title_in: [String]
+  title_not: String
+  title_not_contains: String
+  title_not_in: [String]
 }
 
 type SkillListLinkingCollections {
-  entryCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String): EntryCollection
-  resumePageCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String): ResumePageCollection
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+  resumePageCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ResumePageCollection
 }
 
 enum SkillListOrder {
-  title_ASC
-  title_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
   sys_id_ASC
   sys_id_DESC
   sys_publishedAt_ASC
   sys_publishedAt_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
   sys_publishedVersion_ASC
   sys_publishedVersion_DESC
+  title_ASC
+  title_DESC
 }
 
 type Sys {
-  id: String!
-  spaceId: String!
   environmentId: String!
-  publishedAt: DateTime
   firstPublishedAt: DateTime
+  id: String!
+  publishedAt: DateTime
   publishedVersion: Int
+  spaceId: String!
 }
 
 input SysFilter {
-  id_exists: Boolean
-  id: String
-  id_not: String
-  id_in: [String]
-  id_not_in: [String]
-  id_contains: String
-  id_not_contains: String
-  publishedAt_exists: Boolean
-  publishedAt: DateTime
-  publishedAt_not: DateTime
-  publishedAt_in: [DateTime]
-  publishedAt_not_in: [DateTime]
-  publishedAt_gt: DateTime
-  publishedAt_gte: DateTime
-  publishedAt_lt: DateTime
-  publishedAt_lte: DateTime
-  firstPublishedAt_exists: Boolean
   firstPublishedAt: DateTime
-  firstPublishedAt_not: DateTime
-  firstPublishedAt_in: [DateTime]
-  firstPublishedAt_not_in: [DateTime]
+  firstPublishedAt_exists: Boolean
   firstPublishedAt_gt: DateTime
   firstPublishedAt_gte: DateTime
+  firstPublishedAt_in: [DateTime]
   firstPublishedAt_lt: DateTime
   firstPublishedAt_lte: DateTime
-  publishedVersion_exists: Boolean
+  firstPublishedAt_not: DateTime
+  firstPublishedAt_not_in: [DateTime]
+  id: String
+  id_contains: String
+  id_exists: Boolean
+  id_in: [String]
+  id_not: String
+  id_not_contains: String
+  id_not_in: [String]
+  publishedAt: DateTime
+  publishedAt_exists: Boolean
+  publishedAt_gt: DateTime
+  publishedAt_gte: DateTime
+  publishedAt_in: [DateTime]
+  publishedAt_lt: DateTime
+  publishedAt_lte: DateTime
+  publishedAt_not: DateTime
+  publishedAt_not_in: [DateTime]
   publishedVersion: Float
-  publishedVersion_not: Float
-  publishedVersion_in: [Float]
-  publishedVersion_not_in: [Float]
+  publishedVersion_exists: Boolean
   publishedVersion_gt: Float
   publishedVersion_gte: Float
+  publishedVersion_in: [Float]
   publishedVersion_lt: Float
   publishedVersion_lte: Float
+  publishedVersion_not: Float
+  publishedVersion_not_in: [Float]
 }
 
 """
 [See type definition](https://app.contentful.com/spaces/fydf0o2ery42/content_types/techTag)
 """
 type TechTag implements Entry {
-  sys: Sys!
   contentfulMetadata: ContentfulMetadata!
   linkedFrom(allowedLocales: [String]): TechTagLinkingCollections
-  slug(locale: String): String
   name(locale: String): String
+  slug(locale: String): String
+  sys: Sys!
 }
 
 type TechTagCollection {
-  total: Int!
-  skip: Int!
-  limit: Int!
   items: [TechTag]!
+  limit: Int!
+  skip: Int!
+  total: Int!
 }
 
 input TechTagFilter {
-  sys: SysFilter
-  contentfulMetadata: ContentfulMetadataFilter
-  slug_exists: Boolean
-  slug: String
-  slug_not: String
-  slug_in: [String]
-  slug_not_in: [String]
-  slug_contains: String
-  slug_not_contains: String
-  name_exists: Boolean
-  name: String
-  name_not: String
-  name_in: [String]
-  name_not_in: [String]
-  name_contains: String
-  name_not_contains: String
-  OR: [TechTagFilter]
   AND: [TechTagFilter]
+  OR: [TechTagFilter]
+  contentfulMetadata: ContentfulMetadataFilter
+  name: String
+  name_contains: String
+  name_exists: Boolean
+  name_in: [String]
+  name_not: String
+  name_not_contains: String
+  name_not_in: [String]
+  slug: String
+  slug_contains: String
+  slug_exists: Boolean
+  slug_in: [String]
+  slug_not: String
+  slug_not_contains: String
+  slug_not_in: [String]
+  sys: SysFilter
 }
 
 type TechTagLinkingCollections {
-  entryCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String): EntryCollection
-  projectPageCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String): ProjectPageCollection
-  projectCollection(skip: Int = 0, limit: Int = 100, preview: Boolean, locale: String): ProjectCollection
+  entryCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): EntryCollection
+  projectCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ProjectCollection
+  projectPageCollection(limit: Int = 100, locale: String, preview: Boolean, skip: Int = 0): ProjectPageCollection
 }
 
 enum TechTagOrder {
-  slug_ASC
-  slug_DESC
   name_ASC
   name_DESC
+  slug_ASC
+  slug_DESC
+  sys_firstPublishedAt_ASC
+  sys_firstPublishedAt_DESC
   sys_id_ASC
   sys_id_DESC
   sys_publishedAt_ASC
   sys_publishedAt_DESC
-  sys_firstPublishedAt_ASC
-  sys_firstPublishedAt_DESC
   sys_publishedVersion_ASC
   sys_publishedVersion_DESC
 }
 
-input cfSkillListNestedFilter {
-  sys: SysFilter
+input cfExperienceNestedFilter {
+  AND: [cfExperienceNestedFilter]
+  OR: [cfExperienceNestedFilter]
+  company: String
+  company_contains: String
+  company_exists: Boolean
+  company_in: [String]
+  company_not: String
+  company_not_contains: String
+  company_not_in: [String]
   contentfulMetadata: ContentfulMetadataFilter
-  title_exists: Boolean
+  sys: SysFilter
   title: String
-  title_not: String
-  title_in: [String]
-  title_not_in: [String]
   title_contains: String
+  title_exists: Boolean
+  title_in: [String]
+  title_not: String
   title_not_contains: String
-  icon_exists: Boolean
-  skills_exists: Boolean
-  skills_contains_all: [String]
-  skills_contains_some: [String]
-  skills_contains_none: [String]
-  OR: [cfSkillListNestedFilter]
+  title_not_in: [String]
+  year: String
+  year_contains: String
+  year_exists: Boolean
+  year_in: [String]
+  year_not: String
+  year_not_contains: String
+  year_not_in: [String]
+}
+
+input cfProjectNestedFilter {
+  AND: [cfProjectNestedFilter]
+  OR: [cfProjectNestedFilter]
+  categories_contains_all: [String]
+  categories_contains_none: [String]
+  categories_contains_some: [String]
+  categories_exists: Boolean
+  contentfulMetadata: ContentfulMetadataFilter
+  description_contains: String
+  description_exists: Boolean
+  description_not_contains: String
+  imagesCollection_exists: Boolean
+  logo_exists: Boolean
+  name: String
+  name_contains: String
+  name_exists: Boolean
+  name_in: [String]
+  name_not: String
+  name_not_contains: String
+  name_not_in: [String]
+  primaryColor: String
+  primaryColor_contains: String
+  primaryColor_exists: Boolean
+  primaryColor_in: [String]
+  primaryColor_not: String
+  primaryColor_not_contains: String
+  primaryColor_not_in: [String]
+  slug: String
+  slug_contains: String
+  slug_exists: Boolean
+  slug_in: [String]
+  slug_not: String
+  slug_not_contains: String
+  slug_not_in: [String]
+  sys: SysFilter
+  techTagsCollection_exists: Boolean
+  urLsCollection_exists: Boolean
+  youtubeVideoId: String
+  youtubeVideoId_contains: String
+  youtubeVideoId_exists: Boolean
+  youtubeVideoId_in: [String]
+  youtubeVideoId_not: String
+  youtubeVideoId_not_contains: String
+  youtubeVideoId_not_in: [String]
+}
+
+input cfProjectUrlNestedFilter {
+  AND: [cfProjectUrlNestedFilter]
+  OR: [cfProjectUrlNestedFilter]
+  Type: String
+  Type_contains: String
+  Type_exists: Boolean
+  Type_in: [String]
+  Type_not: String
+  Type_not_contains: String
+  Type_not_in: [String]
+  contentfulMetadata: ContentfulMetadataFilter
+  sys: SysFilter
+  title: String
+  title_contains: String
+  title_exists: Boolean
+  title_in: [String]
+  title_not: String
+  title_not_contains: String
+  title_not_in: [String]
+  url: String
+  url_contains: String
+  url_exists: Boolean
+  url_in: [String]
+  url_not: String
+  url_not_contains: String
+  url_not_in: [String]
+}
+
+input cfSkillListNestedFilter {
   AND: [cfSkillListNestedFilter]
+  OR: [cfSkillListNestedFilter]
+  contentfulMetadata: ContentfulMetadataFilter
+  icon_exists: Boolean
+  skills_contains_all: [String]
+  skills_contains_none: [String]
+  skills_contains_some: [String]
+  skills_exists: Boolean
+  sys: SysFilter
+  title: String
+  title_contains: String
+  title_exists: Boolean
+  title_in: [String]
+  title_not: String
+  title_not_contains: String
+  title_not_in: [String]
+}
+
+input cfTechTagNestedFilter {
+  AND: [cfTechTagNestedFilter]
+  OR: [cfTechTagNestedFilter]
+  contentfulMetadata: ContentfulMetadataFilter
+  name: String
+  name_contains: String
+  name_exists: Boolean
+  name_in: [String]
+  name_not: String
+  name_not_contains: String
+  name_not_in: [String]
+  slug: String
+  slug_contains: String
+  slug_exists: Boolean
+  slug_in: [String]
+  slug_not: String
+  slug_not_contains: String
+  slug_not_in: [String]
+  sys: SysFilter
 }

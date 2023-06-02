@@ -3,6 +3,8 @@ fragment ImageFields on Asset {
   description
   fileName
   url
+  width
+  height
 }
 
 query getPerson {

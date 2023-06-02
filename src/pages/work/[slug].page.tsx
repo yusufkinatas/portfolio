@@ -3,10 +3,12 @@ import { Link } from "components/link/link";
 import { Page } from "components/page/page";
 import { contentful } from "contentful/api";
 import { GetProjectBySlugQuery } from "contentful/contentful.graphql.types";
+import { getBlurUrlFromSrc } from "lib/get-blur-url-from-src";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Error from "next/error";
+import Image from "next/image";
 import NextLink from "next/link";
-import { useMemo } from "react";
+import { useMemo, useRef, useState } from "react";
 import { Carousel } from "react-responsive-carousel";
 
 import styles from "./project-detail.module.scss";
@@ -20,6 +22,7 @@ enum LinkType {
 
 interface PageProps {
   data: GetProjectBySlugQuery;
+  blurUrls: string[];
 }
 
 const defaultUrlTitles: Record<LinkType, string> = {
@@ -29,19 +32,30 @@ const defaultUrlTitles: Record<LinkType, string> = {
   WEBSITE: "Visit Website",
 };
 
-const ProjectDetails = ({ data }: PageProps) => {
+const ProjectDetails = ({ data, blurUrls }: PageProps) => {
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const [focusedImage, setFocusedImage] = useState("");
+
   const project = data.projectCollection?.items[0];
 
   const carouselItems = useMemo(() => {
-    const items = project?.images?.items.map((img) => (
+    const items = project?.images?.items.map((img, index) => (
       <div
         key={img?.url}
         onClick={() => {
-          window.open(img?.url ?? "", "blank");
+          setFocusedImage(img?.url ?? "");
+          dialogRef.current?.showModal();
         }}
         className={styles.carouselItemWrapper}
       >
-        <img src={img?.url ?? ""} alt="project visual" />
+        <Image
+          src={img?.url ?? ""}
+          width={img?.width ?? 250}
+          height={img?.height ?? 250}
+          alt="project visual"
+          placeholder="blur"
+          blurDataURL={blurUrls[index]}
+        />
       </div>
     ));
 
@@ -59,7 +73,7 @@ const ProjectDetails = ({ data }: PageProps) => {
     }
 
     return items;
-  }, [project]);
+  }, [project, blurUrls]);
 
   if (!project) {
     return <Error statusCode={404} />;
@@ -136,6 +150,15 @@ const ProjectDetails = ({ data }: PageProps) => {
           </div>
         </div>
       </div>
+
+      <dialog
+        className={styles.dialog}
+        ref={dialogRef}
+        onClick={() => dialogRef.current?.close()}
+        onClose={() => setFocusedImage("")}
+      >
+        <img src={focusedImage} alt="project visual" />
+      </dialog>
     </Page>
   );
 };
@@ -158,9 +181,16 @@ export const getStaticProps: GetStaticProps<
 > = async (ctx) => {
   const data = await contentful.getProjectBySlug({ slug: ctx.params?.slug });
 
+  const blurUrlPromises = data.projectCollection!.items[0]!.images!.items.map(
+    (img) => getBlurUrlFromSrc(img!.url ?? ""),
+  );
+
+  const blurUrls = await Promise.all(blurUrlPromises);
+
   return {
     props: {
       data,
+      blurUrls,
     },
     revalidate: 10,
   };
