@@ -88,6 +88,22 @@
           margin: 0;
         }
       }
+
+      [class^="dot"] {
+        transition: all 0.3s ease-out;
+
+        &[class*="selected"] {
+          transform: scale(1.5);
+        }
+
+        position: relative;
+        &:before {
+          content: "";
+          position: absolute;
+          z-index: 100;
+          inset: -16px -8px;
+        }
+      }
     }
 
     .linksWrapper {
