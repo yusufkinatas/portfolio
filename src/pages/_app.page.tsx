@@ -1,5 +1,6 @@
 import "../styles/app.scss";
 
+import { Analytics } from "@vercel/analytics/react";
 import { MainLayout } from "components/main-layout/main-layout";
 import { PageMeta } from "components/page-meta";
 import { LazyMotion } from "framer-motion";
@@ -110,6 +111,8 @@ const App = ({ Component, pageProps, router }: AppProps) => {
           </MainLayout>
         )}
       </LazyMotion>
+
+      <Analytics />
     </>
   );
 };
