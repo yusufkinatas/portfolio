@@ -18,19 +18,13 @@ module.exports = {
     },
   },
   env: {
-    commonjs: true,
-    es6: true,
-    jest: true,
     node: true,
+    browser: true,
   },
   settings: {
     react: {
       version: "detect",
     },
-  },
-  globals: {
-    document: "readonly",
-    window: true,
   },
   rules: {
     "import/no-default-export": "error",
