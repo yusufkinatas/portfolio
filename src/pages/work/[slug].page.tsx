@@ -117,7 +117,6 @@ const ProjectDetails = ({ data, blurUrls }: PageProps) => {
                 >
                   <img
                     src={`/icons/${link?.type}.svg`}
-                    style={{ filter: "" }}
                     alt="link type visual"
                   />
                   {link?.title ?? defaultUrlTitles[link?.type as LinkType]}
