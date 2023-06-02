@@ -1,0 +1,178 @@
+@import "variables";
+
+.page {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+
+  flex-direction: column;
+
+  .title {
+    font-size: 36px;
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+
+  .content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    width: 100%;
+    max-width: 540px;
+
+    margin: auto;
+    padding: 30px 20px;
+
+    background: $background-2;
+    font-size: 18px;
+
+    gap: 40px;
+
+    .header {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+
+      img {
+        width: 100px;
+        height: 100px;
+        border: 1px solid white;
+      }
+
+      .title {
+        margin-bottom: 10px;
+      }
+
+      .categories {
+        font-size: 24px;
+        color: $text-2;
+      }
+    }
+
+    .backButton {
+      line-height: 0;
+
+      img {
+        width: 28px;
+        height: 28px;
+      }
+    }
+
+    .carousel {
+      margin: 0 -20px;
+      width: calc(100% + 40px);
+      font-size: 1rem !important;
+
+      button {
+        margin-bottom: 50px;
+        width: 50px;
+      }
+
+      .carouselItemWrapper {
+        cursor: zoom-in;
+        height: 320px;
+        width: 100%;
+        margin-bottom: 50px;
+
+        img {
+          height: 100%;
+          width: 100%;
+          object-fit: contain;
+        }
+
+        iframe {
+          height: 100%;
+          width: 100%;
+          margin: 0;
+        }
+      }
+
+      [class^="dot"] {
+        transition: all 0.3s ease-out;
+
+        &[class*="selected"] {
+          transform: scale(1.5);
+        }
+
+        position: relative;
+        &:before {
+          content: "";
+          position: absolute;
+          z-index: 100;
+          inset: -16px -8px;
+        }
+      }
+    }
+
+    .linksWrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+
+      .link {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        font-size: 18px;
+
+        img {
+          width: 30px;
+          height: 30px;
+
+          filter: invert(100%) brightness(100%) contrast(85%);
+        }
+      }
+    }
+
+    .description {
+      font-size: 18px;
+    }
+
+    .divider {
+      width: 100%;
+      margin: 20px 0;
+      height: 1px;
+      background: white;
+    }
+
+    .techs {
+      line-height: 2;
+      padding-left: 20px;
+    }
+  }
+}
+
+.dialog {
+  outline: none;
+  padding: 0;
+  background-color: $background;
+  border: none;
+  line-height: 0;
+  cursor: zoom-out;
+
+  &::backdrop {
+    background: $background;
+    opacity: 0.8;
+  }
+
+  img {
+    width: 100%;
+    max-width: 100%;
+    max-height: 90vh;
+  }
+
+  &[open] {
+    animation: show 0.3s ease-out;
+  }
+}
+
+@keyframes show {
+  from {
+    scale: 0.3;
+  }
+  to {
+    scale: 1;
+  }
+}

@@ -1,3 +1,5 @@
 node_modules/**
 __tests__/**
 contentful.graphql.types.ts
+schema.graphql
+.next
