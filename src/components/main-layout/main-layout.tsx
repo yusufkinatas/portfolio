@@ -1,5 +1,4 @@
 import clsx from "clsx";
-import { AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { ReactNode } from "react";
 
@@ -33,7 +32,7 @@ export const MainLayout = ({ children, route }: Props) => {
           </Link>
         </div>
       </div>
-      <AnimatePresence>{children}</AnimatePresence>
+      {children}
     </div>
   );
 };
