@@ -15,12 +15,6 @@
     padding: 0 2rem;
     margin-bottom: 2rem;
 
-    .title {
-      font-weight: bold;
-      margin-bottom: 1rem;
-      display: none;
-    }
-
     .tags {
       display: flex;
       gap: 0.75rem;
@@ -35,7 +29,7 @@
         background: $text-3;
         padding: 0.5rem 0.5rem;
         font-size: 0.75rem;
-        font-weight: 700;
+        font-weight: 600;
 
         cursor: pointer;
         &:hover {
@@ -76,7 +70,7 @@
       align-items: center;
       justify-content: space-between;
       height: 180px;
-      color: white;
+      color: $text;
 
       img {
         width: 80px;

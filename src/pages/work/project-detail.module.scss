@@ -38,7 +38,7 @@
       img {
         width: 100px;
         height: 100px;
-        border: 1px solid white;
+        border: 1px solid $text;
       }
 
       .title {
@@ -134,7 +134,7 @@
       width: 100%;
       margin: 20px 0;
       height: 1px;
-      background: white;
+      background: $text;
     }
 
     .techs {

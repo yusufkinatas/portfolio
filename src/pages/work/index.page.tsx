@@ -44,7 +44,6 @@ const Work = ({ data }: PageProps) => {
         <h2>Here are some of my best projects</h2>
 
         <div className={styles.topCategories}>
-          <div className={styles.title}>Top Categories</div>
           <div className={styles.tags}>
             {tags?.map((tag) => (
               <div
