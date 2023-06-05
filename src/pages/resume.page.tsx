@@ -18,12 +18,13 @@ const Contact = ({ data }: PageProps) => {
   return (
     <Page title="Resume | YK" showContentfulWarning={!resume}>
       <div className={styles.root}>
-        <div>
+        <div className={styles.pdfCta}>
           <div className={styles.title}>In a hurry?</div>
           <Button renderATag link={resume?.resumePdf?.url ?? ""}>
             RESUME PDF
           </Button>
         </div>
+
         <ExperienceList data={data} />
         <SkillList data={data} />
       </div>

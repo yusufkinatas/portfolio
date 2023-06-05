@@ -21,6 +21,9 @@ module.exports = {
     node: true,
     browser: true,
   },
+  globals: {
+    google: true,
+  },
   settings: {
     react: {
       version: "detect",

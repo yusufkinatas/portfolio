@@ -149,7 +149,7 @@ a {
 body {
   color: $text;
   background: $background;
-  font-family: "Montserrat", sans-serif;
+  font-family: $font-family;
   font-weight: 400;
   font-style: normal;
   letter-spacing: 0.1rem;

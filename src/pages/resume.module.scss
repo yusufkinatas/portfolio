@@ -9,7 +9,15 @@
   width: 100%;
   margin: 2rem auto;
 
-  .title {
-    margin-bottom: 1rem;
+  .pdfCta {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    align-items: center;
+
+    .title {
+      font-size: 1.2rem;
+      font-weight: 600;
+    }
   }
 }
