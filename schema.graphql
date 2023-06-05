@@ -119,6 +119,11 @@ enum AssetOrder {
   width_DESC
 }
 
+"""
+The Circle scalar type represents a circle, defined by the coordinates of its center and a radius. The Circle type is used to represent a searchable area together with the '_within_circle' filter.
+"""
+scalar Circle
+
 type ContentfulMetadata {
   tags: [ContentfulTag]!
 }
@@ -192,6 +197,7 @@ enum EntryOrder {
 type Experience implements Entry {
   company(locale: String): String
   contentfulMetadata: ContentfulMetadata!
+  coordinates(locale: String): Location
   linkedFrom(allowedLocales: [String]): ExperienceLinkingCollections
   sys: Sys!
   title(locale: String): String
@@ -216,6 +222,9 @@ input ExperienceFilter {
   company_not_contains: String
   company_not_in: [String]
   contentfulMetadata: ContentfulMetadataFilter
+  coordinates_exists: Boolean
+  coordinates_within_circle: Circle
+  coordinates_within_rectangle: Rectangle
   sys: SysFilter
   title: String
   title_contains: String
@@ -390,6 +399,11 @@ input ImageTransformOptions {
 The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
 """
 scalar JSON
+
+type Location {
+  lat: Float
+  lon: Float
+}
 
 """
 [See type definition](https://app.contentful.com/spaces/fydf0o2ery42/content_types/person)
@@ -787,6 +801,11 @@ type Query {
 }
 
 """
+The Rectangle scalar type represents a rectangle, defined by the coordinates of its top left and bottom right corners. The Rectangle type is used to represent a searchable area together with the '_within_rectangle' filter.
+"""
+scalar Rectangle
+
+"""
 [See type definition](https://app.contentful.com/spaces/fydf0o2ery42/content_types/resumePage)
 """
 type ResumePage implements Entry {
@@ -1021,6 +1040,9 @@ input cfExperienceNestedFilter {
   company_not_contains: String
   company_not_in: [String]
   contentfulMetadata: ContentfulMetadataFilter
+  coordinates_exists: Boolean
+  coordinates_within_circle: Circle
+  coordinates_within_rectangle: Rectangle
   sys: SysFilter
   title: String
   title_contains: String

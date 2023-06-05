@@ -41,6 +41,10 @@ query getResumePage {
           company
           title
           year
+          coordinates {
+            lat
+            lon
+          }
         }
       }
       skillList1 {
