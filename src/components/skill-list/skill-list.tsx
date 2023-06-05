@@ -90,7 +90,11 @@ export const SkillList = ({ data }: { data: GetResumePageQuery }) => {
 
   return (
     <div className={styles.outerContainer}>
-      <div>
+      <small className={styles.hint}>
+        Click these
+        <div className={styles.finger}>👇🏻</div>
+      </small>
+      <div className={styles.sectionWrapper}>
         <Section
           id={1}
           skillData={parseSkillList(skillList1)}
