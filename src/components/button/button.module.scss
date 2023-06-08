@@ -1,11 +1,16 @@
 @import "variables";
 
 .root {
-  display: inline-flex;
+  display: flex;
   padding: 0.8rem 0.8rem 0.8rem 1rem;
   background: $primary;
   color: $text;
   letter-spacing: 0.3rem;
   font-weight: 600;
-  cursor: pointer;
+  justify-content: center;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: change-color($color: $primary, $alpha: 0.8);
+  }
 }

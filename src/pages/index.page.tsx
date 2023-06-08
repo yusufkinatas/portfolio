@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import { Button } from "components/button/button";
 import { ContentfulContent } from "components/contentful-content";
 import { Page } from "components/page/page";
@@ -23,8 +24,21 @@ const About = ({ data }: PageProps) => {
           <div className={styles.description}>
             <ContentfulContent data={person?.description?.json} />
           </div>
-          <Button className={styles.button} link="/work">
-            SEE MY WORK
+
+          <Button link="/work">SEE MY WORK</Button>
+          <p>or</p>
+          {/* <Button
+            className={clsx(styles.secondaryButton, styles.me)}
+            link="/more"
+          >
+            LEARN ABOUT ME
+          </Button>
+          <p>or even</p> */}
+          <Button
+            className={clsx(styles.secondaryButton, styles.game)}
+            link="/games"
+          >
+            PLAY MINIGAMES
           </Button>
         </div>
         <div className={styles.logo}>

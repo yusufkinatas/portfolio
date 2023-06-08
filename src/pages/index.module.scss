@@ -14,6 +14,8 @@
 
   @media screen and (max-width: 768px) {
     height: 80vh;
+    margin-top: 2rem;
+    gap: 2rem;
   }
 
   .content {
@@ -32,17 +34,39 @@
 
     .description {
       font-size: 1.3rem;
-      margin-top: 3rem;
+      margin: 3rem 0;
     }
 
-    .button {
-      margin-top: 3rem;
+    a {
+      max-width: 17rem;
+      margin: auto;
+    }
+
+    .secondaryButton {
+      color: $text;
+      background: transparent;
+      border: 2px solid;
+
+      &.me {
+        &:hover {
+          color: $personal;
+          border-color: $personal;
+        }
+      }
+
+      &.game {
+        &:hover {
+          color: $game;
+          border-color: $game;
+        }
+      }
     }
   }
 
   .logo {
     @media screen and (max-width: 768px) {
       width: 100%;
+      padding-bottom: 3rem;
     }
 
     img {
