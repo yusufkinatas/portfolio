@@ -38,7 +38,7 @@ const About = ({ data }: PageProps) => {
             className={clsx(styles.secondaryButton, styles.game)}
             link="/games"
           >
-            PLAY MINIGAMES
+            PLAY MY GAMES
           </Button>
         </div>
         <div className={styles.logo}>
