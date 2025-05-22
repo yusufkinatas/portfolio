@@ -15,7 +15,7 @@ const About = ({ data }: PageProps) => {
   const person = data.personCollection?.items[0];
 
   return (
-    <Page title="YK | Front End Developer" showContentfulWarning={!person}>
+    <Page title="YK | Software Developer" showContentfulWarning={!person}>
       <div className={styles.root}>
         <div className={styles.content}>
           <div className={styles.hi}>Hi, I'm {person?.name}</div>

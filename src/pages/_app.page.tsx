@@ -98,7 +98,7 @@ const App = ({ Component, pageProps, router }: AppProps) => {
         />
       </Head>
       <PageMeta
-        description="Hi! I'm Yusuf, Frontend Developer. I'm focused on Javascript, web apps, mobile apps, responsive design, animation, and performance."
+        description="Hi! I'm Yusuf, Software Developer. I'm focused on Typescript, web apps, mobile apps, responsive design, AI workflows, and performance."
         image="og_image.jpg"
       />
 
