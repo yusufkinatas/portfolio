@@ -2,7 +2,7 @@ import Head from "next/head";
 import url from "url";
 
 // eslint-disable-next-line no-console
-console.log("jej");
+console.log("john");
 
 function isAbsolute(urlToCheck: string) {
   return (
