@@ -1,6 +1,9 @@
 import Head from "next/head";
 import url from "url";
 
+// eslint-disable-next-line no-console
+console.log("jej");
+
 function isAbsolute(urlToCheck: string) {
   return (
     urlToCheck.indexOf("http://") === 0 || urlToCheck.indexOf("https://") === 0

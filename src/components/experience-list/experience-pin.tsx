@@ -4,6 +4,9 @@ import { memo } from "react";
 
 import styles from "./experience-list.module.scss";
 
+// eslint-disable-next-line no-console
+console.log("jej");
+
 const _ExperiencePin = ({
   pos,
   onClick,

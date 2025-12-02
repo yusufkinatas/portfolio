@@ -22,3 +22,6 @@ const options: Options = {
 export const ContentfulContent = ({ data }: Props) => {
   return <>{documentToReactComponents(data, options)}</>;
 };
+
+// eslint-disable-next-line no-console
+console.log("jej");

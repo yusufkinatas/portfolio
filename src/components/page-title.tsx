@@ -1,5 +1,8 @@
 import Head from "next/head";
 
+// eslint-disable-next-line no-console
+console.log("jej");
+
 export const PageTitle = ({ title }: { title?: string }) => {
   const trimmedTitle = title?.trim();
   return (
