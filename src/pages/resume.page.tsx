@@ -20,7 +20,7 @@ const Contact = ({ data }: PageProps) => {
       <div className={styles.root}>
         <div className={styles.pdfCta}>
           <div className={styles.title}>In a hurry?</div>
-          <Button renderATag link={resume?.resumePdf?.url ?? ""}>
+          <Button renderATag link="https://cv.yusufkinatas.com">
             RESUME PDF
           </Button>
         </div>
